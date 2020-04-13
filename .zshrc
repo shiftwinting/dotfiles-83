@@ -21,8 +21,7 @@ PROMPT='%F{208}%n%f in %F{226}%~%f -> '
 
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
-# bindkey '^e' edit-command-line
-bindkey -M vicmd '^e' edit-command-line
+bindkey '^e' edit-command-line
 
 # Path stuff
 # {{{
@@ -41,6 +40,43 @@ export ANDROID_HOME="$HOME/Library/Android/sdk"
 
 # Flutter
 export PATH="$PATH:$HOME/development/flutter/bin"
+
+# }}}
+
+# FZF
+# {{{
+
+export FZF_DEFAULT_OPTS="
+    --layout=reverse
+    --info=inline
+    --height=80%
+    --multi
+    --preview-window=:hidden
+    --preview '([[ -f {} ]] && (bat --style=numbers --color=always {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
+    --color='hl:148,hl+:154,pointer:032,marker:010,bg+:237,gutter:008'
+    --prompt='∼ ' --pointer='▶' --marker='✓'
+    --bind '?:toggle-preview'
+    --bind 'ctrl-a:select-all'
+    --bind 'ctrl-y:execute-silent(echo {+} | pbcopy)'
+    --bind 'ctrl-e:execute(echo {+} | xargs -o vim)'
+    --bind 'ctrl-v:execute(code {+})'
+    "
+
+# fzf's command
+export FZF_DEFAULT_COMMAND="fd --hidden --follow --exclude '.git' --exclude 'node_modules'"
+
+# CTRL-T's command
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# ALT-C's command
+export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type d"
+
+_fzf_compgen_path() {
+    fd . "$1"
+}
+_fzf_compgen_dir() {
+    fd --type d . "$1"
+}
 
 # }}}
 
