@@ -1,0 +1,60 @@
+alias ls='lsd'
+
+# Useful aliases
+alias vim="nvim"
+alias vi="nvim"
+
+# Docker
+alias dc="docker container"
+alias dn="docker network"
+
+# Config
+alias conf='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+# Zsh plugins
+alias zsh_install_plugin='antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh && source ~/.zshrc'
+
+# Fzf
+alias -g Z='| fzf'
+
+# Git
+alias g='git'
+alias gaa='git add --all'
+alias gb='git branch'
+alias gst='git status'
+
+function git_current_branch() {
+  local ref
+  ref=$(command git symbolic-ref --quiet HEAD 2> /dev/null)
+  local ret=$?
+  if [[ $ret != 0 ]]; then
+    [[ $ret == 128 ]] && return  # no git repo.
+    ref=$(command git rev-parse --short HEAD 2> /dev/null) || return
+  fi
+  echo ${ref#refs/heads/}
+}
+
+function current_branch() {
+  git_current_branch
+}
+
+function ggl() {
+  if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]; then
+    git pull origin "${*}"
+  else
+    [[ "$#" == 0 ]] && local b="$(git_current_branch)"
+    git pull origin "${b:=$1}"
+  fi
+}
+compdef _git ggl=git-checkout
+
+function ggp() {
+  if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]; then
+    git push origin "${*}"
+  else
+    [[ "$#" == 0 ]] && local b="$(git_current_branch)"
+    git push origin "${b:=$1}"
+  fi
+}
+compdef _git ggp=git-checkout
+

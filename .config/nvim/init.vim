@@ -33,7 +33,7 @@ set mouse=a                 " Allow mouse usage
 set showtabline=0           " Hide tabs line
 set numberwidth=5
 set updatetime=300          " Increases the speed of git gutter
-set foldmethod=manual
+set foldmethod=marker
 set signcolumn=yes
 
 " Some servers have issues with backup files, see #649.
@@ -82,36 +82,6 @@ set swapfile
 
 " Plugins {{{
 
-Plug 'itchyny/lightline.vim'
-" {{{
-    set noshowmode
-    set laststatus=2
-
-    let g:lightline = {
-    \ 'colorscheme': 'nord',
-    \   'mode_map': {
-    \   'n' : 'N',
-    \   'i' : 'I',
-    \   'R' : 'R',
-    \   'v' : 'V',
-    \   'V' : 'VL',
-    \   "\<C-v>": 'VB',
-    \   'c' : 'C',
-    \   's' : 'S',
-    \   'S' : 'SL',
-    \   "\<C-s>": 'SB',
-    \   't': 'T',
-    \ },
-    \ 'active': {
-    \ 'left': [ [ 'mode', 'paste' ],
-    \           [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
-    \ },
-    \ 'component_function': {
-    \   'cocstatus': 'coc#status',
-    \   'currentfunction': 'CocCurrentFunction'
-    \ },
-    \ }
-" }}}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " {{{
@@ -158,6 +128,8 @@ Plug 'preservim/nerdcommenter'
 " }}}
 Plug 'airblade/vim-gitgutter'
 " {{{
+    let g:gitgutter_map_keys = 0
+
     function! GitGutterNextHunkCycle()
       let line = line('.')
       silent! GitGutterNextHunk
@@ -169,6 +141,15 @@ Plug 'airblade/vim-gitgutter'
 
     nmap ]h :call GitGutterNextHunkCycle()<CR>
     nmap [h <Plug>(GitGutterPrevHunk)
+
+    nmap <leader>gs <Plug>(GitGutterStageHunk)
+    nmap <leader>gu <Plug>(GitGutterUndoHunk)
+    nmap <leader>gp <Plug>(GitGutterPreviewHunk)
+
+    function! GitStatus()
+      let [a,m,r] = GitGutterGetHunkSummary()
+      return printf('+%d ~%d -%d', a, m, r)
+    endfunction
 " }}}
 Plug 'blueyed/vim-diminactive'
 Plug 'michaeljsmith/vim-indent-object'
@@ -306,6 +287,41 @@ Plug 'mileszs/ack.vim'
     endif
 " }}}
 Plug 'tpope/vim-unimpaired'
+Plug 'itchyny/lightline.vim'
+" {{{
+    set noshowmode
+    set laststatus=2
+
+    let g:lightline = {
+    \ 'colorscheme': 'nord',
+    \   'mode_map': {
+    \   'n' : 'N',
+    \   'i' : 'I',
+    \   'R' : 'R',
+    \   'v' : 'V',
+    \   'V' : 'VL',
+    \   "\<C-v>": 'VB',
+    \   'c' : 'C',
+    \   's' : 'S',
+    \   'S' : 'SL',
+    \   "\<C-s>": 'SB',
+    \   't': 'T',
+    \ },
+    \ 'active': {
+    \ 'left': [ [ 'mode', 'paste' ],
+    \           [ 'gitbranch', 'gitstatus', 'readonly', 'filename', 'modified' ] ],
+    \   'right': [ [ 'lineinfo' ],
+    \              [ 'cocstatus', 'percent' ],
+    \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ]
+    \ },
+    \ 'component_function': {
+    \   'cocstatus': 'coc#status',
+    \   'currentfunction': 'CocCurrentFunction',
+    \   'gitbranch': 'FugitiveHead',
+    \   'gitstatus': 'GitStatus',
+    \ },
+    \ }
+" }}}
 
 " }}}
 
@@ -353,7 +369,7 @@ augroup END
 
 augroup foldMethodMarkerOnVimFiles
     autocmd!
-    autocmd FileType vim setlocal foldmethod=marker
+    autocmd FileType vim,.zshrc setlocal foldmethod=marker
 augroup END
 
 " }}}
@@ -383,6 +399,9 @@ nnoremap <down> :tabprev<CR>
 nnoremap <left> :bprev<CR>
 nnoremap <right> :bnext<CR>
 nnoremap <up> :tabnext<CR>
+
+" Auto insert closing pairs
+inoremap {<CR> {<CR>}<ESC>O
 
 " Change cursor position in insert mode
 inoremap <C-h> <left>

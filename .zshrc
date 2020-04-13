@@ -1,4 +1,4 @@
-# Base
+# History
 HISTSIZE=99999
 HISTFILESIZE=999999
 SAVEHIST=$HISTSIZE
@@ -25,6 +25,7 @@ autoload edit-command-line; zle -N edit-command-line
 bindkey -M vicmd '^e' edit-command-line
 
 # Path stuff
+# {{{
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
@@ -40,6 +41,8 @@ export ANDROID_HOME="$HOME/Library/Android/sdk"
 
 # Flutter
 export PATH="$PATH:$HOME/development/flutter/bin"
+
+# }}}
 
 source ~/.zsh_plugins.sh
 
