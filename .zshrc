@@ -1,20 +1,22 @@
-# ==================
+
 # Base
-# ==================
 HISTSIZE=99999
 HISTFILESIZE=999999
 SAVEHIST=$HISTSIZE
 HISTFILE=~/.zsh_history
 
-# ==================
+# Basic auto/tab complete:
+autoload -U compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)
+
 # UI
-# ==================
 PROMPT='%n in %~ -> '
 PROMPT='%F{208}%n%f in %F{226}%~%f -> '
 
-# ==================
 # Path stuff
-# ==================
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
@@ -31,21 +33,8 @@ export ANDROID_HOME="$HOME/Library/Android/sdk"
 # Flutter
 export PATH="$PATH:$HOME/development/flutter/bin"
 
-# ==================
-# Aliases
-# ==================
-
-alias ls='lsd'
-
-# Useful aliases
-alias vim="nvim"
-alias vi="nvim"
-
-# Docker
-alias dc="docker container"
-alias dn="docker network"
-
-# Config
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+source ~/.config/aliasesrc
+source ~/.zsh_plugins.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+

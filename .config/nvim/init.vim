@@ -133,6 +133,12 @@ Plug 'junegunn/fzf.vim'
     nnoremap <silent> <leader>? :History<CR>
     nnoremap <silent> <leader>/ :execute 'Ag ' . input('Ag/')<CR>
     nnoremap <silent> <leader>gco :GCheckout<CR>
+
+    " Insert
+    imap <c-x><c-k> <plug>(fzf-complete-word)
+    imap <c-x><c-f> <plug>(fzf-complete-path)
+    imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+    imap <c-x><c-l> <plug>(fzf-complete-line)
 " }}}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-fugitive'
