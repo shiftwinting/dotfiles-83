@@ -85,6 +85,10 @@ set swapfile
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " {{{
+    " Hide status line while fzf is opened
+    autocmd! FileType fzf set laststatus=0 noshowmode noruler
+      \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+
     function! s:open_branch_fzf(line)
       let l:parser = split(a:line)
       let l:branch = l:parser[0]
@@ -106,11 +110,15 @@ Plug 'junegunn/fzf.vim'
     " Maps
     nnoremap <silent> <leader>o :GFiles<CR>
     nnoremap <silent> <leader>b :Buffers<CR>
-    " nnoremap <silent> <leader>A :Windows<CR>
-    " nnoremap <silent> <leader>; :BLines<CR>
     nnoremap <silent> <leader>. :History<CR>
-    nnoremap <silent> <leader>/ :Ack
+    nnoremap <silent> <leader>/ :Rg<CR>
+    nnoremap <silent> <leader>* :Rg <C-R><C-W><CR>
+    nnoremap <silent> <leader>h :Helptags<CR>
     nnoremap <silent> <leader>gco :GCheckout<CR>
+
+    nmap <leader><tab> <plug>(fzf-maps-n)
+    xmap <leader><tab> <plug>(fzf-maps-x)
+    omap <leader><tab> <plug>(fzf-maps-o)
 
     " Insert
     imap <c-x><c-k> <plug>(fzf-complete-word)
@@ -128,6 +136,11 @@ Plug 'preservim/nerdcommenter'
 " }}}
 Plug 'airblade/vim-gitgutter'
 " {{{
+    let g:gitgutter_sign_added = '∙'
+    let g:gitgutter_sign_modified = '∙'
+    let g:gitgutter_sign_removed = '∙'
+    let g:gitgutter_sign_modified_removed = '∙'
+
     let g:gitgutter_map_keys = 0
 
     function! GitGutterNextHunkCycle()
@@ -221,18 +234,19 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
       endif
     endfunction
 
-    function! ShowDocIfNoDiagnostic(timer_id)
-      if (coc#util#has_float() == 0)
-        silent call CocActionAsync('doHover')
-      endif
-    endfunction
+    " Show tooltip on cursor hold
+    " function! ShowDocIfNoDiagnostic(timer_id)
+      " if (coc#util#has_float() == 0)
+        " silent call CocActionAsync('doHover')
+      " endif
+    " endfunction
 
-    function! s:show_hover_doc()
-      call timer_start(500, 'ShowDocIfNoDiagnostic')
-    endfunction
+    " function! s:show_hover_doc()
+      " call timer_start(500, 'ShowDocIfNoDiagnostic')
+    " endfunction
 
-    autocmd CursorHoldI * :call <SID>show_hover_doc()
-    autocmd CursorHold * :call <SID>show_hover_doc()
+    " autocmd CursorHoldI * :call <SID>show_hover_doc()
+    " autocmd CursorHold * :call <SID>show_hover_doc()
 
     " Highlight the symbol and its references when holding the cursor.
     augroup highlightSymbol
@@ -280,12 +294,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " Add `:OR` command for organize imports of the current buffer.
     command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 " }}}
-Plug 'mileszs/ack.vim'
-" {{{
-    if executable('ag')
-      let g:ackprg = 'ag --vimgrep'
-    endif
-" }}}
 Plug 'tpope/vim-unimpaired'
 Plug 'itchyny/lightline.vim'
 " {{{
@@ -311,8 +319,7 @@ Plug 'itchyny/lightline.vim'
     \ 'left': [ [ 'mode', 'paste' ],
     \           [ 'gitbranch', 'gitstatus', 'readonly', 'filename', 'modified' ] ],
     \   'right': [ [ 'lineinfo' ],
-    \              [ 'cocstatus', 'percent' ],
-    \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ]
+    \              [ 'cocstatus', 'percent' ] ]
     \ },
     \ 'component_function': {
     \   'cocstatus': 'coc#status',
@@ -384,7 +391,6 @@ nnoremap <leader>s :set invspell<CR>
 nnoremap ; :
 map Q <nop>
 map <C-t> :tabn<CR>
-map <CR> o<Esc>
 inoremap jj <Esc>
 vnoremap <leader><space> <Esc>
 nnoremap <space> za
@@ -442,6 +448,9 @@ inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
 " Yank to clipboard
 nnoremap <leader>y "*y
+
+" Quickfix list
+nnoremap fq :ccl<CR>
 
 " }}}
 

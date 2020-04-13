@@ -14,6 +14,7 @@ compinit
 _comp_options+=(globdots)
 
 source ~/.config/aliasesrc
+source ~/.zsh_plugins.sh
 
 # UI
 PROMPT='%n in %~ -> '
@@ -74,13 +75,57 @@ export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type d"
 _fzf_compgen_path() {
     fd . "$1"
 }
+
 _fzf_compgen_dir() {
     fd --type d . "$1"
 }
 
+# find-in-file - usage: fif <SEARCH_TERM>
+fif() {
+  if [ ! "$#" -gt 0 ]; then
+    echo "Need a string to search for!";
+    return 1;
+  fi
+  rg --files-with-matches --no-messages "$1" | fzf $FZF_PREVIEW_WINDOW --preview "rg --ignore-case --pretty --context 10 '$1' {}"
+}
+
+# Select a docker container to start and attach to
+function da() {
+  local cid
+  cid=$(docker ps -a | sed 1d | fzf -1 -q "$1" | awk '{print $1}')
+
+  [ -n "$cid" ] && docker start "$cid" && docker attach "$cid"
+}
+
+# Select a running docker container to stop
+function ds() {
+  local cid
+  cid=$(docker ps | sed 1d | fzf -q "$1" | awk '{print $1}')
+
+  [ -n "$cid" ] && docker stop "$cid"
+}
+
+# Select a docker container to remove
+function drm() {
+  local cid
+  cid=$(docker ps -a | sed 1d | fzf -q "$1" | awk '{print $1}')
+
+  [ -n "$cid" ] && docker rm "$cid"
+}
+
+# like normal z when used with arguments but displays an fzf prompt when used without.
+zd() {
+    cd "$(z -l 2>&1 | fzf --height 40% --nth 2.. --reverse --inline-info +s --tac --query "${*##-* }" | sed 's/^[0-9,.]* *//')"
+}
+
 # }}}
 
-source ~/.zsh_plugins.sh
+# Forgit
+# {{{
+
+FORGIT_LOG_GRAPH_ENABLE=false
+
+# }}}
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
