@@ -1,9 +1,12 @@
+source ~/.config/aliasesrc
 
 # Base
 HISTSIZE=99999
 HISTFILESIZE=999999
 SAVEHIST=$HISTSIZE
 HISTFILE=~/.zsh_history
+
+EDITOR=nvim
 
 # Basic auto/tab complete:
 autoload -U compinit
@@ -15,6 +18,11 @@ _comp_options+=(globdots)
 # UI
 PROMPT='%n in %~ -> '
 PROMPT='%F{208}%n%f in %F{226}%~%f -> '
+
+# Edit line in vim with ctrl-e:
+autoload edit-command-line; zle -N edit-command-line
+# bindkey '^e' edit-command-line
+bindkey -M vicmd '^e' edit-command-line
 
 # Path stuff
 export PATH="/usr/local/opt/openssl/bin:$PATH"
@@ -33,7 +41,6 @@ export ANDROID_HOME="$HOME/Library/Android/sdk"
 # Flutter
 export PATH="$PATH:$HOME/development/flutter/bin"
 
-source ~/.config/aliasesrc
 source ~/.zsh_plugins.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

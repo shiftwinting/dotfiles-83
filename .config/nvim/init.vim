@@ -88,21 +88,29 @@ Plug 'itchyny/lightline.vim'
     set laststatus=2
 
     let g:lightline = {
-      \ 'colorscheme': 'nord',
-      \ 'mode_map': {
-        \ 'n' : 'N',
-        \ 'i' : 'I',
-        \ 'R' : 'R',
-        \ 'v' : 'V',
-        \ 'V' : 'VL',
-        \ "\<C-v>": 'VB',
-        \ 'c' : 'C',
-        \ 's' : 'S',
-        \ 'S' : 'SL',
-        \ "\<C-s>": 'SB',
-        \ 't': 'T',
-        \ },
-      \ }
+    \ 'colorscheme': 'nord',
+    \   'mode_map': {
+    \   'n' : 'N',
+    \   'i' : 'I',
+    \   'R' : 'R',
+    \   'v' : 'V',
+    \   'V' : 'VL',
+    \   "\<C-v>": 'VB',
+    \   'c' : 'C',
+    \   's' : 'S',
+    \   'S' : 'SL',
+    \   "\<C-s>": 'SB',
+    \   't': 'T',
+    \ },
+    \ 'active': {
+    \ 'left': [ [ 'mode', 'paste' ],
+    \           [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+    \ },
+    \ 'component_function': {
+    \   'cocstatus': 'coc#status',
+    \   'currentfunction': 'CocCurrentFunction'
+    \ },
+    \ }
 " }}}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -128,10 +136,10 @@ Plug 'junegunn/fzf.vim'
     " Maps
     nnoremap <silent> <leader>o :GFiles<CR>
     nnoremap <silent> <leader>b :Buffers<CR>
-    nnoremap <silent> <leader>A :Windows<CR>
-    nnoremap <silent> <leader>; :BLines<CR>
-    nnoremap <silent> <leader>? :History<CR>
-    nnoremap <silent> <leader>/ :execute 'Ag ' . input('Ag/')<CR>
+    " nnoremap <silent> <leader>A :Windows<CR>
+    " nnoremap <silent> <leader>; :BLines<CR>
+    nnoremap <silent> <leader>. :History<CR>
+    nnoremap <silent> <leader>/ :Ack
     nnoremap <silent> <leader>gco :GCheckout<CR>
 
     " Insert
@@ -166,6 +174,18 @@ Plug 'blueyed/vim-diminactive'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " {{{
+
+    let g:coc_global_extensions = [
+      \ 'coc-tsserver'
+      \ ]
+
+    if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+      let g:coc_global_extensions += ['coc-prettier']
+    endif
+
+    if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+      let g:coc_global_extensions += ['coc-eslint']
+    endif
 
     " Use tab for trigger completion with characters ahead and navigate.
     " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -202,6 +222,13 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
     nmap <silent> gi <Plug>(coc-implementation)
     nmap <silent> gr <Plug>(coc-references)
 
+    " Move between diagnostics
+    nmap <silent> [g <Plug>(coc-diagnostic-prev)
+    nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+    " Lists mappings
+    nnoremap <silent> <space>d :<C-u>CocList diagnostics<cr>
+
     " Use K to show documentation in preview window.
     nnoremap <silent> K :call <SID>show_documentation()<CR>
 
@@ -212,6 +239,19 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
         call CocAction('doHover')
       endif
     endfunction
+
+    function! ShowDocIfNoDiagnostic(timer_id)
+      if (coc#util#has_float() == 0)
+        silent call CocActionAsync('doHover')
+      endif
+    endfunction
+
+    function! s:show_hover_doc()
+      call timer_start(500, 'ShowDocIfNoDiagnostic')
+    endfunction
+
+    autocmd CursorHoldI * :call <SID>show_hover_doc()
+    autocmd CursorHold * :call <SID>show_hover_doc()
 
     " Highlight the symbol and its references when holding the cursor.
     augroup highlightSymbol
@@ -240,9 +280,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
     nmap <leader>a  <Plug>(coc-codeaction-selected)
 
     " Remap keys for applying codeAction to the current line.
-    nmap <leader>ac  <Plug>(coc-codeaction)
+    nmap <leader>ac  :CocAction<CR>
     " Apply AutoFix to problem on the current line.
-    nmap <leader>qf  <Plug>(coc-fix-current)
+    nmap <leader>qf  :CocFix<CR>
 
     " Use <TAB> for selections ranges.
     " NOTE: Requires 'textDocument/selectionRange' support from the language server.
@@ -259,6 +299,13 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " Add `:OR` command for organize imports of the current buffer.
     command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 " }}}
+Plug 'mileszs/ack.vim'
+" {{{
+    if executable('ag')
+      let g:ackprg = 'ag --vimgrep'
+    endif
+" }}}
+Plug 'tpope/vim-unimpaired'
 
 " }}}
 
@@ -350,6 +397,8 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <leader>s <C-w>s
 nnoremap <leader>v <C-w>v
+nnoremap <C-b> :b#<CR>
+inoremap <C-b> <Esc>:b#<CR>
 
 " Reselect visual block after indent
 vnoremap < <gv
