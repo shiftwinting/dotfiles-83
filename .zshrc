@@ -1,5 +1,3 @@
-source ~/.config/aliasesrc
-
 # Base
 HISTSIZE=99999
 HISTFILESIZE=999999
@@ -14,6 +12,8 @@ zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots)
+
+source ~/.config/aliasesrc
 
 # UI
 PROMPT='%n in %~ -> '
@@ -45,3 +45,7 @@ source ~/.zsh_plugins.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
