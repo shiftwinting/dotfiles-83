@@ -34,7 +34,6 @@ set numberwidth=5
 set updatetime=300          " Increases the speed of git gutter
 set foldmethod=manual
 set signcolumn=yes
-set clipboard+=unnamedplus  " Use system clipboard
 
 " Some servers have issues with backup files, see #649.
 set nobackup
@@ -111,6 +110,7 @@ Plug 'junegunn/fzf.vim'
     nnoremap <silent> <leader>o :GFiles<CR>
     nnoremap <silent> <leader>b :Buffers<CR>
     nnoremap <silent> <leader>. :History<CR>
+    nnoremap <silent> <leader>; :History:<CR>
     nnoremap <silent> <leader>/ :Rg<CR>
     nnoremap <silent> <leader>* :Rg <C-R><C-W><CR>
     nnoremap <silent> <F1> :Helptags<CR>
@@ -130,6 +130,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'sheerun/vim-polyglot'
+Plug 'MattesGroeger/vim-bookmarks'
 Plug 'moll/vim-bbye'
 " {{{
     nnoremap <Leader>q :Bdelete<CR>
@@ -185,6 +186,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
       \ 'coc-prettier',
       \ 'coc-git',
       \ 'coc-eslint',
+      \ 'coc-snippets',
       \ ]
 
     if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
@@ -263,10 +265,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " autocmd CursorHold * :call <SID>show_hover_doc()
 
     " Highlight the symbol and its references when holding the cursor.
-    augroup highlightSymbol
-        autocmd!
-        autocmd CursorHold * silent call CocActionAsync('highlight')
-    augroup END
+    autocmd CursorHold * silent call CocActionAsync('highlight')
 
     " Symbol renaming.
     nmap <leader>rn <Plug>(coc-rename)
@@ -312,6 +311,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 Plug 'mhinz/vim-startify'
 " {{{
+    let g:startify_files_number = 5
     let g:startify_session_dir = '~/.config/nvimsessions'
 " }}}
 Plug 'itchyny/lightline.vim'
@@ -348,6 +348,42 @@ Plug 'itchyny/lightline.vim'
     \ },
     \ }
 " }}}
+Plug 'sirver/UltiSnips'
+" {{{
+
+    " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+    let g:UltiSnipsExpandTrigger="<C-l>"
+
+    " Use <C-l> for trigger snippet expand.
+    imap <C-l> <Plug>(coc-snippets-expand)
+
+    " Use <C-j> for select text for visual placeholder of snippet.
+    vmap <C-j> <Plug>(coc-snippets-select)
+
+    " Use <C-j> for jump to next placeholder, it's default of coc.nvim
+    let g:coc_snippet_next = '<c-j>'
+
+    " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+    let g:coc_snippet_prev = '<c-k>'
+
+    " Use <C-j> for both expand and jump (make expand higher priority.)
+    imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+    inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+    function! s:check_back_space() abort
+      let col = col('.') - 1
+      return !col || getline('.')[col - 1]  =~# '\s'
+    endfunction
+
+    let g:coc_snippet_next = '<tab>'
+
+" }}}
+Plug 'honza/vim-snippets'
 
 " }}}
 
@@ -403,6 +439,11 @@ augroup VimFolding
     autocmd FileType vim set foldmethod=marker
 augroup END
 
+augroup CenterOnInsert
+    autocmd!
+    autocmd InsertEnter * norm zz
+augroup END
+
 " Terminal commands
 command! -nargs=* T split | terminal <args>
 command! -nargs=* VT vsplit | terminal <args>
@@ -417,6 +458,8 @@ inoremap <leader>w <Esc>:w!<CR>
 nnoremap <leader><space> :noh<CR>
 nnoremap <leader>s :set invspell<CR>
 nnoremap ; :
+" No macros for now
+map q <nop>
 map Q <nop>
 map <C-t> :tabn<CR>
 inoremap jj <Esc>
@@ -424,7 +467,7 @@ vnoremap <leader><space> <Esc>
 nnoremap <C-g> :echo expand('%:p')<CR>
 
 " Terminal keymaps
-tnoremap jj <C-\><C-n>
+tnoremap <leader>; <C-\><C-n>
 
 tnoremap <A-h> <C-\><C-N><C-w>h
 tnoremap <A-j> <C-\><C-N><C-w>j
@@ -487,6 +530,7 @@ inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
 " Yank to clipboard
 nnoremap <leader>y "*y
+vnoremap <leader>y "*y
 
 " Quickfix list
 nnoremap fq :ccl<CR>
