@@ -22,6 +22,7 @@ alias g='git'
 alias gaa='git add --all'
 alias gb='git branch'
 alias gst='git status'
+alias gco='git checkout'
 
 function git_current_branch() {
   local ref

@@ -13,6 +13,10 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)
 
+# Ignore tab completion
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}'
+
+
 source ~/.config/aliasesrc
 source ~/.zsh_plugins.sh
 
@@ -89,33 +93,18 @@ fif() {
   rg --files-with-matches --no-messages "$1" | fzf $FZF_PREVIEW_WINDOW --preview "rg --ignore-case --pretty --context 10 '$1' {}"
 }
 
-# Select a docker container to start and attach to
-function da() {
-  local cid
-  cid=$(docker ps -a | sed 1d | fzf -1 -q "$1" | awk '{print $1}')
-
-  [ -n "$cid" ] && docker start "$cid" && docker attach "$cid"
+unalias z
+z() {
+  if [[ -z "$*" ]]; then
+    cd "$(_z -l 2>&1 | fzf +s --tac | sed 's/^[0-9,.]* *//')"
+  else
+    _last_z_args="$@"
+    _z "$@"
+  fi
 }
 
-# Select a running docker container to stop
-function ds() {
-  local cid
-  cid=$(docker ps | sed 1d | fzf -q "$1" | awk '{print $1}')
-
-  [ -n "$cid" ] && docker stop "$cid"
-}
-
-# Select a docker container to remove
-function drm() {
-  local cid
-  cid=$(docker ps -a | sed 1d | fzf -q "$1" | awk '{print $1}')
-
-  [ -n "$cid" ] && docker rm "$cid"
-}
-
-# like normal z when used with arguments but displays an fzf prompt when used without.
-zd() {
-    cd "$(z -l 2>&1 | fzf --height 40% --nth 2.. --reverse --inline-info +s --tac --query "${*##-* }" | sed 's/^[0-9,.]* *//')"
+zz() {
+  cd "$(_z -l 2>&1 | sed 's/^[0-9,.]* *//' | fzf -q "$_last_z_args")"
 }
 
 # }}}

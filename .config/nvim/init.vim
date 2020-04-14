@@ -18,7 +18,6 @@ endfunction
 " Base Config {{{
 
 set encoding=utf-8
-
 set nocompatible            " disable compatibility to old-time vi
 set showmatch               " show matching brackets
 set tabstop=4               " number of columns occupied by a tab character
@@ -26,15 +25,16 @@ set softtabstop=4           " see multiple spaces as tabstops so <BS> does the r
 set expandtab               " converts tabs to white space
 set shiftwidth=4            " width for autoindents
 set autoindent              " indent a new line the same amount as the line just typed
-set relativenumber          " add line numbers
+set number relativenumber   " add line numbers
 set termguicolors           " Use term colors
 set cursorline              " Current line highlight
 set mouse=a                 " Allow mouse usage
 set showtabline=0           " Hide tabs line
 set numberwidth=5
 set updatetime=300          " Increases the speed of git gutter
-set foldmethod=marker
+set foldmethod=manual
 set signcolumn=yes
+set clipboard+=unnamedplus  " Use system clipboard
 
 " Some servers have issues with backup files, see #649.
 set nobackup
@@ -113,7 +113,7 @@ Plug 'junegunn/fzf.vim'
     nnoremap <silent> <leader>. :History<CR>
     nnoremap <silent> <leader>/ :Rg<CR>
     nnoremap <silent> <leader>* :Rg <C-R><C-W><CR>
-    nnoremap <silent> <leader>h :Helptags<CR>
+    nnoremap <silent> <F1> :Helptags<CR>
     nnoremap <silent> <leader>gco :GCheckout<CR>
 
     nmap <leader><tab> <plug>(fzf-maps-n)
@@ -130,6 +130,10 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'sheerun/vim-polyglot'
+Plug 'moll/vim-bbye'
+" {{{
+    nnoremap <Leader>q :Bdelete<CR>
+" }}}
 Plug 'preservim/nerdcommenter'
 " {{{
     let g:NERDSpaceDelims = 1
@@ -140,6 +144,13 @@ Plug 'airblade/vim-gitgutter'
     let g:gitgutter_sign_modified = '∙'
     let g:gitgutter_sign_removed = '∙'
     let g:gitgutter_sign_modified_removed = '∙'
+
+    let g:gitgutter_highlight_linenrs = 1
+
+    highlight link GitGutterAddLineNr CursorColumn
+    highlight link GitGutterChangeLineNr CursorColumn
+    highlight link GitGutterDeleteLineNr CursorColumn
+    highlight link GitGutterChangeDeleteLineNr CursorColumn
 
     let g:gitgutter_map_keys = 0
 
@@ -170,7 +181,10 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " {{{
 
     let g:coc_global_extensions = [
-      \ 'coc-tsserver'
+      \ 'coc-tsserver',
+      \ 'coc-prettier',
+      \ 'coc-git',
+      \ 'coc-eslint',
       \ ]
 
     if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
@@ -258,8 +272,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
     nmap <leader>rn <Plug>(coc-rename)
 
     " Formatting selected code.
-    xmap <leader>f  <Plug>(coc-format-selected)
-    nmap <leader>f  <Plug>(coc-format-selected)
+    " xmap <leader>f  <Plug>(coc-format-selected)
+    " nmap <leader>f  <Plug>(coc-format-selected)
 
     augroup cocTSConfig
       autocmd!
@@ -277,7 +291,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " Remap keys for applying codeAction to the current line.
     nmap <leader>ac  :CocAction<CR>
     " Apply AutoFix to problem on the current line.
-    nmap <leader>qf  :CocFix<CR>
+    " nmap <leader>f  :CocFix<CR>
 
     " Use <TAB> for selections ranges.
     " NOTE: Requires 'textDocument/selectionRange' support from the language server.
@@ -295,6 +309,11 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
     command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 " }}}
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-repeat'
+Plug 'mhinz/vim-startify'
+" {{{
+    let g:startify_session_dir = '~/.config/nvimsessions'
+" }}}
 Plug 'itchyny/lightline.vim'
 " {{{
     set noshowmode
@@ -379,6 +398,15 @@ augroup foldMethodMarkerOnVimFiles
     autocmd FileType vim,.zshrc setlocal foldmethod=marker
 augroup END
 
+augroup VimFolding
+    autocmd!
+    autocmd FileType vim set foldmethod=marker
+augroup END
+
+" Terminal commands
+command! -nargs=* T split | terminal <args>
+command! -nargs=* VT vsplit | terminal <args>
+
 " }}}
 
 " Keymaps {{{
@@ -393,12 +421,23 @@ map Q <nop>
 map <C-t> :tabn<CR>
 inoremap jj <Esc>
 vnoremap <leader><space> <Esc>
-nnoremap <space> za
+nnoremap <C-g> :echo expand('%:p')<CR>
 
 " Terminal keymaps
-tnoremap <C-q> <C-\><C-n>
-nnoremap <leader>ts :sp \| term<CR>
-nnoremap <leader>tv :vsp \| term<CR>
+tnoremap jj <C-\><C-n>
+
+tnoremap <A-h> <C-\><C-N><C-w>h
+tnoremap <A-j> <C-\><C-N><C-w>j
+tnoremap <A-k> <C-\><C-N><C-w>k
+tnoremap <A-l> <C-\><C-N><C-w>l
+inoremap <A-h> <C-\><C-N><C-w>h
+inoremap <A-j> <C-\><C-N><C-w>j
+inoremap <A-k> <C-\><C-N><C-w>k
+inoremap <A-l> <C-\><C-N><C-w>l
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
 
 " Remap arrow keys
 nnoremap <down> :tabprev<CR>
@@ -415,15 +454,19 @@ inoremap <C-j> <down>
 inoremap <C-k> <up>
 inoremap <C-l> <right>
 
-" Windows/Buffers motion keys
+" Windows/Buffers
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <leader>s <C-w>s
 nnoremap <leader>v <C-w>v
+nnoremap <leader>S :T<CR>
+nnoremap <leader>V :VT<CR>
 nnoremap <C-b> :b#<CR>
 inoremap <C-b> <Esc>:b#<CR>
+nnoremap + :res +10<CR>
+nnoremap _ :res -10<CR>
 
 " Reselect visual block after indent
 vnoremap < <gv
@@ -437,10 +480,6 @@ nnoremap Y y$
 
 " Hide annoying quit message
 nnoremap <C-c> <C-c>:echo<cr>
-
-" Tab shortcuts
-map <leader>tn :tabnew<CR>
-map <leader>tc :tabclose<CR>
 
 " Tab for autocompletion
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
