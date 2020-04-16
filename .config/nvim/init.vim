@@ -34,6 +34,7 @@ set numberwidth=5
 set updatetime=300          " Increases the speed of git gutter
 set foldmethod=manual
 set signcolumn=yes
+set inccommand=nosplit
 
 " Some servers have issues with backup files, see #649.
 set nobackup
@@ -108,10 +109,11 @@ Plug 'junegunn/fzf.vim'
 
     " Maps
     nnoremap <silent> <leader>o :GFiles<CR>
-    nnoremap <silent> <leader>b :Buffers<CR>
+    nnoremap <silent> <leader>b :BLines<CR>
     nnoremap <silent> <leader>. :History<CR>
+    nnoremap <silent> <leader>; :Commands<CR>
     nnoremap <silent> <leader>; :History:<CR>
-    nnoremap <silent> <leader>/ :Rg<CR>
+    nnoremap <silent> <leader>/ :Rg <Space>
     nnoremap <silent> <leader>* :Rg <C-R><C-W><CR>
     nnoremap <silent> <F1> :Helptags<CR>
     nnoremap <silent> <leader>gco :GCheckout<CR>
@@ -128,9 +130,21 @@ Plug 'junegunn/fzf.vim'
 " }}}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'sheerun/vim-polyglot'
 Plug 'MattesGroeger/vim-bookmarks'
+Plug 'machakann/vim-highlightedyank'
+" {{{
+    let g:highlightedyank_highlight_duration = 450
+" }}}
+Plug 'justinmk/vim-sneak'
+" {{{
+
+    let g:sneak#s_next = 1
+    let g:sneak#use_ic_scs = 1
+
+" }}}
 Plug 'moll/vim-bbye'
 " {{{
     nnoremap <Leader>q :Bdelete<CR>
@@ -164,7 +178,7 @@ Plug 'airblade/vim-gitgutter'
       endif
     endfunction
 
-    nmap ]h :call GitGutterNextHunkCycle()<CR>
+    nnoremap ]h :call GitGutterNextHunkCycle()<CR>
     nmap [h <Plug>(GitGutterPrevHunk)
 
     nmap <leader>gs <Plug>(GitGutterStageHunk)
@@ -229,7 +243,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " GoTo code navigation.
     nmap <silent> gd <Plug>(coc-definition)
     nmap <silent> gy <Plug>(coc-type-definition)
-    nmap <silent> gi <Plug>(coc-implementation)
+    " nmap <silent> gi <Plug>(coc-implementation)
     nmap <silent> gr <Plug>(coc-references)
 
     " Move between diagnostics
@@ -354,6 +368,9 @@ Plug 'sirver/UltiSnips'
     " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
     let g:UltiSnipsExpandTrigger="<C-l>"
 
+    " Edit snippets
+    nnoremap <leader>es :CocCommand snippets.editSnippets<CR>
+
     " Use <C-l> for trigger snippet expand.
     imap <C-l> <Plug>(coc-snippets-expand)
 
@@ -456,18 +473,18 @@ command! -nargs=* VT vsplit | terminal <args>
 nnoremap <leader>w :w!<CR>
 inoremap <leader>w <Esc>:w!<CR>
 nnoremap <leader><space> :noh<CR>
-nnoremap <leader>s :set invspell<CR>
 nnoremap ; :
+nnoremap : ;
 " No macros for now
 map q <nop>
 map Q <nop>
-map <C-t> :tabn<CR>
+nnoremap <C-t> :tabn<CR>
 inoremap jj <Esc>
 vnoremap <leader><space> <Esc>
 nnoremap <C-g> :echo expand('%:p')<CR>
 
 " Terminal keymaps
-tnoremap <leader>; <C-\><C-n>
+tnoremap <leader>. <C-\><C-n>
 
 tnoremap <A-h> <C-\><C-N><C-w>h
 tnoremap <A-j> <C-\><C-N><C-w>j
@@ -534,6 +551,13 @@ vnoremap <leader>y "*y
 
 " Quickfix list
 nnoremap fq :ccl<CR>
+
+" allows incsearch highlighting for range commands
+cnoremap $t <CR>:t''<CR>
+cnoremap $T <CR>:T''<CR>
+cnoremap $m <CR>:m''<CR>
+cnoremap $M <CR>:M''<CR>
+cnoremap $d <CR>:d<CR>``
 
 " }}}
 

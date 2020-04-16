@@ -107,6 +107,16 @@ zz() {
   cd "$(_z -l 2>&1 | sed 's/^[0-9,.]* *//' | fzf -q "$_last_z_args")"
 }
 
+bip() {
+    local inst=$(brew search | eval "fzf -m --header='[brew:install]'")
+
+    if [[ $inst ]]; then
+      for prog in $(echo $inst)
+      do brew install $prog
+      done
+    fi
+}
+
 # }}}
 
 # Forgit
