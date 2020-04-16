@@ -13,11 +13,10 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)
 
+bindkey '^[[Z' reverse-menu-complete
+
 # Ignore tab completion
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}'
-
-# Completion
-# autoload -Uz compinit && compinit -i
 
 source ~/.config/aliasesrc
 source ~/.zsh_plugins.sh
