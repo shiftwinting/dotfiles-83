@@ -1,8 +1,10 @@
 alias ls='lsd'
+alias c='clear'
 
 # Useful aliases
 alias vim="nvim"
 alias vi="nvim"
+alias v="nvim"
 
 # Docker
 alias dc="docker container"

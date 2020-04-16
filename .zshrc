@@ -16,6 +16,8 @@ _comp_options+=(globdots)
 # Ignore tab completion
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}'
 
+# Completion
+# autoload -Uz compinit && compinit -i
 
 source ~/.config/aliasesrc
 source ~/.zsh_plugins.sh
@@ -32,19 +34,13 @@ bindkey '^e' edit-command-line
 # {{{
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Android Development
 export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
-
-# Flutter
-export PATH="$PATH:$HOME/development/flutter/bin"
 
 # }}}
 

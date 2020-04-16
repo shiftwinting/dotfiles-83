@@ -134,10 +134,6 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'sheerun/vim-polyglot'
 Plug 'MattesGroeger/vim-bookmarks'
-Plug 'machakann/vim-highlightedyank'
-" {{{
-    let g:highlightedyank_highlight_duration = 450
-" }}}
 Plug 'justinmk/vim-sneak'
 " {{{
 
@@ -401,6 +397,10 @@ Plug 'sirver/UltiSnips'
 
 " }}}
 Plug 'honza/vim-snippets'
+Plug 'christoomey/vim-tmux-navigator'
+" {{{
+    let g:tmux_navigator_save_on_switch = 1
+" }}}
 
 " }}}
 
