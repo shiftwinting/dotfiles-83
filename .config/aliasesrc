@@ -26,6 +26,11 @@ alias gb='git branch'
 alias gst='git status'
 alias gco='git checkout'
 alias gcam='git commit -a -m'
+alias glog='glo'
+
+# From forgit
+# gcf => git checkout file
+# ga => git checkout file
 
 function git_current_branch() {
   local ref

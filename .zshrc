@@ -21,10 +21,6 @@ zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}'
 source ~/.config/aliasesrc
 source ~/.zsh_plugins.sh
 
-# UI
-PROMPT='%n in %~ -> '
-PROMPT='%F{208}%n%f in %F{226}%~%f -> '
-
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
@@ -33,9 +29,27 @@ bindkey '^e' edit-command-line
 # {{{
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+NVM_DIR="$HOME/.nvm"
+
+function _install_nvm() {
+  unset -f nvm npm node
+  # Set up "nvm" could use "--no-use" to defer setup, but we are here to use it
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This sets up nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # nvm bash_completion
+  "$@"
+}
+
+function nvm() {
+    _install_nvm nvm "$@"
+}
+
+function npm() {
+    _install_nvm npm "$@"
+}
+
+function node() {
+    _install_nvm node "$@"
+}
 
 # Android Development
 export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
@@ -122,8 +136,6 @@ FORGIT_LOG_GRAPH_ENABLE=false
 # }}}
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

@@ -35,13 +35,14 @@ set updatetime=300          " Increases the speed of git gutter
 set foldmethod=manual
 set signcolumn=yes
 set inccommand=nosplit
+set clipboard+=unnamedplus
 
 " Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup
 
 " Give more space for displaying messages.
-set cmdheight=2
+" set cmdheight=2
 
 let mapleader=","
 
@@ -54,7 +55,6 @@ set autowrite
 set autoread
 
 " Search
-set hlsearch                " highlight search results
 set incsearch
 set ignorecase              " case insensitive matching
 set smartcase
@@ -108,14 +108,14 @@ Plug 'junegunn/fzf.vim'
       \ )
 
     " Maps
+    nnoremap <silent> <F1> :Helptags<CR>
     nnoremap <silent> <leader>o :GFiles<CR>
-    nnoremap <silent> <leader>b :BLines<CR>
+    nnoremap <silent> <C-f> :BLines<CR>
+    nnoremap <silent> <leader>b :Buffers<CR>
     nnoremap <silent> <leader>. :History<CR>
-    nnoremap <silent> <leader>; :Commands<CR>
     nnoremap <silent> <leader>; :History:<CR>
     nnoremap <silent> <leader>/ :Rg <Space>
     nnoremap <silent> <leader>* :Rg <C-R><C-W><CR>
-    nnoremap <silent> <F1> :Helptags<CR>
     nnoremap <silent> <leader>gco :GCheckout<CR>
 
     nmap <leader><tab> <plug>(fzf-maps-n)
@@ -134,11 +134,28 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'sheerun/vim-polyglot'
 Plug 'MattesGroeger/vim-bookmarks'
+Plug 'haya14busa/incsearch.vim'
+" {{{
+    map /  <Plug>(incsearch-forward)
+    map ?  <Plug>(incsearch-backward)
+    map g/ <Plug>(incsearch-stay)
+
+    " :h g:incsearch#auto_nohlsearch
+    let g:incsearch#auto_nohlsearch = 1
+    map n  <Plug>(incsearch-nohl-n)
+    map N  <Plug>(incsearch-nohl-N)
+    map *  <Plug>(incsearch-nohl-*)
+    map #  <Plug>(incsearch-nohl-#)
+    map g* <Plug>(incsearch-nohl-g*)
+    map g# <Plug>(incsearch-nohl-g#)
+" }}}
 Plug 'justinmk/vim-sneak'
 " {{{
 
     let g:sneak#s_next = 1
-    let g:sneak#use_ic_scs = 1
+
+    " Use same highlight color from theme
+    hi! link Sneak Search
 
 " }}}
 Plug 'moll/vim-bbye'
@@ -151,17 +168,15 @@ Plug 'preservim/nerdcommenter'
 " }}}
 Plug 'airblade/vim-gitgutter'
 " {{{
-    let g:gitgutter_sign_added = '∙'
-    let g:gitgutter_sign_modified = '∙'
-    let g:gitgutter_sign_removed = '∙'
-    let g:gitgutter_sign_modified_removed = '∙'
-
-    let g:gitgutter_highlight_linenrs = 1
-
-    highlight link GitGutterAddLineNr CursorColumn
-    highlight link GitGutterChangeLineNr CursorColumn
-    highlight link GitGutterDeleteLineNr CursorColumn
-    highlight link GitGutterChangeDeleteLineNr CursorColumn
+    let g:gitgutter_sign_added = '▌'
+    let g:gitgutter_sign_modified = '▌'
+    let g:gitgutter_sign_removed = '▁'
+    let g:gitgutter_sign_removed_first_line = '▌'
+    let g:gitgutter_sign_modified_removed = '▌'
+    let g:gitgutter_realtime = 1
+    highlight GitGutterDelete guifg=#F97CA9
+    highlight GitGutterAdd    guifg=#BEE275
+    highlight GitGutterChange guifg=#96E1EF
 
     let g:gitgutter_map_keys = 0
 
@@ -194,7 +209,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
     let g:coc_global_extensions = [
       \ 'coc-tsserver',
       \ 'coc-prettier',
-      \ 'coc-git',
       \ 'coc-eslint',
       \ 'coc-snippets',
       \ ]
@@ -327,7 +341,6 @@ Plug 'mhinz/vim-startify'
 Plug 'itchyny/lightline.vim'
 " {{{
     set noshowmode
-    set laststatus=2
 
     let g:lightline = {
     \ 'colorscheme': 'nord',
@@ -367,8 +380,8 @@ Plug 'sirver/UltiSnips'
     " Edit snippets
     nnoremap <leader>es :CocCommand snippets.editSnippets<CR>
 
-    " Use <C-l> for trigger snippet expand.
-    imap <C-l> <Plug>(coc-snippets-expand)
+    " Use <C-e> for trigger snippet expand.
+    imap <C-e> <Plug>(coc-snippets-expand)
 
     " Use <C-j> for select text for visual placeholder of snippet.
     vmap <C-j> <Plug>(coc-snippets-select)
@@ -436,6 +449,11 @@ augroup cursorLineOnActivePaneOnly
     autocmd WinLeave * setlocal nocursorline
 augroup END
 
+augroup disableAutoComments
+    autocmd!
+    autocmd BufEnter * setlocal formatoptions-=c formatoptions-=q formatoptions-=n formatoptions-=r formatoptions-=o formatoptions-=l
+augroup END
+
 augroup removeTraillingSpaces
     autocmd!
     autocmd BufWritePre * %s/\s\+$//e
@@ -448,12 +466,7 @@ augroup END
 
 augroup foldMethodMarkerOnVimFiles
     autocmd!
-    autocmd FileType vim,.zshrc setlocal foldmethod=marker
-augroup END
-
-augroup VimFolding
-    autocmd!
-    autocmd FileType vim set foldmethod=marker
+    autocmd FileType vim,zsh setlocal foldmethod=marker
 augroup END
 
 augroup CenterOnInsert
@@ -472,7 +485,7 @@ command! -nargs=* VT vsplit | terminal <args>
 " Common
 nnoremap <leader>w :w!<CR>
 inoremap <leader>w <Esc>:w!<CR>
-nnoremap <leader><space> :noh<CR>
+nnoremap <leader><space> :b#<CR>
 nnoremap ; :
 nnoremap : ;
 " No macros for now
@@ -482,22 +495,6 @@ nnoremap <C-t> :tabn<CR>
 inoremap jj <Esc>
 vnoremap <leader><space> <Esc>
 nnoremap <C-g> :echo expand('%:p')<CR>
-
-" Terminal keymaps
-tnoremap <leader>. <C-\><C-n>
-
-tnoremap <A-h> <C-\><C-N><C-w>h
-tnoremap <A-j> <C-\><C-N><C-w>j
-tnoremap <A-k> <C-\><C-N><C-w>k
-tnoremap <A-l> <C-\><C-N><C-w>l
-inoremap <A-h> <C-\><C-N><C-w>h
-inoremap <A-j> <C-\><C-N><C-w>j
-inoremap <A-k> <C-\><C-N><C-w>k
-inoremap <A-l> <C-\><C-N><C-w>l
-nnoremap <A-h> <C-w>h
-nnoremap <A-j> <C-w>j
-nnoremap <A-k> <C-w>k
-nnoremap <A-l> <C-w>l
 
 " Remap arrow keys
 nnoremap <down> :tabprev<CR>
