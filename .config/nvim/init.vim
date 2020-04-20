@@ -132,7 +132,9 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
+Plug 'vim-scripts/restore_view.vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'jiangmiao/auto-pairs'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'haya14busa/incsearch.vim'
 " {{{
@@ -148,15 +150,6 @@ Plug 'haya14busa/incsearch.vim'
     map #  <Plug>(incsearch-nohl-#)
     map g* <Plug>(incsearch-nohl-g*)
     map g# <Plug>(incsearch-nohl-g#)
-" }}}
-Plug 'justinmk/vim-sneak'
-" {{{
-
-    let g:sneak#s_next = 1
-
-    " Use same highlight color from theme
-    hi! link Sneak Search
-
 " }}}
 Plug 'moll/vim-bbye'
 " {{{
@@ -414,6 +407,7 @@ Plug 'christoomey/vim-tmux-navigator'
 " {{{
     let g:tmux_navigator_save_on_switch = 1
 " }}}
+Plug 'mattn/emmet-vim'
 
 " }}}
 
@@ -496,6 +490,9 @@ inoremap jj <Esc>
 vnoremap <leader><space> <Esc>
 nnoremap <C-g> :echo expand('%:p')<CR>
 
+" For HTML/JSX tags
+inoremap <C-Space> <CR><C-o>O
+
 " Remap arrow keys
 nnoremap <down> :tabprev<CR>
 nnoremap <left> :bprev<CR>
@@ -503,7 +500,8 @@ nnoremap <right> :bnext<CR>
 nnoremap <up> :tabnext<CR>
 
 " Auto insert closing pairs
-inoremap {<CR> {<CR>}<ESC>O
+" inoremap {<CR> {<CR>}<ESC>O
+" inoremap (<CR> (<CR>)<ESC>O
 
 " Change cursor position in insert mode
 inoremap <C-h> <left>
@@ -561,12 +559,16 @@ cnoremap $d <CR>:d<CR>``
 " Colors Themes {{{
 
 Plug 'arcticicestudio/nord-vim'
+Plug 'morhetz/gruvbox'
+Plug 'chriskempson/base16-vim'
 
 " }}}
 
 call plug#end()
 
 colorscheme nord
+
+highlight Folded guibg=grey guifg=blue
 
 filetype plugin indent on   " allows auto-indenting depending on file type
 syntax on                   " syntax highlighting
