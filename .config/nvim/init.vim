@@ -408,6 +408,7 @@ Plug 'christoomey/vim-tmux-navigator'
     let g:tmux_navigator_save_on_switch = 1
 " }}}
 Plug 'mattn/emmet-vim'
+Plug 'vimwiki/vimwiki'
 
 " }}}
 
