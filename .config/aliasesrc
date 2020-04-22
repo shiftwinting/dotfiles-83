@@ -7,8 +7,10 @@ alias vi="nvim"
 alias v="nvim"
 
 # Docker
+alias d="docker"
 alias dc="docker container"
 alias dn="docker network"
+alias di="docker image"
 
 # Config
 alias conf='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
@@ -25,6 +27,7 @@ alias gaa='git add --all'
 alias gb='git branch'
 alias gst='git status'
 alias gco='git checkout'
+alias gc='git commit'
 alias gcam='git commit -a -m'
 alias glog='glo'
 

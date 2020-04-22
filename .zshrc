@@ -4,7 +4,8 @@ HISTFILESIZE=999999
 SAVEHIST=$HISTSIZE
 HISTFILE=~/.zsh_history
 
-EDITOR=nvim
+export VISUAL=nvim
+export EDITOR=nvim
 
 # Basic auto/tab complete:
 autoload -U compinit
@@ -14,6 +15,9 @@ compinit
 _comp_options+=(globdots)
 
 bindkey '^[[Z' reverse-menu-complete
+
+bindkey "^P" up-line-or-search
+bindkey "^N" down-line-or-search
 
 # Ignore tab completion
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}'
@@ -28,6 +32,11 @@ bindkey '^e' edit-command-line
 # Path stuff
 # {{{
 export PATH="/usr/local/opt/openssl/bin:$PATH"
+export GOPATH="$HOME/go"
+export GOBIN="$GOPATH/bin"
+
+# TODO: Improve this to use gopls correctly
+export PATH="$GOBIN:$PATH"
 
 NVM_DIR="$HOME/.nvm"
 
@@ -54,6 +63,8 @@ function node() {
 # Android Development
 export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
+
+# Go
 
 # }}}
 

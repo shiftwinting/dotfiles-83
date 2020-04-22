@@ -133,9 +133,17 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/restore_view.vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" {{{
+    " disable vim-go :GoDef short cut (gd)
+    " this is handled by LanguageClient [LC]
+    let g:go_def_mapping_enabled = 0
+" }}}
 Plug 'sheerun/vim-polyglot'
+" {{{
+    let g:polyglot_disabled = ['go']
+" }}}
 Plug 'jiangmiao/auto-pairs'
-Plug 'MattesGroeger/vim-bookmarks'
 Plug 'haya14busa/incsearch.vim'
 " {{{
     map /  <Plug>(incsearch-forward)
@@ -492,7 +500,7 @@ vnoremap <leader><space> <Esc>
 nnoremap <C-g> :echo expand('%:p')<CR>
 
 " For HTML/JSX tags
-inoremap <C-Space> <CR><C-o>O
+inoremap <C-t> <CR><C-o>O
 
 " Remap arrow keys
 nnoremap <down> :tabprev<CR>
@@ -504,11 +512,9 @@ nnoremap <up> :tabnext<CR>
 " inoremap {<CR> {<CR>}<ESC>O
 " inoremap (<CR> (<CR>)<ESC>O
 
-" Change cursor position in insert mode
-inoremap <C-h> <left>
-inoremap <C-j> <down>
-inoremap <C-k> <up>
-inoremap <C-l> <right>
+" More confortable jumps
+nnoremap <C-i> <C-i>zz
+nnoremap <C-o> <C-o>zz
 
 " Windows/Buffers
 nnoremap <C-h> <C-w>h
