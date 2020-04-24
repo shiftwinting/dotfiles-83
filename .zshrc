@@ -38,6 +38,9 @@ export GOBIN="$GOPATH/bin"
 # TODO: Improve this to use gopls correctly
 export PATH="$GOBIN:$PATH"
 
+# Python 3
+export PATH="$HOME/Library/Python/3.7/bin:$PATH"
+
 NVM_DIR="$HOME/.nvm"
 
 function _install_nvm() {

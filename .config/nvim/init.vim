@@ -1,8 +1,9 @@
+" Start {{{
 call plug#begin('~/.config/nvim/plugged')
 
 let nvimDir  = '$HOME/.config/nvim'
 let cacheDir = expand(nvimDir . '/.cache')
-
+" }}}
 " Basic Functions {{{
 
 function! CreateAndExpand(path)
@@ -14,7 +15,6 @@ function! CreateAndExpand(path)
 endfunction
 
 " }}}
-
 " Base Config {{{
 
 set encoding=utf-8
@@ -31,7 +31,7 @@ set cursorline              " Current line highlight
 set mouse=a                 " Allow mouse usage
 set showtabline=0           " Hide tabs line
 set numberwidth=5
-set updatetime=300          " Increases the speed of git gutter
+set updatetime=250          " Increases the speed of git gutter
 set foldmethod=manual
 set signcolumn=yes
 set inccommand=nosplit
@@ -60,7 +60,6 @@ set ignorecase              " case insensitive matching
 set smartcase
 
 " }}}
-
 " Backup Config {{{
 
 set history=1000 " Remember everything
@@ -79,7 +78,6 @@ let &directory=CreateAndExpand(cacheDir . '/swap')
 set swapfile
 
 " }}}
-
 " Plugins {{{
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -117,6 +115,7 @@ Plug 'junegunn/fzf.vim'
     nnoremap <silent> <leader>/ :Rg <Space>
     nnoremap <silent> <leader>* :Rg <C-R><C-W><CR>
     nnoremap <silent> <leader>gco :GCheckout<CR>
+    cnoremap <C-e> <C-c>:Commands<CR>
 
     nmap <leader><tab> <plug>(fzf-maps-n)
     xmap <leader><tab> <plug>(fzf-maps-x)
@@ -163,10 +162,7 @@ Plug 'moll/vim-bbye'
 " {{{
     nnoremap <Leader>q :Bdelete<CR>
 " }}}
-Plug 'preservim/nerdcommenter'
-" {{{
-    let g:NERDSpaceDelims = 1
-" }}}
+Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
 " {{{
     let g:gitgutter_sign_added = '▌'
@@ -212,6 +208,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
       \ 'coc-prettier',
       \ 'coc-eslint',
       \ 'coc-snippets',
+      \ 'coc-python',
       \ ]
 
     if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
@@ -313,7 +310,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
     nmap <leader>a  <Plug>(coc-codeaction-selected)
 
     " Remap keys for applying codeAction to the current line.
-    nmap <leader>ac  :CocAction<CR>
+    nnoremap <leader>ac  :CocAction<CR>
     " Apply AutoFix to problem on the current line.
     " nmap <leader>f  :CocFix<CR>
 
@@ -419,7 +416,6 @@ Plug 'mattn/emmet-vim'
 Plug 'vimwiki/vimwiki'
 
 " }}}
-
 " UI {{{
 
 let g:airline_powerline_fonts = 1
@@ -435,7 +431,6 @@ set splitbelow
 set splitright
 
 " }}}
-
 " File Find {{{
 
 set path+=**
@@ -443,7 +438,6 @@ set wildmenu
 set wildignore+=**/node_modules/**
 
 " }}}
-
 " Common Autocmd {{{
 
 augroup cursorLineOnActivePaneOnly
@@ -477,12 +471,7 @@ augroup CenterOnInsert
     autocmd InsertEnter * norm zz
 augroup END
 
-" Terminal commands
-command! -nargs=* T split | terminal <args>
-command! -nargs=* VT vsplit | terminal <args>
-
 " }}}
-
 " Keymaps {{{
 
 " Common
@@ -517,10 +506,6 @@ nnoremap <C-i> <C-i>zz
 nnoremap <C-o> <C-o>zz
 
 " Windows/Buffers
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
 nnoremap <leader>s <C-w>s
 nnoremap <leader>v <C-w>v
 nnoremap <leader>S :T<CR>
@@ -561,8 +546,10 @@ cnoremap $m <CR>:m''<CR>
 cnoremap $M <CR>:M''<CR>
 cnoremap $d <CR>:d<CR>``
 
-" }}}
+" Folding utils
+nnoremap <space> za
 
+" }}}
 " Colors Themes {{{
 
 Plug 'arcticicestudio/nord-vim'
@@ -570,6 +557,7 @@ Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
 
 " }}}
+" End {{{
 
 call plug#end()
 
@@ -580,3 +568,4 @@ highlight Folded guibg=grey guifg=blue
 filetype plugin indent on   " allows auto-indenting depending on file type
 syntax on                   " syntax highlighting
 
+" }}}
