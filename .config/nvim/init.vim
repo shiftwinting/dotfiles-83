@@ -83,6 +83,8 @@ set swapfile
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " {{{
+    let g:fzf_history_dir = '~/.config/nvim/fzf-history'
+
     " Hide status line while fzf is opened
     autocmd! FileType fzf set laststatus=0 noshowmode noruler
       \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
@@ -126,10 +128,11 @@ Plug 'junegunn/fzf.vim'
     imap <c-x><c-f> <plug>(fzf-complete-path)
     imap <c-x><c-j> <plug>(fzf-complete-file-ag)
     imap <c-x><c-l> <plug>(fzf-complete-line)
+
+
 " }}}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/restore_view.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -193,10 +196,10 @@ Plug 'airblade/vim-gitgutter'
     nmap <leader>gu <Plug>(GitGutterUndoHunk)
     nmap <leader>gp <Plug>(GitGutterPreviewHunk)
 
-    function! GitStatus()
-      let [a,m,r] = GitGutterGetHunkSummary()
-      return printf('+%d ~%d -%d', a, m, r)
-    endfunction
+    " function! GitStatus()
+    "   let [a,m,r] = GitGutterGetHunkSummary()
+    "   return printf('+%d ~%d -%d', a, m, r)
+    " endfunction
 " }}}
 Plug 'blueyed/vim-diminactive'
 Plug 'michaeljsmith/vim-indent-object'
@@ -210,14 +213,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
       \ 'coc-snippets',
       \ 'coc-python',
       \ ]
-
-    if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
-      let g:coc_global_extensions += ['coc-prettier']
-    endif
-
-    if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
-      let g:coc_global_extensions += ['coc-eslint']
-    endif
 
     " Use tab for trigger completion with characters ahead and navigate.
     " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -259,7 +254,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
     nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
     " Lists mappings
-    nnoremap <silent> <space>d :<C-u>CocList diagnostics<cr>
+    nnoremap <silent> <leader>di :<C-u>CocList diagnostics<cr>
 
     " Use K to show documentation in preview window.
     nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -336,38 +331,25 @@ Plug 'mhinz/vim-startify'
     let g:startify_files_number = 5
     let g:startify_session_dir = '~/.config/nvimsessions'
 " }}}
-Plug 'itchyny/lightline.vim'
+" Plug 'itchyny/lightline.vim'
 " {{{
-    set noshowmode
+    " set noshowmode
 
-    let g:lightline = {
-    \ 'colorscheme': 'nord',
-    \   'mode_map': {
-    \   'n' : 'N',
-    \   'i' : 'I',
-    \   'R' : 'R',
-    \   'v' : 'V',
-    \   'V' : 'VL',
-    \   "\<C-v>": 'VB',
-    \   'c' : 'C',
-    \   's' : 'S',
-    \   'S' : 'SL',
-    \   "\<C-s>": 'SB',
-    \   't': 'T',
-    \ },
-    \ 'active': {
-    \ 'left': [ [ 'mode', 'paste' ],
-    \           [ 'gitbranch', 'gitstatus', 'readonly', 'filename', 'modified' ] ],
-    \   'right': [ [ 'lineinfo' ],
-    \              [ 'cocstatus', 'percent' ] ]
-    \ },
-    \ 'component_function': {
-    \   'cocstatus': 'coc#status',
-    \   'currentfunction': 'CocCurrentFunction',
-    \   'gitbranch': 'FugitiveHead',
-    \   'gitstatus': 'GitStatus',
-    \ },
-    \ }
+    " let g:lightline = {
+    " \ 'colorscheme': 'nord',
+    " \ 'active': {
+    " \   'left': [ [ 'mode', 'paste' ],
+    " \           [ 'gitstatus', 'readonly', 'filename', 'modified' ] ],
+    " \   'right': [ [ 'lineinfo' ],
+    " \              [ 'cocstatus', 'currentfunction', 'percent' ] ]
+    " \ },
+    " \ 'component_function': {
+    " \   'cocstatus': 'coc#status',
+    " \   'currentfunction': 'CocCurrentFunction',
+    " \   'gitbranch': 'FugitiveHead',
+    " \   'gitstatus': 'GitStatus',
+    " \ },
+    " \ }
 " }}}
 Plug 'sirver/UltiSnips'
 " {{{
@@ -414,6 +396,9 @@ Plug 'christoomey/vim-tmux-navigator'
 " }}}
 Plug 'mattn/emmet-vim'
 Plug 'vimwiki/vimwiki'
+" {{{
+    let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
+" }}}
 
 " }}}
 " UI {{{
@@ -471,6 +456,12 @@ augroup CenterOnInsert
     autocmd InsertEnter * norm zz
 augroup END
 
+" Overwrite fold for nord theme
+augroup OverwriteFoldedHiColor
+   autocmd!
+   autocmd ColorScheme nord highlight Folded guifg=#81A1C1
+ augroup END
+
 " }}}
 " Keymaps {{{
 
@@ -481,7 +472,6 @@ nnoremap <leader><space> :b#<CR>
 nnoremap ; :
 nnoremap : ;
 " No macros for now
-map q <nop>
 map Q <nop>
 nnoremap <C-t> :tabn<CR>
 inoremap jj <Esc>
@@ -496,14 +486,6 @@ nnoremap <down> :tabprev<CR>
 nnoremap <left> :bprev<CR>
 nnoremap <right> :bnext<CR>
 nnoremap <up> :tabnext<CR>
-
-" Auto insert closing pairs
-" inoremap {<CR> {<CR>}<ESC>O
-" inoremap (<CR> (<CR>)<ESC>O
-
-" More confortable jumps
-nnoremap <C-i> <C-i>zz
-nnoremap <C-o> <C-o>zz
 
 " Windows/Buffers
 nnoremap <leader>s <C-w>s

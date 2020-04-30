@@ -4,6 +4,12 @@ HISTFILESIZE=999999
 SAVEHIST=$HISTSIZE
 HISTFILE=~/.zsh_history
 
+HISTORY_IGNORE="(ls|cd|c|pwd|exit|cd ..)"
+
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_IGNORE_ALL_DUPS
+
 export VISUAL=nvim
 export EDITOR=nvim
 
