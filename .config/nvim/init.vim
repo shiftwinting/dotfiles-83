@@ -128,8 +128,6 @@ Plug 'junegunn/fzf.vim'
     imap <c-x><c-f> <plug>(fzf-complete-path)
     imap <c-x><c-j> <plug>(fzf-complete-file-ag)
     imap <c-x><c-l> <plug>(fzf-complete-line)
-
-
 " }}}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-fugitive'
@@ -195,17 +193,11 @@ Plug 'airblade/vim-gitgutter'
     nmap <leader>gs <Plug>(GitGutterStageHunk)
     nmap <leader>gu <Plug>(GitGutterUndoHunk)
     nmap <leader>gp <Plug>(GitGutterPreviewHunk)
-
-    " function! GitStatus()
-    "   let [a,m,r] = GitGutterGetHunkSummary()
-    "   return printf('+%d ~%d -%d', a, m, r)
-    " endfunction
 " }}}
 Plug 'blueyed/vim-diminactive'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " {{{
-
     let g:coc_global_extensions = [
       \ 'coc-tsserver',
       \ 'coc-prettier',
@@ -267,20 +259,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
       endif
     endfunction
 
-    " Show tooltip on cursor hold
-    " function! ShowDocIfNoDiagnostic(timer_id)
-      " if (coc#util#has_float() == 0)
-        " silent call CocActionAsync('doHover')
-      " endif
-    " endfunction
-
-    " function! s:show_hover_doc()
-      " call timer_start(500, 'ShowDocIfNoDiagnostic')
-    " endfunction
-
-    " autocmd CursorHoldI * :call <SID>show_hover_doc()
-    " autocmd CursorHold * :call <SID>show_hover_doc()
-
     " Highlight the symbol and its references when holding the cursor.
     autocmd CursorHold * silent call CocActionAsync('highlight')
 
@@ -306,8 +284,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
     " Remap keys for applying codeAction to the current line.
     nnoremap <leader>ac  :CocAction<CR>
-    " Apply AutoFix to problem on the current line.
-    " nmap <leader>f  :CocFix<CR>
 
     " Use <TAB> for selections ranges.
     " NOTE: Requires 'textDocument/selectionRange' support from the language server.
@@ -326,34 +302,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " }}}
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
-Plug 'mhinz/vim-startify'
-" {{{
-    let g:startify_files_number = 5
-    let g:startify_session_dir = '~/.config/nvimsessions'
-" }}}
-" Plug 'itchyny/lightline.vim'
-" {{{
-    " set noshowmode
-
-    " let g:lightline = {
-    " \ 'colorscheme': 'nord',
-    " \ 'active': {
-    " \   'left': [ [ 'mode', 'paste' ],
-    " \           [ 'gitstatus', 'readonly', 'filename', 'modified' ] ],
-    " \   'right': [ [ 'lineinfo' ],
-    " \              [ 'cocstatus', 'currentfunction', 'percent' ] ]
-    " \ },
-    " \ 'component_function': {
-    " \   'cocstatus': 'coc#status',
-    " \   'currentfunction': 'CocCurrentFunction',
-    " \   'gitbranch': 'FugitiveHead',
-    " \   'gitstatus': 'GitStatus',
-    " \ },
-    " \ }
-" }}}
 Plug 'sirver/UltiSnips'
 " {{{
-
     " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
     let g:UltiSnipsExpandTrigger="<C-l>"
 
@@ -387,7 +337,6 @@ Plug 'sirver/UltiSnips'
     endfunction
 
     let g:coc_snippet_next = '<tab>'
-
 " }}}
 Plug 'honza/vim-snippets'
 Plug 'christoomey/vim-tmux-navigator'
@@ -395,6 +344,7 @@ Plug 'christoomey/vim-tmux-navigator'
     let g:tmux_navigator_save_on_switch = 1
 " }}}
 Plug 'mattn/emmet-vim'
+Plug 'vim-airline/vim-airline'
 Plug 'vimwiki/vimwiki'
 " {{{
     let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
@@ -402,11 +352,6 @@ Plug 'vimwiki/vimwiki'
 
 " }}}
 " UI {{{
-
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#show_tab_count = 0
-let g:airline#extensions#tabline#show_tab_type = 0
-let airline#extensions#whitespace#enabled = 0
 
 let g:netrw_banner = 0     " Hide annoying 'help' banner
 let g:netrw_liststyle = 3  " Use tree view
@@ -451,12 +396,13 @@ augroup foldMethodMarkerOnVimFiles
     autocmd FileType vim,zsh setlocal foldmethod=marker
 augroup END
 
+autocmd FileType vim setlocal commentstring=\"\ %s
+
 augroup CenterOnInsert
     autocmd!
     autocmd InsertEnter * norm zz
 augroup END
 
-" Overwrite fold for nord theme
 augroup OverwriteFoldedHiColor
    autocmd!
    autocmd ColorScheme nord highlight Folded guifg=#81A1C1
@@ -535,8 +481,6 @@ nnoremap <space> za
 " Colors Themes {{{
 
 Plug 'arcticicestudio/nord-vim'
-Plug 'morhetz/gruvbox'
-Plug 'chriskempson/base16-vim'
 
 " }}}
 " End {{{
@@ -544,8 +488,6 @@ Plug 'chriskempson/base16-vim'
 call plug#end()
 
 colorscheme nord
-
-highlight Folded guibg=grey guifg=blue
 
 filetype plugin indent on   " allows auto-indenting depending on file type
 syntax on                   " syntax highlighting
