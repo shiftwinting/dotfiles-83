@@ -131,6 +131,7 @@ Plug 'junegunn/fzf.vim'
 " }}}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/restore_view.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -144,21 +145,7 @@ Plug 'sheerun/vim-polyglot'
     let g:polyglot_disabled = ['go']
 " }}}
 Plug 'jiangmiao/auto-pairs'
-Plug 'haya14busa/incsearch.vim'
-" {{{
-    map /  <Plug>(incsearch-forward)
-    map ?  <Plug>(incsearch-backward)
-    map g/ <Plug>(incsearch-stay)
-
-    " :h g:incsearch#auto_nohlsearch
-    let g:incsearch#auto_nohlsearch = 1
-    map n  <Plug>(incsearch-nohl-n)
-    map N  <Plug>(incsearch-nohl-N)
-    map *  <Plug>(incsearch-nohl-*)
-    map #  <Plug>(incsearch-nohl-#)
-    map g* <Plug>(incsearch-nohl-g*)
-    map g# <Plug>(incsearch-nohl-g#)
-" }}}
+Plug 'haya14busa/is.vim'
 Plug 'moll/vim-bbye'
 " {{{
     nnoremap <Leader>q :Bdelete<CR>
@@ -339,15 +326,23 @@ Plug 'sirver/UltiSnips'
     let g:coc_snippet_next = '<tab>'
 " }}}
 Plug 'honza/vim-snippets'
+Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
 " {{{
     let g:tmux_navigator_save_on_switch = 1
 " }}}
 Plug 'mattn/emmet-vim'
 Plug 'vim-airline/vim-airline'
+" {{{
+  let g:airline_extensions = ['coc']
+" }}}
 Plug 'vimwiki/vimwiki'
 " {{{
     let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
+" }}}
+Plug 'benmills/vimux'
+" {{{
+    nnoremap <leader>v :<C-u>VimuxRunLastCommand<CR>
 " }}}
 
 " }}}
@@ -400,13 +395,17 @@ autocmd FileType vim setlocal commentstring=\"\ %s
 
 augroup CenterOnInsert
     autocmd!
-    autocmd InsertEnter * norm zz
+    " autocmd InsertEnter * norm zz
 augroup END
 
 augroup OverwriteFoldedHiColor
    autocmd!
    autocmd ColorScheme nord highlight Folded guifg=#81A1C1
- augroup END
+augroup END
+
+" Autoread inside vim
+au FocusGained,BufEnter * :checktime
+
 
 " }}}
 " Keymaps {{{
@@ -417,7 +416,6 @@ inoremap <leader>w <Esc>:w!<CR>
 nnoremap <leader><space> :b#<CR>
 nnoremap ; :
 nnoremap : ;
-" No macros for now
 map Q <nop>
 nnoremap <C-t> :tabn<CR>
 inoremap jj <Esc>
@@ -426,22 +424,6 @@ nnoremap <C-g> :echo expand('%:p')<CR>
 
 " For HTML/JSX tags
 inoremap <C-t> <CR><C-o>O
-
-" Remap arrow keys
-nnoremap <down> :tabprev<CR>
-nnoremap <left> :bprev<CR>
-nnoremap <right> :bnext<CR>
-nnoremap <up> :tabnext<CR>
-
-" Windows/Buffers
-nnoremap <leader>s <C-w>s
-nnoremap <leader>v <C-w>v
-nnoremap <leader>S :T<CR>
-nnoremap <leader>V :VT<CR>
-nnoremap <C-b> :b#<CR>
-inoremap <C-b> <Esc>:b#<CR>
-nnoremap + :res +10<CR>
-nnoremap _ :res -10<CR>
 
 " Reselect visual block after indent
 vnoremap < <gv
@@ -453,16 +435,20 @@ set pastetoggle=<F6>
 " Make Y consistent with C and D. See :help Y.
 nnoremap Y y$
 
+" make n always search forward and N backward
+nnoremap <expr> n 'Nn'[v:searchforward]
+nnoremap <expr> N 'nN'[v:searchforward]
+
+" make substitution repeat to reuse last flags
+nnoremap & :&&<cr>
+xnoremap & :&&<cr>
+
 " Hide annoying quit message
 nnoremap <C-c> <C-c>:echo<cr>
 
 " Tab for autocompletion
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
-
-" Yank to clipboard
-nnoremap <leader>y "*y
-vnoremap <leader>y "*y
 
 " Quickfix list
 nnoremap fq :ccl<CR>
