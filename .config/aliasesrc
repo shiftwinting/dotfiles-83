@@ -22,6 +22,7 @@ alias zsh_install_plugin='antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.
 alias -g Z='| fzf'
 
 # Git + Hub
+alias git='hub'
 alias g='hub'
 alias gaa='hub add --all'
 alias gb='hub branch'
@@ -30,6 +31,7 @@ alias gco='hub checkout'
 alias gc='hub commit'
 alias gcam='hub commit -a -m'
 alias glog='glo'
+alias gbr="git rev-parse --abbrev-ref HEAD | tr -d '\n' | pbcopy"
 
 # From forgit
 # gcf => git checkout file

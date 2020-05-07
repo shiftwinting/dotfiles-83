@@ -41,9 +41,6 @@ set clipboard+=unnamedplus
 set nobackup
 set nowritebackup
 
-" Give more space for displaying messages.
-" set cmdheight=2
-
 let mapleader=","
 
 " Don't pass messages to |ins-completion-menu|.
@@ -114,8 +111,8 @@ Plug 'junegunn/fzf.vim'
     nnoremap <silent> <leader>b :Buffers<CR>
     nnoremap <silent> <leader>. :History<CR>
     nnoremap <silent> <leader>; :History:<CR>
-    nnoremap <silent> <leader>/ :Rg <Space>
-    nnoremap <silent> <leader>* :Rg <C-R><C-W><CR>
+    nnoremap <silent> <leader>/ :Rg! <Space>
+    nnoremap <silent> <leader>* :Rg! <C-R><C-W><CR>
     nnoremap <silent> <leader>gco :GCheckout<CR>
     cnoremap <C-e> <C-c>:Commands<CR>
 
@@ -144,7 +141,6 @@ Plug 'sheerun/vim-polyglot'
 " {{{
     let g:polyglot_disabled = ['go']
 " }}}
-Plug 'jiangmiao/auto-pairs'
 Plug 'haya14busa/is.vim'
 Plug 'moll/vim-bbye'
 " {{{
@@ -342,7 +338,21 @@ Plug 'vimwiki/vimwiki'
 " }}}
 Plug 'benmills/vimux'
 " {{{
-    nnoremap <leader>v :<C-u>VimuxRunLastCommand<CR>
+    " nnoremap <leader>v :<C-u>VimuxRunLastCommand<CR>
+
+    function! VimuxSlime()
+        if !exists("g:VimuxRunnerIndex")
+            call VimuxOpenRunner()
+        endif
+        silent call VimuxSendText(@v)
+        " call VimuxSendKeys("Enter")
+    endfunction
+
+    " If text is selected, save it in the v buffer and send that buffer it to tmux
+    vnoremap <leader>vs "vy :call VimuxSlime()<CR>
+
+    " Select current paragraph and send it to tmux
+    nnoremap <leader>vs vip"vy :call VimuxSlime()<CR>
 " }}}
 
 " }}}
@@ -381,21 +391,14 @@ augroup removeTraillingSpaces
     autocmd BufWritePre * %s/\s\+$//e
 augroup END
 
-augroup restoreCursor
-    autocmd!
-    autocmd BufReadPost * call setpos(".", getpos("'\""))
-augroup END
-
 augroup foldMethodMarkerOnVimFiles
     autocmd!
     autocmd FileType vim,zsh setlocal foldmethod=marker
 augroup END
 
-autocmd FileType vim setlocal commentstring=\"\ %s
-
 augroup CenterOnInsert
     autocmd!
-    " autocmd InsertEnter * norm zz
+    autocmd InsertEnter * norm zz
 augroup END
 
 augroup OverwriteFoldedHiColor
@@ -405,7 +408,6 @@ augroup END
 
 " Autoread inside vim
 au FocusGained,BufEnter * :checktime
-
 
 " }}}
 " Keymaps {{{
@@ -417,7 +419,6 @@ nnoremap <leader><space> :b#<CR>
 nnoremap ; :
 nnoremap : ;
 map Q <nop>
-nnoremap <C-t> :tabn<CR>
 inoremap jj <Esc>
 vnoremap <leader><space> <Esc>
 nnoremap <C-g> :echo expand('%:p')<CR>
@@ -462,6 +463,10 @@ cnoremap $d <CR>:d<CR>``
 
 " Folding utils
 nnoremap <space> za
+
+" Auto pairs
+inoremap {<CR> {<CR>}<C-o>O
+inoremap (<CR> (<CR>)<C-o>O
 
 " }}}
 " Colors Themes {{{
