@@ -348,11 +348,9 @@ Plug 'benmills/vimux'
         " call VimuxSendKeys("Enter")
     endfunction
 
-    " If text is selected, save it in the v buffer and send that buffer it to tmux
-    vnoremap <leader>vs "vy :call VimuxSlime()<CR>
-
-    " Select current paragraph and send it to tmux
-    nnoremap <leader>vs vip"vy :call VimuxSlime()<CR>
+    vnoremap <leader>vs "vygv<C-c>:call VimuxSlime()<CR>
+    nnoremap <leader>vs i<Esc>"vyip:call VimuxSlime()<CR>gi<Esc>l
+    inoremap <leader>vs <Esc>"vyip:call VimuxSlime()<CR>gi
 " }}}
 
 " }}}
