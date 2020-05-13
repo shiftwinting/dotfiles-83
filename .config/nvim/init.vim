@@ -37,6 +37,8 @@ set signcolumn=yes
 set inccommand=nosplit
 set clipboard+=unnamedplus
 
+set shell=zsh
+
 " Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup
@@ -106,6 +108,7 @@ Plug 'junegunn/fzf.vim'
 
     " Maps
     nnoremap <silent> <F1> :Helptags<CR>
+    nnoremap <silent> <leader>p :Files<CR>
     nnoremap <silent> <leader>o :GFiles<CR>
     nnoremap <silent> <C-f> :BLines<CR>
     nnoremap <silent> <leader>b :Buffers<CR>
@@ -224,10 +227,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " nmap <silent> gi <Plug>(coc-implementation)
     nmap <silent> gr <Plug>(coc-references)
 
-    " Move between diagnostics
-    nmap <silent> [g <Plug>(coc-diagnostic-prev)
-    nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
     " Lists mappings
     nnoremap <silent> <leader>di :<C-u>CocList diagnostics<cr>
 
@@ -248,11 +247,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " Symbol renaming.
     nmap <leader>rn <Plug>(coc-rename)
 
-    " Formatting selected code.
-    " xmap <leader>f  <Plug>(coc-format-selected)
-    " nmap <leader>f  <Plug>(coc-format-selected)
-
-    augroup cocTSConfig
+    augroup cocTSConfiguration
       autocmd!
       " Setup formatexpr specified filetype(s).
       autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
@@ -307,19 +302,6 @@ Plug 'sirver/UltiSnips'
 
     " Use <C-j> for both expand and jump (make expand higher priority.)
     imap <C-j> <Plug>(coc-snippets-expand-jump)
-
-    inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-    function! s:check_back_space() abort
-      let col = col('.') - 1
-      return !col || getline('.')[col - 1]  =~# '\s'
-    endfunction
-
-    let g:coc_snippet_next = '<tab>'
 " }}}
 Plug 'honza/vim-snippets'
 Plug 'tmux-plugins/vim-tmux-focus-events'
@@ -338,7 +320,8 @@ Plug 'vimwiki/vimwiki'
 " }}}
 Plug 'benmills/vimux'
 " {{{
-    " nnoremap <leader>v :<C-u>VimuxRunLastCommand<CR>
+    nnoremap <leader>vl :w<CR>:<C-u>VimuxRunLastCommand<CR>
+    inoremap <leader>vl <Esc>:w<CR>:<C-u>VimuxRunLastCommand<CR>
 
     function! VimuxSlime()
         if !exists("g:VimuxRunnerIndex")
@@ -352,6 +335,7 @@ Plug 'benmills/vimux'
     nnoremap <leader>vs i<Esc>"vyip:call VimuxSlime()<CR>gi<Esc>l
     inoremap <leader>vs <Esc>"vyip:call VimuxSlime()<CR>gi
 " }}}
+Plug 'rizzatti/dash.vim'
 
 " }}}
 " UI {{{
@@ -445,10 +429,6 @@ xnoremap & :&&<cr>
 " Hide annoying quit message
 nnoremap <C-c> <C-c>:echo<cr>
 
-" Tab for autocompletion
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
-
 " Quickfix list
 nnoremap fq :ccl<CR>
 
@@ -466,17 +446,24 @@ nnoremap <space> za
 inoremap {<CR> {<CR>}<C-o>O
 inoremap (<CR> (<CR>)<C-o>O
 
+" Select pasted text
+nnoremap gp `[v`]
+
+" Paste and format styles to object properties (css-in-js)
+nnoremap <leader>sto o<Esc>p<Esc>`[v`]=gv:!st2obj.awk<CR>
+
 " }}}
 " Colors Themes {{{
 
 Plug 'arcticicestudio/nord-vim'
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
 
 " }}}
 " End {{{
 
 call plug#end()
 
-colorscheme nord
+colorscheme onehalfdark
 
 filetype plugin indent on   " allows auto-indenting depending on file type
 syntax on                   " syntax highlighting

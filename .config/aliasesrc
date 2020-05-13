@@ -11,6 +11,8 @@ alias d="docker"
 alias dc="docker container"
 alias dn="docker network"
 alias di="docker image"
+alias dv="docker volume"
+alias dco="docker-compose"
 
 # Config
 alias conf='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
