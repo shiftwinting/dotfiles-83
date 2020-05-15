@@ -44,41 +44,23 @@ export GOBIN="$GOPATH/bin"
 # TODO: Improve this to use gopls correctly
 export PATH="$GOBIN:$PATH"
 
+# DOOM EMACS
+export PATH=~/.emacs.d/bin:$PATH
+
 # Python 3
 export PATH="$HOME/Library/Python/3.7/bin:$PATH"
 
-NVM_DIR="$HOME/.nvm"
-
-function _install_nvm() {
-  unset -f nvm npm node
-  # Set up "nvm" could use "--no-use" to defer setup, but we are here to use it
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This sets up nvm
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # nvm bash_completion
-  "$@"
-}
-
-function nvm() {
-    _install_nvm nvm "$@"
-}
-
-function npm() {
-    _install_nvm npm "$@"
-}
-
-function node() {
-    _install_nvm node "$@"
-}
+# NVM - Node
+export PATH=~/.nvm/versions/node/v12.13.0/bin:$PATH
+export NVM_DIR="$HOME/.nvm"
+. $NVM_DIR/nvm.sh --no-use
+. $NVM_DIR/bash_completion
 
 # Android Development
 export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 
-# Go
-
-# }}}
-
-# FZF
-# {{{
+# FZF {{{
 
 export FZF_DEFAULT_OPTS="
     --layout=reverse
@@ -147,27 +129,24 @@ bip() {
 }
 
 # }}}
-
-# Forgit
-# {{{
+# Forgit {{{
 
 FORGIT_LOG_GRAPH_ENABLE=false
 
 # }}}
+# Git {{{
 
-# Codi
-# Usage: codi [filetype] [filename]
-codi() {
-  local syntax="${1:-python}"
-  shift
-  vim -c \
-    "let g:startify_disable_at_vimenter = 1 |\
-    set bt=nofile ls=0 noru nonu nornu |\
-    hi ColorColumn ctermbg=NONE |\
-    hi VertSplit ctermbg=NONE |\
-    hi NonText ctermfg=0 |\
-    Codi $syntax" "$@"
+# Git checkout recent
+gcr() {
+  local branches branch preview
+  preview="git log --oneline {} --color=always"
+  branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
+  branch=$(echo "$branches" |
+      fzf --preview="$preview" --preview-window=right:50% -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
+
+# }}}
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

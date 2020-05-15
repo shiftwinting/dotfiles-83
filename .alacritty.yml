@@ -440,6 +440,7 @@ colors:
 #  - { mouse: Middle, action: PasteSelection }
 
 # Key bindings
+# - { key: Key6,     mods: Control, chars: "\x1b[94;5u" }
 #
 # Key bindings are specified as a list of objects. For example, this is the
 # default paste binding:
@@ -574,6 +575,11 @@ colors:
 # If the same trigger is assigned to multiple actions, all of them are executed
 # at once.
 key_bindings:
+  # Ctrl + 6
+  - { key: Key6,     mods: Control, chars: "\x1b[94;5u" }
+  - { key: Return,   mods: Shift,   chars: "\x1b[13;2u" }
+  - { key: Return,   mods: Control, chars: "\x1b[13;5u" }
+
   #- { key: Paste,                                action: Paste          }
   #- { key: Copy,                                 action: Copy           }
   #- { key: L,         mods: Control,             action: ClearLogNotice }

@@ -1,11 +1,49 @@
-" Start {{{
 call plug#begin('~/.config/nvim/plugged')
+
+" Plugins {{{
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'mattn/emmet-vim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-surround'
+Plug 'vim-scripts/restore_view.vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'haya14busa/is.vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'moll/vim-bbye'
+Plug 'tpope/vim-commentary'
+Plug 'blueyed/vim-diminactive'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-repeat'
+Plug 'sirver/UltiSnips'
+Plug 'honza/vim-snippets'
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'vim-airline/vim-airline'
+Plug 'vimwiki/vimwiki'
+Plug 'benmills/vimux'
+
+" To install
+" https://github.com/yuki-ycino/fzf-preview.vim
+" https://github.com/mhinz/vim-startify
+" }}}
+" Themes {{{
+Plug 'arcticicestudio/nord-vim'
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
+" TODO: Find a good theme
+" }}}
+
+call plug#end()
 
 let nvimDir  = '$HOME/.config/nvim'
 let cacheDir = expand(nvimDir . '/.cache')
-" }}}
-" Basic Functions {{{
 
+" Basic Functions {{{
 function! CreateAndExpand(path)
 	if !isdirectory(expand(a:path))
 		call mkdir(expand(a:path), 'p')
@@ -13,10 +51,9 @@ function! CreateAndExpand(path)
 
 	return expand(a:path)
 endfunction
-
 " }}}
-" Base Config {{{
 
+" Base Config
 set encoding=utf-8
 set nocompatible            " disable compatibility to old-time vi
 set showmatch               " show matching brackets
@@ -43,7 +80,8 @@ set shell=zsh
 set nobackup
 set nowritebackup
 
-let mapleader=","
+nnoremap <space> <nop>
+let mapleader=" "
 
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
@@ -58,9 +96,7 @@ set incsearch
 set ignorecase              " case insensitive matching
 set smartcase
 
-" }}}
-" Backup Config {{{
-
+" Backup Config
 set history=1000 " Remember everything
 set undolevels=1000
 
@@ -76,82 +112,67 @@ set backup
 let &directory=CreateAndExpand(cacheDir . '/swap')
 set swapfile
 
+" Plugins Config
+
+" Fzf {{{
+let g:fzf_history_dir = '~/.config/nvim/fzf-history'
+
+" Hide status line while fzf is opened
+autocmd! FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+
+function! s:open_branch_fzf(line)
+  let l:parser = split(a:line)
+  let l:branch = l:parser[0]
+  if l:branch ==? '*'
+    let l:branch = l:parser[1]
+  endif
+  execute '!git checkout ' . l:branch
+endfunction
+
+command! -bang -nargs=0 GCheckout
+  \ call fzf#vim#grep(
+  \   'git branch -v', 0,
+  \   {
+  \     'sink': function('s:open_branch_fzf')
+  \   },
+  \   <bang>0
+  \ )
+
+" Maps
+nnoremap <silent> <leader>h :Helptags<CR>
+nnoremap <silent> <leader><leader> :Files<CR>
+nnoremap <silent> <C-f> :BLines<CR>
+nnoremap <silent> <leader>bb :Buffers<CR>
+nnoremap <silent> <leader>fr :History<CR>
+nnoremap <silent> <leader>cr :History:<CR>
+nnoremap <silent> <leader>/ :Rg!
+nnoremap <silent> <leader>* :Rg! <C-R><C-W><CR>
+nnoremap <silent> <leader>gc :GCheckout<CR>
+cnoremap <C-e> <C-c>:Commands<CR>
+
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" Insert
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
 " }}}
-" Plugins {{{
-
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-" {{{
-    let g:fzf_history_dir = '~/.config/nvim/fzf-history'
-
-    " Hide status line while fzf is opened
-    autocmd! FileType fzf set laststatus=0 noshowmode noruler
-      \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-
-    function! s:open_branch_fzf(line)
-      let l:parser = split(a:line)
-      let l:branch = l:parser[0]
-      if l:branch ==? '*'
-        let l:branch = l:parser[1]
-      endif
-      execute '!git checkout ' . l:branch
-    endfunction
-
-    command! -bang -nargs=0 GCheckout
-      \ call fzf#vim#grep(
-      \   'git branch -v', 0,
-      \   {
-      \     'sink': function('s:open_branch_fzf')
-      \   },
-      \   <bang>0
-      \ )
-
-    " Maps
-    nnoremap <silent> <F1> :Helptags<CR>
-    nnoremap <silent> <leader>p :Files<CR>
-    nnoremap <silent> <leader>o :GFiles<CR>
-    nnoremap <silent> <C-f> :BLines<CR>
-    nnoremap <silent> <leader>b :Buffers<CR>
-    nnoremap <silent> <leader>. :History<CR>
-    nnoremap <silent> <leader>; :History:<CR>
-    nnoremap <silent> <leader>/ :Rg! <Space>
-    nnoremap <silent> <leader>* :Rg! <C-R><C-W><CR>
-    nnoremap <silent> <leader>gco :GCheckout<CR>
-    cnoremap <C-e> <C-c>:Commands<CR>
-
-    nmap <leader><tab> <plug>(fzf-maps-n)
-    xmap <leader><tab> <plug>(fzf-maps-x)
-    omap <leader><tab> <plug>(fzf-maps-o)
-
-    " Insert
-    imap <c-x><c-k> <plug>(fzf-complete-word)
-    imap <c-x><c-f> <plug>(fzf-complete-path)
-    imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-    imap <c-x><c-l> <plug>(fzf-complete-line)
-" }}}
-Plug 'editorconfig/editorconfig-vim'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-surround'
-Plug 'vim-scripts/restore_view.vim'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-" {{{
+" Go {{{
     " disable vim-go :GoDef short cut (gd)
     " this is handled by LanguageClient [LC]
     let g:go_def_mapping_enabled = 0
 " }}}
-Plug 'sheerun/vim-polyglot'
-" {{{
+" Polyglot {{{
     let g:polyglot_disabled = ['go']
 " }}}
-Plug 'haya14busa/is.vim'
-Plug 'moll/vim-bbye'
-" {{{
+" bbye {{{
     nnoremap <Leader>q :Bdelete<CR>
 " }}}
-Plug 'tpope/vim-commentary'
-Plug 'airblade/vim-gitgutter'
-" {{{
+" Git {{{
     let g:gitgutter_sign_added = '▌'
     let g:gitgutter_sign_modified = '▌'
     let g:gitgutter_sign_removed = '▁'
@@ -180,10 +201,7 @@ Plug 'airblade/vim-gitgutter'
     nmap <leader>gu <Plug>(GitGutterUndoHunk)
     nmap <leader>gp <Plug>(GitGutterPreviewHunk)
 " }}}
-Plug 'blueyed/vim-diminactive'
-Plug 'michaeljsmith/vim-indent-object'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" {{{
+" Coc {{{
     let g:coc_global_extensions = [
       \ 'coc-tsserver',
       \ 'coc-prettier',
@@ -278,10 +296,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " Add `:OR` command for organize imports of the current buffer.
     command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 " }}}
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-repeat'
-Plug 'sirver/UltiSnips'
-" {{{
+" Snippets {{{
     " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
     let g:UltiSnipsExpandTrigger="<C-l>"
 
@@ -303,23 +318,16 @@ Plug 'sirver/UltiSnips'
     " Use <C-j> for both expand and jump (make expand higher priority.)
     imap <C-j> <Plug>(coc-snippets-expand-jump)
 " }}}
-Plug 'honza/vim-snippets'
-Plug 'tmux-plugins/vim-tmux-focus-events'
-Plug 'christoomey/vim-tmux-navigator'
-" {{{
+" Tmux nav {{{
     let g:tmux_navigator_save_on_switch = 1
 " }}}
-Plug 'mattn/emmet-vim'
-Plug 'vim-airline/vim-airline'
-" {{{
+" Airline {{{
   let g:airline_extensions = ['coc']
 " }}}
-Plug 'vimwiki/vimwiki'
-" {{{
+" Vimwiki {{{
     let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
 " }}}
-Plug 'benmills/vimux'
-" {{{
+" Vimux {{{
     nnoremap <leader>vl :w<CR>:<C-u>VimuxRunLastCommand<CR>
     inoremap <leader>vl <Esc>:w<CR>:<C-u>VimuxRunLastCommand<CR>
 
@@ -335,11 +343,11 @@ Plug 'benmills/vimux'
     nnoremap <leader>vs i<Esc>"vyip:call VimuxSlime()<CR>gi<Esc>l
     inoremap <leader>vs <Esc>"vyip:call VimuxSlime()<CR>gi
 " }}}
-Plug 'rizzatti/dash.vim'
-
+" Fugitive {{{
+nnoremap <leader>gs :Gstatus<cr>
 " }}}
-" UI {{{
 
+" UI
 let g:netrw_banner = 0     " Hide annoying 'help' banner
 let g:netrw_liststyle = 3  " Use tree view
 let g:netrw_winsize = '30' " Smaller default window size
@@ -347,16 +355,12 @@ let g:netrw_winsize = '30' " Smaller default window size
 set splitbelow
 set splitright
 
-" }}}
-" File Find {{{
-
+" File Find
 set path+=**
 set wildmenu
 set wildignore+=**/node_modules/**
 
-" }}}
 " Common Autocmd {{{
-
 augroup cursorLineOnActivePaneOnly
     autocmd!
     autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
@@ -390,23 +394,26 @@ augroup END
 
 " Autoread inside vim
 au FocusGained,BufEnter * :checktime
-
 " }}}
+
 " Keymaps {{{
 
 " Common
-nnoremap <leader>w :w!<CR>
-inoremap <leader>w <Esc>:w!<CR>
-nnoremap <leader><space> :b#<CR>
+nnoremap <leader>fs :w!<CR>
+inoremap ,w <Esc>:w!<CR>
 nnoremap ; :
 nnoremap : ;
 map Q <nop>
-inoremap jj <Esc>
-vnoremap <leader><space> <Esc>
 nnoremap <C-g> :echo expand('%:p')<CR>
+nnoremap ,<leader> :b #<cr>
+nnoremap <TAB> za
 
-" For HTML/JSX tags
-inoremap <C-t> <CR><C-o>O
+" Insert cool stuff
+inoremap <C-CR> <C-o>o
+
+" Quick init.vim changes
+nnoremap <space>fie :e ~/.config/nvim/init.vim<cr>
+nnoremap <space>fir :so %<cr>
 
 " Reselect visual block after indent
 vnoremap < <gv
@@ -415,16 +422,12 @@ vnoremap > >gv
 " Toggles smart indenting while pasting, A.K.A lifesaver
 set pastetoggle=<F6>
 
-" Make Y consistent with C and D. See :help Y.
+" Make Y consistentjwith C and D. See :help Y.
 nnoremap Y y$
 
 " make n always search forward and N backward
 nnoremap <expr> n 'Nn'[v:searchforward]
 nnoremap <expr> N 'nN'[v:searchforward]
-
-" make substitution repeat to reuse last flags
-nnoremap & :&&<cr>
-xnoremap & :&&<cr>
 
 " Hide annoying quit message
 nnoremap <C-c> <C-c>:echo<cr>
@@ -439,9 +442,6 @@ cnoremap $m <CR>:m''<CR>
 cnoremap $M <CR>:M''<CR>
 cnoremap $d <CR>:d<CR>``
 
-" Folding utils
-nnoremap <space> za
-
 " Auto pairs
 inoremap {<CR> {<CR>}<C-o>O
 inoremap (<CR> (<CR>)<C-o>O
@@ -449,23 +449,13 @@ inoremap (<CR> (<CR>)<C-o>O
 " Select pasted text
 nnoremap gp `[v`]
 
-" Paste and format styles to object properties (css-in-js)
+" VERY CUSTOM: Paste and format styles to object properties (css-in-js)
 nnoremap <leader>sto o<Esc>p<Esc>`[v`]=gv:!st2obj.awk<CR>
 
 " }}}
-" Colors Themes {{{
 
-Plug 'arcticicestudio/nord-vim'
-Plug 'sonph/onehalf', {'rtp': 'vim/'}
-
-" }}}
-" End {{{
-
-call plug#end()
-
-colorscheme onehalfdark
+colorscheme nord
 
 filetype plugin indent on   " allows auto-indenting depending on file type
 syntax on                   " syntax highlighting
 
-" }}}
