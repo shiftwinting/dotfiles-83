@@ -13,6 +13,7 @@ Plug 'vim-scripts/restore_view.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'haya14busa/is.vim'
 Plug 'haya14busa/vim-asterisk'
+Plug 'osyo-manga/vim-anzu'
 Plug 'sheerun/vim-polyglot'
 Plug 'moll/vim-bbye'
 Plug 'tpope/vim-commentary'
@@ -366,9 +367,6 @@ nnoremap <leader>gb :Gblame<cr>
 " incsearch {{{
 let g:asterisk#keeppos = 1
 
-cnoremap <tab> <C-g>
-cnoremap <s-tab> <C-g>
-
 map *  <Plug>(asterisk-z*)<Plug>(is-nohl-1)
 map #  <Plug>(asterisk-z#)<Plug>(is-nohl-1)
 map g* <Plug>(asterisk-gz*)<Plug>(is-nohl-1)
@@ -389,11 +387,6 @@ let g:tagalong_additional_filetypes = ['javascript']
 " autopairs {{{
 inoremap <C-l> <Esc>:call AutoPairsJump()<cr>a
 " }}}
-
-" UI
-let g:netrw_banner = 0     " Hide annoying 'help' banner
-let g:netrw_liststyle = 3  " Use tree view
-let g:netrw_winsize = '30' " Smaller default window size
 
 set splitbelow
 set splitright
