@@ -6,9 +6,13 @@ alias vim="nvim"
 alias vi="nvim"
 alias v="nvim"
 
+# Cat
+alias cat='bat'
+
 # Docker
 alias d="docker"
 alias dc="docker container"
+alias ds="docker service"
 alias dn="docker network"
 alias di="docker image"
 alias dv="docker volume"

@@ -12,6 +12,7 @@ Plug 'tpope/vim-surround'
 Plug 'vim-scripts/restore_view.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'haya14busa/is.vim'
+Plug 'haya14busa/vim-asterisk'
 Plug 'sheerun/vim-polyglot'
 Plug 'moll/vim-bbye'
 Plug 'tpope/vim-commentary'
@@ -27,18 +28,26 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'vim-airline/vim-airline'
 Plug 'vimwiki/vimwiki'
 Plug 'benmills/vimux'
+Plug 'jiangmiao/auto-pairs'
+Plug 'justinmk/vim-dirvish'
+Plug 'Valloric/MatchTagAlways'
+Plug 'stefandtw/quickfix-reflector.vim'
+Plug 'AndrewRadev/tagalong.vim'
 
-" To install
-" https://github.com/yuki-ycino/fzf-preview.vim
-" https://github.com/mhinz/vim-startify
+" Next
+" Learn about spell
+" Tag search?
+" https://github.com/kien/rainbow_parentheses.vim
+" https://github.com/wincent/vcs-jump
+" https://github.com/neomake/neomake
 " }}}
 " Themes {{{
-Plug 'arcticicestudio/nord-vim'
-Plug 'sonph/onehalf', {'rtp': 'vim/'}
-" TODO: Find a good theme
+Plug 'jacoborus/tender.vim'
 " }}}
 
 call plug#end()
+
+colorscheme tender
 
 let nvimDir  = '$HOME/.config/nvim'
 let cacheDir = expand(nvimDir . '/.cache')
@@ -55,6 +64,7 @@ endfunction
 
 " Base Config
 set encoding=utf-8
+set linebreak
 set nocompatible            " disable compatibility to old-time vi
 set showmatch               " show matching brackets
 set tabstop=4               " number of columns occupied by a tab character
@@ -69,19 +79,25 @@ set mouse=a                 " Allow mouse usage
 set showtabline=0           " Hide tabs line
 set numberwidth=5
 set updatetime=250          " Increases the speed of git gutter
+set showcmd                 " Show incomplete commands
 set foldmethod=manual
 set signcolumn=yes
 set inccommand=nosplit
 set clipboard+=unnamedplus
-
+set backspace=indent,eol,start
 set shell=zsh
 
 " Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup
 
-nnoremap <space> <nop>
 let mapleader=" "
+
+set scrolloff=3
+set sidescroll=5
+
+set confirm
+set laststatus=2
 
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
@@ -146,7 +162,7 @@ nnoremap <silent> <C-f> :BLines<CR>
 nnoremap <silent> <leader>bb :Buffers<CR>
 nnoremap <silent> <leader>fr :History<CR>
 nnoremap <silent> <leader>cr :History:<CR>
-nnoremap <silent> <leader>/ :Rg!
+nnoremap <silent> <leader>fl :Rg!
 nnoremap <silent> <leader>* :Rg! <C-R><C-W><CR>
 nnoremap <silent> <leader>gc :GCheckout<CR>
 cnoremap <C-e> <C-c>:Commands<CR>
@@ -345,6 +361,33 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 " }}}
 " Fugitive {{{
 nnoremap <leader>gs :Gstatus<cr>
+nnoremap <leader>gb :Gblame<cr>
+" }}}
+" incsearch {{{
+let g:asterisk#keeppos = 1
+
+cnoremap <tab> <C-g>
+cnoremap <s-tab> <C-g>
+
+map *  <Plug>(asterisk-z*)<Plug>(is-nohl-1)
+map #  <Plug>(asterisk-z#)<Plug>(is-nohl-1)
+map g* <Plug>(asterisk-gz*)<Plug>(is-nohl-1)
+map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)
+" }}}
+" MatchTagAlways {{{
+let g:mta_filetypes = {
+    \ 'html' : 1,
+    \ 'xhtml' : 1,
+    \ 'xml' : 1,
+    \ 'jinja' : 1,
+    \ 'javascript' : 1,
+    \}
+" }}}
+" tagalong {{{
+let g:tagalong_additional_filetypes = ['javascript']
+" }}}
+" autopairs {{{
+inoremap <C-l> <Esc>:call AutoPairsJump()<cr>a
 " }}}
 
 " UI
@@ -395,7 +438,6 @@ augroup END
 " Autoread inside vim
 au FocusGained,BufEnter * :checktime
 " }}}
-
 " Keymaps {{{
 
 " Common
@@ -406,21 +448,19 @@ nnoremap : ;
 map Q <nop>
 nnoremap <C-g> :echo expand('%:p')<CR>
 nnoremap ,<leader> :b #<cr>
-nnoremap <TAB> za
 
 " Insert cool stuff
+inoremap <C-b> <left>
 inoremap <C-CR> <C-o>o
+inoremap <C-k> <cr><C-o>O
 
 " Quick init.vim changes
-nnoremap <space>fie :e ~/.config/nvim/init.vim<cr>
-nnoremap <space>fir :so %<cr>
+nnoremap <space>ie :e ~/.config/nvim/init.vim<cr>
+nnoremap <space>ir :so %<cr>
 
 " Reselect visual block after indent
 vnoremap < <gv
 vnoremap > >gv
-
-" Toggles smart indenting while pasting, A.K.A lifesaver
-set pastetoggle=<F6>
 
 " Make Y consistentjwith C and D. See :help Y.
 nnoremap Y y$
@@ -432,19 +472,25 @@ nnoremap <expr> N 'nN'[v:searchforward]
 " Hide annoying quit message
 nnoremap <C-c> <C-c>:echo<cr>
 
-" Quickfix list
-nnoremap fq :ccl<CR>
+" :noh for the win!
+nnoremap <CR> :noh<CR><CR>
 
-" allows incsearch highlighting for range commands
+" TODO: Add one for spellchecking.
+
+" Fold
+nnoremap <leader>z za
+
+" Windows
+nnoremap <leader>wh :split<cr>
+nnoremap <leader>wv :vsplit<cr>
+nnoremap <leader>wd :<C-u>q<cr>
+
+" Allows incsearch highlighting for range commands
 cnoremap $t <CR>:t''<CR>
 cnoremap $T <CR>:T''<CR>
 cnoremap $m <CR>:m''<CR>
 cnoremap $M <CR>:M''<CR>
 cnoremap $d <CR>:d<CR>``
-
-" Auto pairs
-inoremap {<CR> {<CR>}<C-o>O
-inoremap (<CR> (<CR>)<C-o>O
 
 " Select pasted text
 nnoremap gp `[v`]
@@ -454,8 +500,7 @@ nnoremap <leader>sto o<Esc>p<Esc>`[v`]=gv:!st2obj.awk<CR>
 
 " }}}
 
-colorscheme nord
-
 filetype plugin indent on   " allows auto-indenting depending on file type
 syntax on                   " syntax highlighting
+
 
