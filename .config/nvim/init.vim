@@ -315,7 +315,7 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 " }}}
 " Snippets {{{
     " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-    let g:UltiSnipsExpandTrigger="<C-l>"
+    let g:UltiSnipsExpandTrigger="<Tab>"
 
     " Edit snippets
     nnoremap <leader>es :CocCommand snippets.editSnippets<CR>
@@ -367,6 +367,9 @@ nnoremap <leader>gb :Gblame<cr>
 " incsearch {{{
 let g:asterisk#keeppos = 1
 
+cmap <expr> <Tab>   getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<C-g>" : "<C-Z>"
+cmap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<C-t>" : "<S-Tab>"
+
 map *  <Plug>(asterisk-z*)<Plug>(is-nohl-1)
 map #  <Plug>(asterisk-z#)<Plug>(is-nohl-1)
 map g* <Plug>(asterisk-gz*)<Plug>(is-nohl-1)
@@ -395,6 +398,7 @@ set splitright
 set path+=**
 set wildmenu
 set wildignore+=**/node_modules/**
+set wcm=<C-Z>
 
 " Common Autocmd {{{
 augroup cursorLineOnActivePaneOnly
