@@ -38,6 +38,7 @@ bindkey '^e' edit-command-line
 # Path stuff
 # {{{
 export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="$HOME/own-scripts:$PATH"
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
 
@@ -169,6 +170,12 @@ fshow_preview() {
                 --bind "alt-y:execute:$_gitLogLineToHash | xclip"
 }
 
+# }}}
+# Utils {{{
+alarmin() {
+    seconds=$(( $2 * 60 ))
+    osascript -e "(delay $seconds) & display notification \"$1\" with title \"Done!\" sound name \"beep\" & return" 2>/dev/null &
+}
 # }}}
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

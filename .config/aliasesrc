@@ -1,5 +1,9 @@
-alias ls='lsd'
+alias ls='lsd -a'
 alias c='clear'
+
+# Easy zsh config
+alias ec="v ~/.zshrc"
+alias sc="source ~/.zshrc"
 
 # Useful aliases
 alias vim="nvim"
