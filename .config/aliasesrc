@@ -2,8 +2,8 @@ alias ls='lsd -a'
 alias c='clear'
 
 # Easy zsh config
-alias ec="v ~/.zshrc"
-alias sc="source ~/.zshrc"
+alias ze="v ~/.zshrc"
+alias zr="source ~/.zshrc"
 
 # Useful aliases
 alias vim="nvim"

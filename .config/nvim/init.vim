@@ -3,6 +3,7 @@ call plug#begin('~/.config/nvim/plugged')
 " Plugins {{{
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'mike-hearn/vim-combosearch'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mattn/emmet-vim'
 Plug 'airblade/vim-gitgutter'
@@ -84,6 +85,7 @@ set numberwidth=5
 set updatetime=250          " Increases the speed of git gutter
 set showcmd                 " Show incomplete commands
 set foldmethod=manual
+set foldnestmax=2
 set signcolumn=yes
 set inccommand=nosplit
 set clipboard+=unnamedplus
@@ -165,8 +167,9 @@ nnoremap <silent> <C-f> :BLines<CR>
 nnoremap <silent> <leader>bb :Buffers<CR>
 nnoremap <silent> <leader>fr :History<CR>
 nnoremap <silent> <leader>fc :History:<CR>
-nnoremap <silent> <leader>fl :Rg!
+nnoremap <silent> <leader>fl :Rg!<space>
 nnoremap <silent> <leader>* :Rg! <C-R><C-W><CR>
+vnoremap <silent> <leader>* y:Rg! <C-r>0<CR>
 nnoremap <silent> <leader>gc :GCheckout<CR>
 cnoremap <C-e> <C-c>:Commands<CR>
 
@@ -219,6 +222,10 @@ nmap [h <Plug>(GitGutterPrevHunk)
 nmap <leader>gs <Plug>(GitGutterStageHunk)
 nmap <leader>gu <Plug>(GitGutterUndoHunk)
 nmap <leader>gp <Plug>(GitGutterPreviewHunk)
+
+" ComboSearch config
+let g:combosearch_trigger_key = "<c-p>"
+
 " }}}
 " Emmet {{{
 let g:user_emmet_settings = {
@@ -464,6 +471,16 @@ augroup Dirvish
 augroup END
 
 au BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
+
+" Languages
+augroup jsFolds
+    autocmd!
+    autocmd FileType javascript,typescript,json syntax region braceFold start="{" end="}" transparent fold
+    autocmd FileType javascript,typescript,json syntax region bracketFold start="\[" end="\]" transparent fold
+    autocmd FileType javascript,typescript,json syntax sync fromstart
+    autocmd FileType javascript,typescript,json set foldmethod=syntax
+    autocmd FileType javascript,typescript,json set foldmethod=syntax
+augroup end
 
 " Autoread inside vim
 au FocusGained,BufEnter * :checktime
