@@ -39,6 +39,7 @@ Plug 'wellle/targets.vim'
 Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-obsession'
 Plug 'tommcdo/vim-exchange'
+" Plug 'roman/golden-ratio' TODO: Excellent, but I need to disable on git diff
 
 " Next
 " Learn about spell
@@ -88,9 +89,11 @@ set foldmethod=manual
 set foldnestmax=2
 set signcolumn=yes
 set inccommand=nosplit
-set clipboard+=unnamedplus
 set backspace=indent,eol,start
 set shell=zsh
+
+" Difftool
+set diffopt+=vertical
 
 " Some servers have issues with backup files, see #649.
 set nobackup
@@ -333,9 +336,6 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
-" coc-yank
-nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
-
 " }}}
 " Snippets {{{
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
@@ -472,16 +472,6 @@ augroup END
 
 au BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
 
-" Languages
-augroup jsFolds
-    autocmd!
-    autocmd FileType javascript,typescript,json syntax region braceFold start="{" end="}" transparent fold
-    autocmd FileType javascript,typescript,json syntax region bracketFold start="\[" end="\]" transparent fold
-    autocmd FileType javascript,typescript,json syntax sync fromstart
-    autocmd FileType javascript,typescript,json set foldmethod=syntax
-    autocmd FileType javascript,typescript,json set foldmethod=syntax
-augroup end
-
 " Autoread inside vim
 au FocusGained,BufEnter * :checktime
 " }}}
@@ -538,6 +528,12 @@ cnoremap $T <CR>:T''<CR>
 cnoremap $m <CR>:m''<CR>
 cnoremap $M <CR>:M''<CR>
 cnoremap $d <CR>:d<CR>``
+
+" Clipboard
+nnoremap <leader>y "*y
+vnoremap <leader>y "*y
+nnoremap <leader>p "*p
+nnoremap <leader>P "*P
 
 " Select pasted text
 nnoremap gp `[v`]
