@@ -190,6 +190,7 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 " disable vim-go :GoDef short cut (gd)
 " this is handled by LanguageClient [LC]
 let g:go_def_mapping_enabled = 0
+let g:go_fmt_command = "goimports"
 " }}}
 " Polyglot {{{
 let g:polyglot_disabled = ['go']
@@ -540,6 +541,10 @@ nnoremap gp `[v`]
 
 " VERY CUSTOM: Paste and format styles to object properties (css-in-js)
 nnoremap <leader>sto o<Esc>p<Esc>`[v`]=gv:!st2obj.awk<CR>
+
+" Add numbered jumps to jumplist
+nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
+nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
 
 " Terminal
 if has('nvim')

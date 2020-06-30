@@ -39,11 +39,8 @@ bindkey '^e' edit-command-line
 # {{{
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 export PATH="$HOME/own-scripts:$PATH"
-export GOPATH="$HOME/go"
-export GOBIN="$GOPATH/bin"
+export PATH="$PATH:$HOME/go/bin"
 
-# TODO: Improve this to use gopls correctly
-export PATH="$GOBIN:$PATH"
 
 # DOOM EMACS
 export PATH=~/.emacs.d/bin:$PATH
