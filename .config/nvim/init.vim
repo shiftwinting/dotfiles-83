@@ -140,10 +140,7 @@ set swapfile
 
 " Fzf {{{
 let g:fzf_history_dir = '~/.config/nvim/fzf-history'
-
-" Hide status line while fzf is opened
-autocmd! FileType fzf set laststatus=0 noshowmode noruler
-            \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
 function! s:open_branch_fzf(line)
     let l:parser = split(a:line)
@@ -241,7 +238,6 @@ let g:user_emmet_settings = {
 " Coc {{{
 let g:coc_global_extensions = [
             \ 'coc-tsserver',
-            \ 'coc-prettier',
             \ 'coc-eslint',
             \ 'coc-snippets',
             \ 'coc-python',
