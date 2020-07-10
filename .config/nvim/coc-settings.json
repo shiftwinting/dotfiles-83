@@ -2,9 +2,6 @@
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
     "markdown",
-    "javascript",
-    "typescript",
-    "typescriptreact",
     "python",
     "json"
   ],
@@ -28,7 +25,5 @@
     "<C-c>": "do:exit"
   },
   "yank.highlight.duration": 300,
-  "prettier.eslintIntegration": true,
-  "eslint.run": "onSave",
   "eslint.autoFixOnSave": true
 }

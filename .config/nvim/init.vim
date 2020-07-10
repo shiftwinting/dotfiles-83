@@ -3,7 +3,6 @@ call plug#begin('~/.config/nvim/plugged')
 " Plugins {{{
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'mike-hearn/vim-combosearch'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mattn/emmet-vim'
 Plug 'airblade/vim-gitgutter'
@@ -12,7 +11,6 @@ Plug 'tpope/vim-rhubarb'
 Plug 'vim-scripts/restore_view.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'haya14busa/is.vim'
-Plug 'haya14busa/vim-asterisk'
 Plug 'osyo-manga/vim-anzu'
 Plug 'sheerun/vim-polyglot'
 Plug 'moll/vim-bbye'
@@ -167,6 +165,7 @@ nnoremap <silent> <C-f> :BLines<CR>
 nnoremap <silent> <leader>bb :Buffers<CR>
 nnoremap <silent> <leader>fr :History<CR>
 nnoremap <silent> <leader>fc :History:<CR>
+nnoremap <silent> <leader>t :BTags<CR>
 nnoremap <silent> <leader>fl :Rg!<space>
 nnoremap <silent> <leader>* :Rg! <C-R><C-W><CR>
 vnoremap <silent> <leader>* y:Rg! <C-r>0<CR>
@@ -392,10 +391,6 @@ let g:asterisk#keeppos = 1
 cmap <expr> <Tab>   getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<C-g>" : "<C-Z>"
 cmap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<C-t>" : "<S-Tab>"
 
-map *  <Plug>(asterisk-z*)<Plug>(is-nohl-1)
-map #  <Plug>(asterisk-z#)<Plug>(is-nohl-1)
-map g* <Plug>(asterisk-gz*)<Plug>(is-nohl-1)
-map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)
 " }}}
 " MatchTagAlways {{{
 let g:mta_filetypes = {
@@ -486,7 +481,7 @@ nnoremap ,<leader> :b #<cr>
 inoremap <C-b> <left>
 inoremap <C-CR> <C-o>o
 inoremap <C-k> <cr><C-o>O
-inoremap <C-s> <c-o>:w<cr>
+inoremap <C-s> <Esc>:w<cr>
 
 " Quick init.vim changes
 nnoremap <space>ie :e ~/.config/nvim/init.vim<cr>
@@ -500,8 +495,8 @@ vnoremap > >gv
 nnoremap Y y$
 
 " make n always search forward and N backward
-nnoremap <expr> n 'Nn'[v:searchforward]
-nnoremap <expr> N 'nN'[v:searchforward]
+" nnoremap <expr> n 'Nn'[v:searchforward]
+" nnoremap <expr> N 'nN'[v:searchforward]
 
 " Hide annoying quit message
 nnoremap <C-c> <C-c>:echo<cr>
