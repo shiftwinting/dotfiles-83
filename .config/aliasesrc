@@ -1,4 +1,4 @@
-alias ls='lsd -a'
+alias ls='lsd -al'
 alias c='clear'
 
 # Easy zsh config

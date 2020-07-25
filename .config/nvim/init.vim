@@ -11,7 +11,6 @@ Plug 'tpope/vim-rhubarb'
 Plug 'vim-scripts/restore_view.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'haya14busa/is.vim'
-Plug 'osyo-manga/vim-anzu'
 Plug 'sheerun/vim-polyglot'
 Plug 'moll/vim-bbye'
 Plug 'tpope/vim-commentary'
@@ -20,7 +19,6 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
-Plug 'sirver/UltiSnips'
 Plug 'honza/vim-snippets'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
@@ -31,18 +29,14 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'justinmk/vim-dirvish'
 Plug 'Valloric/MatchTagAlways'
 Plug 'AndrewRadev/tagalong.vim'
-Plug 'majutsushi/tagbar'
-Plug 'vim-test/vim-test'
 Plug 'wellle/targets.vim'
 Plug 'machakann/vim-sandwich'
-Plug 'tpope/vim-obsession'
-Plug 'tommcdo/vim-exchange'
-" Plug 'roman/golden-ratio' TODO: Excellent, but I need to disable on git diff
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
+Plug 'markonm/traces.vim'
 
-" Next
-" Learn about spell
-" tommcdo/vim-exchange
-" kassio/neoterm
+" To check if good for my workflow
+" Plug 'tpope/vim-obsession'
+
 " }}}
 " Themes {{{
 Plug 'jacoborus/tender.vim'
@@ -86,7 +80,6 @@ set showcmd                 " Show incomplete commands
 set foldmethod=manual
 set foldnestmax=2
 set signcolumn=yes
-set inccommand=nosplit
 set backspace=indent,eol,start
 set shell=zsh
 
@@ -187,6 +180,8 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 " this is handled by LanguageClient [LC]
 let g:go_def_mapping_enabled = 0
 let g:go_fmt_command = "goimports"
+
+nnoremap <leader>gd :<C-u>GoDiagnostics<cr>
 " }}}
 " Polyglot {{{
 let g:polyglot_disabled = ['go']
@@ -223,9 +218,6 @@ nmap <leader>gs <Plug>(GitGutterStageHunk)
 nmap <leader>gu <Plug>(GitGutterUndoHunk)
 nmap <leader>gp <Plug>(GitGutterPreviewHunk)
 
-" ComboSearch config
-let g:combosearch_trigger_key = "<c-p>"
-
 " }}}
 " Emmet {{{
 let g:user_emmet_settings = {
@@ -237,7 +229,6 @@ let g:user_emmet_settings = {
 " Coc {{{
 let g:coc_global_extensions = [
             \ 'coc-tsserver',
-            \ 'coc-eslint',
             \ 'coc-snippets',
             \ 'coc-python',
             \ ]
@@ -334,15 +325,12 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 
 " }}}
 " Snippets {{{
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<Tab>"
 
 " Edit snippets
 nnoremap <leader>csl :CocCommand snippets.editSnippets<CR>
-nnoremap <leader>css :UltiSnipsEdit
 
-" Use <C-e> for trigger snippet expand.
-imap <C-e> <Plug>(coc-snippets-expand)
+" Use for trigger snippet expand.
+imap <c-l> <Plug>(coc-snippets-expand)
 
 " Use <C-j> for select text for visual placeholder of snippet.
 vmap <C-j> <Plug>(coc-snippets-select)
@@ -354,7 +342,7 @@ let g:coc_snippet_next = '<c-j>'
 let g:coc_snippet_prev = '<c-k>'
 
 " Use <C-j> for both expand and jump (make expand higher priority.)
-imap <C-j> <Plug>(coc-snippets-expand-jump)
+" imap <C-j> <Plug>(coc-snippets-expand-jump)
 " }}}
 " Tmux nav {{{
 let g:tmux_navigator_save_on_switch = 1
@@ -405,7 +393,7 @@ let g:mta_filetypes = {
 let g:tagalong_additional_filetypes = ['javascript']
 " }}}
 " autopairs {{{
-inoremap <C-l> <Esc>:call AutoPairsJump()<cr>a
+" inoremap <C-l> <Esc>:call AutoPairsJump()<cr>a
 " }}}
 " Test {{{
 let test#strategy = "neovim"
@@ -464,6 +452,12 @@ augroup END
 
 au BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
 
+if has("autocmd")
+    augroup templates
+        autocmd BufNewFile *.editorconfig 0r ~/.config/nvim/templates/.editorconfig
+    augroup END
+endif
+
 " Autoread inside vim
 au FocusGained,BufEnter * :checktime
 " }}}
@@ -480,7 +474,6 @@ nnoremap ,<leader> :b #<cr>
 " Insert cool stuff
 inoremap <C-b> <left>
 inoremap <C-CR> <C-o>o
-inoremap <C-k> <cr><C-o>O
 inoremap <C-s> <Esc>:w<cr>
 
 " Quick init.vim changes

@@ -181,3 +181,6 @@ alarmin() {
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# For test
+export GOOGLE_APPLICATION_CREDENTIALS="/Users/aorrego/own-projects/go/credentials/pragmatic-reviews-8060a-firebase-adminsdk-2z1yp-575bc3194e.json"
