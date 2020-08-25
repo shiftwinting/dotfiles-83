@@ -5,6 +5,9 @@ alias c='clear'
 alias ze="v ~/.zshrc"
 alias zr="source ~/.zshrc"
 
+# Quick access
+alias op="cd ~/own-projects"
+
 # Useful aliases
 alias vim="nvim"
 alias vi="nvim"

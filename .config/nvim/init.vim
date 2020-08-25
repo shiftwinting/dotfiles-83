@@ -16,7 +16,7 @@ Plug 'moll/vim-bbye'
 Plug 'tpope/vim-commentary'
 Plug 'blueyed/vim-diminactive'
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 Plug 'honza/vim-snippets'
@@ -33,6 +33,7 @@ Plug 'wellle/targets.vim'
 Plug 'machakann/vim-sandwich'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
 Plug 'markonm/traces.vim'
+Plug 'diepm/vim-rest-console'
 
 " To check if good for my workflow
 " Plug 'tpope/vim-obsession'
@@ -40,11 +41,12 @@ Plug 'markonm/traces.vim'
 " }}}
 " Themes {{{
 Plug 'jacoborus/tender.vim'
+Plug 'morhetz/gruvbox'
 " }}}
 
 call plug#end()
 
-colorscheme tender
+colorscheme gruvbox
 
 let nvimDir  = '$HOME/.config/nvim'
 let cacheDir = expand(nvimDir . '/.cache')
@@ -82,6 +84,8 @@ set foldnestmax=2
 set signcolumn=yes
 set backspace=indent,eol,start
 set shell=zsh
+
+let g:markdown_fenced_languages = ['css', 'js=javascript', 'javascript', 'json=javascript']
 
 " Difftool
 set diffopt+=vertical
@@ -433,11 +437,6 @@ augroup foldMethodMarkerOnVimFiles
     autocmd FileType vim,zsh setlocal foldmethod=marker
 augroup END
 
-" augroup CenterOnInsert
-"     autocmd!
-"     autocmd InsertEnter * norm zz
-" augroup END
-
 augroup OverwriteFoldedHiColor
     autocmd!
     autocmd ColorScheme nord highlight Folded guifg=#81A1C1
@@ -451,6 +450,11 @@ augroup Dirvish
 augroup END
 
 au BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
+
+augroup Vue
+    autocmd!
+    autocmd FileType vue setlocal commentstring=\/\/\ %s
+augroup END
 
 if has("autocmd")
     augroup templates
