@@ -14,7 +14,6 @@ Plug 'haya14busa/is.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'moll/vim-bbye'
 Plug 'tpope/vim-commentary'
-Plug 'blueyed/vim-diminactive'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'tpope/vim-unimpaired'
@@ -41,12 +40,12 @@ Plug 'diepm/vim-rest-console'
 " }}}
 " Themes {{{
 Plug 'jacoborus/tender.vim'
-Plug 'morhetz/gruvbox'
+Plug 'gosukiwi/vim-atom-dark'
 " }}}
 
 call plug#end()
 
-colorscheme gruvbox
+colorscheme tender
 
 let nvimDir  = '$HOME/.config/nvim'
 let cacheDir = expand(nvimDir . '/.cache')
