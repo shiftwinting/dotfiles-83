@@ -15,13 +15,12 @@ Plug 'sheerun/vim-polyglot'
 Plug 'moll/vim-bbye'
 Plug 'tpope/vim-commentary'
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 Plug 'honza/vim-snippets'
+Plug 'itchyny/lightline.vim'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'vim-airline/vim-airline'
 Plug 'vimwiki/vimwiki'
 Plug 'benmills/vimux'
 Plug 'jiangmiao/auto-pairs'
@@ -33,6 +32,10 @@ Plug 'machakann/vim-sandwich'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
 Plug 'markonm/traces.vim'
 Plug 'diepm/vim-rest-console'
+Plug 'neovim/nvim-lsp'
+Plug 'nvim-lua/diagnostic-nvim'
+Plug 'nvim-lua/completion-nvim'
+Plug 'machakann/vim-highlightedyank'
 
 " To check if good for my workflow
 " Plug 'tpope/vim-obsession'
@@ -41,11 +44,14 @@ Plug 'diepm/vim-rest-console'
 " Themes {{{
 Plug 'jacoborus/tender.vim'
 Plug 'gosukiwi/vim-atom-dark'
+Plug 'frankier/neovim-colors-solarized-truecolor-only'
 " }}}
 
 call plug#end()
 
-colorscheme tender
+" colorscheme tender
+colorscheme solarized
+" set background=light
 
 let nvimDir  = '$HOME/.config/nvim'
 let cacheDir = expand(nvimDir . '/.cache')
@@ -84,9 +90,12 @@ set signcolumn=yes
 set backspace=indent,eol,start
 set shell=zsh
 
-let g:markdown_fenced_languages = ['css', 'js=javascript', 'javascript', 'json=javascript']
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
 
-" Difftool
+" Avoid showing message extra message when using completion
+set shortmess+=c
+
 set diffopt+=vertical
 
 " Some servers have issues with backup files, see #649.
@@ -114,6 +123,9 @@ set incsearch
 set ignorecase              " case insensitive matching
 set smartcase
 
+" Markdown languages
+let g:markdown_fenced_languages = ['css', 'js=javascript', 'javascript', 'json=javascript']
+
 " Backup Config
 set history=1000 " Remember everything
 set undolevels=1000
@@ -129,6 +141,31 @@ set backup
 " Keep swap files, can save your life
 let &directory=CreateAndExpand(cacheDir . '/swap')
 set swapfile
+
+filetype plugin indent on   " allows auto-indenting depending on file type
+syntax enable               " syntax highlighting
+
+" LSP
+lua <<EOF
+require'nvim_lsp'.tsserver.setup{on_attach=require'diagnostic'.on_attach}
+require'nvim_lsp'.gopls.setup{on_attach=require'diagnostic'.on_attach}
+require'nvim_lsp'.vuels.setup{on_attach=require'diagnostic'.on_attach}
+EOF
+
+let g:diagnostic_enable_virtual_text = 1
+
+" nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> gd            <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K             <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD            <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <space>rn     <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <silent> [g            :<c-u>PrevDiagnosticCycle<CR>
+nnoremap <silent> ]g            :<c-u>NextDiagnosticCycle<CR>
+" nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Plugins Config
 
@@ -184,7 +221,7 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 let g:go_def_mapping_enabled = 0
 let g:go_fmt_command = "goimports"
 
-nnoremap <leader>gd :<C-u>GoDiagnostics<cr>
+" nnoremap <leader>gd :<C-u>GoDiagnostics<cr>
 " }}}
 " Polyglot {{{
 let g:polyglot_disabled = ['go']
@@ -229,129 +266,28 @@ let g:user_emmet_settings = {
             \  },
             \}
 " }}}
-" Coc {{{
-let g:coc_global_extensions = [
-            \ 'coc-tsserver',
-            \ 'coc-snippets',
-            \ 'coc-python',
-            \ ]
-
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-            \ pumvisible() ? "\<C-n>" :
-            \ <SID>check_back_space() ? "\<TAB>" :
-            \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Restart
-nnoremap <leader>cr :<C-u>CocRestart<cr>
-nnoremap <leader>cc :<C-u>CocConfig<cr>
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-" position. Coc only does snippet and additional edit on confirm.
-if exists('*complete_info')
-    inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-    imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
-
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Lists mappings
-nnoremap <silent> <leader>di :<C-u>CocList diagnostics<cr>
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-    if (index(['vim','help'], &filetype) >= 0)
-        execute 'h '.expand('<cword>')
-    else
-        call CocAction('doHover')
-    endif
-endfunction
-
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-
-augroup cocTSConfiguration
-    autocmd!
-    " Setup formatexpr specified filetype(s).
-    autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-    " Update signature help on jump placeholder.
-    autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-" Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap keys for applying codeAction to the current line.
-nnoremap <leader>ac  :CocAction<CR>
-
-" Use <TAB> for selections ranges.
-" NOTE: Requires 'textDocument/selectionRange' support from the language server.
-" coc-tsserver, coc-python are the examples of servers that support it.
-" nmap <silent> <TAB> <Plug>(coc-range-select)
-" xmap <silent> <TAB> <Plug>(coc-range-select)
-
-" Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocAction('format')
-
-" Add `:Fold` command to fold current buffer.
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-" }}}
 " Snippets {{{
 
-" Edit snippets
-nnoremap <leader>csl :CocCommand snippets.editSnippets<CR>
+" " Edit snippets
+" nnoremap <leader>csl :CocCommand snippets.editSnippets<CR>
 
-" Use for trigger snippet expand.
-imap <c-l> <Plug>(coc-snippets-expand)
+" " Use for trigger snippet expand.
+" imap <c-l> <Plug>(coc-snippets-expand)
 
-" Use <C-j> for select text for visual placeholder of snippet.
-vmap <C-j> <Plug>(coc-snippets-select)
+" " Use <C-j> for select text for visual placeholder of snippet.
+" vmap <C-j> <Plug>(coc-snippets-select)
 
-" Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-j>'
+" " Use <C-j> for jump to next placeholder, it's default of coc.nvim
+" let g:coc_snippet_next = '<c-j>'
 
-" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<c-k>'
+" " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+" let g:coc_snippet_prev = '<c-k>'
 
 " Use <C-j> for both expand and jump (make expand higher priority.)
 " imap <C-j> <Plug>(coc-snippets-expand-jump)
 " }}}
 " Tmux nav {{{
 let g:tmux_navigator_save_on_switch = 1
-" }}}
-" Airline {{{
-let g:airline_extensions = ['coc']
 " }}}
 " Vimwiki {{{
 let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
@@ -401,6 +337,9 @@ let g:tagalong_additional_filetypes = ['javascript']
 " Test {{{
 let test#strategy = "neovim"
 " }}}
+" Yank Highlight {{{
+let g:highlightedyank_highlight_duration = 400
+"}}}
 " vim-sandwich {{{
 runtime macros/sandwich/keymap/surround.vim
 " }}}
@@ -460,6 +399,11 @@ if has("autocmd")
         autocmd BufNewFile *.editorconfig 0r ~/.config/nvim/templates/.editorconfig
     augroup END
 endif
+
+augroup LSP
+    autocmd!
+    autocmd BufEnter * lua require'completion'.on_attach()
+augroup END
 
 " Autoread inside vim
 au FocusGained,BufEnter * :checktime
@@ -539,8 +483,5 @@ if has('nvim')
 endif
 
 " }}}
-
-filetype plugin indent on   " allows auto-indenting depending on file type
-syntax on                   " syntax highlighting
 
 
