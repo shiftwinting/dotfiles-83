@@ -17,6 +17,7 @@ Plug 'tpope/vim-commentary'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
+Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'itchyny/lightline.vim'
 Plug 'tmux-plugins/vim-tmux-focus-events'
@@ -146,13 +147,35 @@ filetype plugin indent on   " allows auto-indenting depending on file type
 syntax enable               " syntax highlighting
 
 " LSP
-lua <<EOF
+lua << EOF
 require'nvim_lsp'.tsserver.setup{on_attach=require'diagnostic'.on_attach}
 require'nvim_lsp'.gopls.setup{on_attach=require'diagnostic'.on_attach}
 require'nvim_lsp'.vuels.setup{on_attach=require'diagnostic'.on_attach}
+require'nvim_lsp'.vimls.setup{}
 EOF
 
+" Diagnostics
 let g:diagnostic_enable_virtual_text = 1
+let g:diagnostic_insert_delay = 1
+
+" Completion
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+let g:completion_enable_snippet = 'UltiSnips'
+let g:completion_items_priority = {
+            \ 'Field': 11,
+            \ 'Function': 7,
+            \ 'Variables': 7,
+            \ 'Method': 10,
+            \ 'Interfaces': 5,
+            \ 'Constant': 5,
+            \ 'Class': 5,
+            \ 'Keyword': 4,
+            \ 'UltiSnips' : 1,
+            \ 'vim-vsnip' : 0,
+            \ 'Buffers' : 1,
+            \ 'TabNine' : 0,
+            \ 'File' : 0,
+            \}
 
 " nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gd            <cmd>lua vim.lsp.buf.definition()<CR>
@@ -173,24 +196,6 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 let g:fzf_history_dir = '~/.config/nvim/fzf-history'
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
-function! s:open_branch_fzf(line)
-    let l:parser = split(a:line)
-    let l:branch = l:parser[0]
-    if l:branch ==? '*'
-        let l:branch = l:parser[1]
-    endif
-    execute '!git checkout ' . l:branch
-endfunction
-
-command! -bang -nargs=0 GCheckout
-            \ call fzf#vim#grep(
-            \   'git branch -v', 0,
-            \   {
-            \     'sink': function('s:open_branch_fzf')
-            \   },
-            \   <bang>0
-            \ )
-
 " Maps
 nnoremap <silent> <leader>h :Helptags<CR>
 nnoremap <silent> <leader><leader> :Files<CR>
@@ -202,7 +207,6 @@ nnoremap <silent> <leader>t :BTags<CR>
 nnoremap <silent> <leader>fl :Rg!<space>
 nnoremap <silent> <leader>* :Rg! <C-R><C-W><CR>
 vnoremap <silent> <leader>* y:Rg! <C-r>0<CR>
-nnoremap <silent> <leader>gc :GCheckout<CR>
 cnoremap <C-e> <C-c>:Commands<CR>
 
 nmap <leader><tab> <plug>(fzf-maps-n)
@@ -214,12 +218,15 @@ imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
+
 " }}}
-" Go {{{
+" Vim go {{{
 " disable vim-go :GoDef short cut (gd)
 " this is handled by LanguageClient [LC]
 let g:go_def_mapping_enabled = 0
 let g:go_fmt_command = "goimports"
+let g:go_auto_type_info = 1
+let g:go_doc_popup_window = 1
 
 " nnoremap <leader>gd :<C-u>GoDiagnostics<cr>
 " }}}
@@ -328,10 +335,10 @@ let g:mta_filetypes = {
             \ 'javascript' : 1,
             \}
 " }}}
-" tagalong {{{
+" Tagalong {{{
 let g:tagalong_additional_filetypes = ['javascript']
 " }}}
-" autopairs {{{
+" Autopairs {{{
 " inoremap <C-l> <Esc>:call AutoPairsJump()<cr>a
 " }}}
 " Test {{{
@@ -343,6 +350,12 @@ let g:highlightedyank_highlight_duration = 400
 " vim-sandwich {{{
 runtime macros/sandwich/keymap/surround.vim
 " }}}
+" UltiSnips {{{
+let g:UltiSnipsExpandTrigger="<c-l>"
+let g:UltiSnipsSnippetDirectories=["own_snippets"]
+
+nnoremap <space>ee :UltiSnipsEdit<CR>
+"}}}
 
 set splitbelow
 set splitright
@@ -394,11 +407,10 @@ augroup Vue
     autocmd FileType vue setlocal commentstring=\/\/\ %s
 augroup END
 
-if has("autocmd")
-    augroup templates
-        autocmd BufNewFile *.editorconfig 0r ~/.config/nvim/templates/.editorconfig
-    augroup END
-endif
+augroup templates
+    autocmd!
+    autocmd BufNewFile *.editorconfig 0r ~/.config/nvim/templates/.editorconfig
+augroup END
 
 augroup LSP
     autocmd!

@@ -1,0 +1,130 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+snippet imp "import"
+import ${0:def} from '${1}'
+endsnippet
+
+snippet c "const"
+const ${1:foo} = ${2:value}
+endsnippet
+
+snippet cl "console.log"
+console.log($0)
+endsnippet
+
+snippet af "arrow function" i
+(${1}) => {${0}}
+endsnippet
+
+
+# =====
+# React
+# =====
+snippet sst "React - set state"
+this.setState({ $0 })
+endsnippet
+
+snippet gst "React - get state"
+const { ${0} } = this.state
+endsnippet
+
+snippet gpr "React - get props"
+const { ${0} } = this.props
+endsnippet
+
+snippet rrpw "React - Render Props Wrap"
+<$1>
+	{($2) => (
+		${VISUAL}
+	)}
+</$1>
+endsnippet
+
+snippet cam "Class autobind method"
+${1:method} = (${2:params}) => {
+	$0
+}
+
+endsnippet
+
+
+# =========
+# CSS IN JS
+# =========
+snippet "emcss" "Emotion css style" r
+export const ${1:name} = css(${2}{
+	$0
+})
+endsnippet
+
+snippet "emq" "Emotion MediaQuery" r
+[MediaQueries.${1:mdAndUp}]: {
+	$0
+},
+endsnippet
+
+snippet wcss "wrap css"
+'${1}': {
+	${VISUAL}
+},
+endsnippet
+
+
+# =====
+# Tests
+# =====
+snippet desc "jest describe"
+describe("${1:test name}", () => {
+	$0
+})
+endsnippet
+
+snippet it "jest it"
+it("${1:test name}", () => {
+	$0
+})
+endsnippet
+
+snippet t "jest test"
+test("${1:test name}", () => {
+	$0
+})
+endsnippet
+
+snippet exp "expect"
+expect($1)$0
+endsnippet
+
+snippet xlog "debugger log"
+// TODO: Remove this!
+const log = (x, label) => {
+	if (label) console.log(label, x);
+	else console.log(x);
+	return x;
+};
+endsnippet
+
