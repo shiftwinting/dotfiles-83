@@ -37,6 +37,7 @@ Plug 'neovim/nvim-lsp'
 Plug 'nvim-lua/diagnostic-nvim'
 Plug 'nvim-lua/completion-nvim'
 Plug 'machakann/vim-highlightedyank'
+Plug 'dense-analysis/ale'
 
 " To check if good for my workflow
 " Plug 'tpope/vim-obsession'
@@ -355,7 +356,16 @@ let g:UltiSnipsExpandTrigger="<c-l>"
 let g:UltiSnipsSnippetDirectories=["own_snippets"]
 
 nnoremap <space>ee :UltiSnipsEdit<CR>
-"}}}
+" }}}
+" ALE {{{
+let g:ale_javascript_eslint_executable = 'eslint_d'
+let g:ale_javascript_eslint_use_global = 1
+let g:ale_fixers = {
+\   'javascript': ['eslint'],
+\}
+let g:ale_fix_on_save = 1
+let g:ale_hover_to_preview = 1
+" }}}
 
 set splitbelow
 set splitright
@@ -495,5 +505,3 @@ if has('nvim')
 endif
 
 " }}}
-
-
