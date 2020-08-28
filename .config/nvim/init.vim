@@ -24,7 +24,6 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'vimwiki/vimwiki'
 Plug 'benmills/vimux'
-Plug 'jiangmiao/auto-pairs'
 Plug 'justinmk/vim-dirvish'
 Plug 'Valloric/MatchTagAlways'
 Plug 'AndrewRadev/tagalong.vim'
@@ -51,9 +50,9 @@ Plug 'frankier/neovim-colors-solarized-truecolor-only'
 
 call plug#end()
 
-" colorscheme tender
-colorscheme solarized
-" set background=light
+colorscheme tender
+" colorscheme solarized
+set background=dark
 
 let nvimDir  = '$HOME/.config/nvim'
 let cacheDir = expand(nvimDir . '/.cache')
@@ -175,14 +174,16 @@ let g:completion_items_priority = {
             \ 'vim-vsnip' : 0,
             \ 'Buffers' : 1,
             \ 'TabNine' : 0,
-            \ 'File' : 0,
+            \ 'File' : 1,
             \}
 
 " nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gd            <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K             <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gD            <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <space>ac     <cmd>lua vim.lsp.buf.code_action()<CR>
 nnoremap <silent> <space>rn     <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <silent> <space>gr     <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> [g            :<c-u>PrevDiagnosticCycle<CR>
 nnoremap <silent> ]g            :<c-u>NextDiagnosticCycle<CR>
 " nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
@@ -339,9 +340,6 @@ let g:mta_filetypes = {
 " Tagalong {{{
 let g:tagalong_additional_filetypes = ['javascript']
 " }}}
-" Autopairs {{{
-" inoremap <C-l> <Esc>:call AutoPairsJump()<cr>a
-" }}}
 " Test {{{
 let test#strategy = "neovim"
 " }}}
@@ -437,13 +435,17 @@ nnoremap <leader>fs :w!<CR>
 nnoremap ; :
 nnoremap : ;
 map Q <nop>
-nnoremap <C-g> :echo expand('%:p')<CR>
+nnoremap <C-g> :echo expand('%')<CR>
 nnoremap ,<leader> :b #<cr>
 
 " Insert cool stuff
 inoremap <C-b> <left>
 inoremap <C-CR> <C-o>o
 inoremap <C-s> <Esc>:w<cr>
+
+" Brackets
+inoremap {<CR> {<CR>}<C-o>O
+inoremap [<CR> [<CR>]<C-o>O
 
 " Quick init.vim changes
 nnoremap <space>ie :e ~/.config/nvim/init.vim<cr>
@@ -457,8 +459,8 @@ vnoremap > >gv
 nnoremap Y y$
 
 " make n always search forward and N backward
-" nnoremap <expr> n 'Nn'[v:searchforward]
-" nnoremap <expr> N 'nN'[v:searchforward]
+nnoremap <expr> n 'Nn'[v:searchforward]
+nnoremap <expr> N 'nN'[v:searchforward]
 
 " Hide annoying quit message
 nnoremap <C-c> <C-c>:echo<cr>
@@ -498,10 +500,5 @@ nnoremap <leader>sto o<Esc>p<Esc>`[v`]=gv:!st2obj.awk<CR>
 " Add numbered jumps to jumplist
 nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
 nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
-
-" Terminal
-if has('nvim')
-    tmap <C-o> <C-\><C-n>
-endif
 
 " }}}

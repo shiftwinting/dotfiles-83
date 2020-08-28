@@ -45,6 +45,7 @@ alias gc='hub commit'
 alias gcam='hub commit -a -m'
 alias glog='glo'
 alias gbr="git rev-parse --abbrev-ref HEAD | tr -d '\n' | pbcopy"
+alias lg='lazygit'
 
 # From forgit
 # gcf => git checkout file
