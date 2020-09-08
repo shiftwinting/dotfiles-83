@@ -29,13 +29,11 @@ Plug 'Valloric/MatchTagAlways'
 Plug 'AndrewRadev/tagalong.vim'
 Plug 'wellle/targets.vim'
 Plug 'machakann/vim-sandwich'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
 Plug 'markonm/traces.vim'
 Plug 'diepm/vim-rest-console'
 Plug 'neovim/nvim-lsp'
 Plug 'nvim-lua/diagnostic-nvim'
 Plug 'nvim-lua/completion-nvim'
-Plug 'machakann/vim-highlightedyank'
 Plug 'dense-analysis/ale'
 
 " To check if good for my workflow
@@ -141,7 +139,8 @@ set backup
 
 " Keep swap files, can save your life
 let &directory=CreateAndExpand(cacheDir . '/swap')
-set swapfile
+set noswapfile
+
 
 filetype plugin indent on   " allows auto-indenting depending on file type
 syntax enable               " syntax highlighting
@@ -206,6 +205,7 @@ nnoremap <silent> <leader>bb :Buffers<CR>
 nnoremap <silent> <leader>fr :History<CR>
 nnoremap <silent> <leader>fc :History:<CR>
 nnoremap <silent> <leader>t :BTags<CR>
+nnoremap <silent> <leader>rg :Rg!<CR>
 nnoremap <silent> <leader>fl :Rg!<space>
 nnoremap <silent> <leader>* :Rg! <C-R><C-W><CR>
 vnoremap <silent> <leader>* y:Rg! <C-r>0<CR>
@@ -360,9 +360,50 @@ let g:ale_javascript_eslint_executable = 'eslint_d'
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_fixers = {
 \   'javascript': ['eslint'],
+\   'vue': ['eslint', 'prettier'],
+\   'typescript': ['eslint', 'prettier'],
 \}
 let g:ale_fix_on_save = 1
 let g:ale_hover_to_preview = 1
+" }}}
+" Lightline {{{
+let g:lightline = {
+\  'colorscheme': 'tender',
+\  'active': {
+\    'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filenameOrLastFolderOfIndex', 'modified' ] ]
+\  },
+\  'component_function': {
+\    'gitbranch': 'fugitive#head',
+\    'filenameOrLastFolderOfIndex': 'LightLineFixIndexFiles'
+\  },
+\  'mode_map': {
+\    'n' : 'N',
+\    'i' : 'I',
+\    'R' : 'R',
+\    'v' : 'V',
+\    'V' : 'VL',
+\    "\<C-v>": 'VB',
+\    'c' : 'C',
+\    's' : 'S',
+\    'S' : 'S',
+\    "\<C-s>": 'SB',
+\    't': 'T',
+\  }
+\ }
+
+function! LightLineFixIndexFiles()
+    let filenameonly = split(expand('%:t:r'), '\.')
+
+    if !len(filenameonly)
+        return ''
+    endif
+
+    if filenameonly[0] ==? 'index'
+        return remove(split(expand('%:h'), '/'), -1) . '/' . expand('%:t')
+    else
+        return expand('%:t')
+    endif
+endfunction
 " }}}
 
 set splitbelow
@@ -425,13 +466,16 @@ augroup LSP
     autocmd BufEnter * lua require'completion'.on_attach()
 augroup END
 
+" Highlight yank
+au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=300}
+
 " Autoread inside vim
 au FocusGained,BufEnter * :checktime
 " }}}
 " Keymaps {{{
 
 " Common
-nnoremap <leader>fs :w!<CR>
+nnoremap <leader>w :w!<CR>
 nnoremap ; :
 nnoremap : ;
 map Q <nop>
