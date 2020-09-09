@@ -72,8 +72,7 @@ export FZF_DEFAULT_OPTS="
     --bind '?:toggle-preview'
     --bind 'ctrl-a:select-all'
     --bind 'ctrl-y:execute-silent(echo {+} | pbcopy)'
-    --bind 'ctrl-e:execute(echo {+} | xargs -o vim)'
-    --bind 'ctrl-v:execute(code {+})'
+    --bind 'ctrl-e:execute(echo {+} | xargs -o nvim)'
     --bind 'alt-k:preview-up'
     --bind 'alt-j:preview-down'
     "

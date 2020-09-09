@@ -8,7 +8,6 @@ Plug 'mattn/emmet-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
-Plug 'vim-scripts/restore_view.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'haya14busa/is.vim'
 Plug 'sheerun/vim-polyglot'
@@ -35,6 +34,8 @@ Plug 'neovim/nvim-lsp'
 Plug 'nvim-lua/diagnostic-nvim'
 Plug 'nvim-lua/completion-nvim'
 Plug 'dense-analysis/ale'
+Plug 'blueyed/vim-diminactive'
+Plug 'zhimsel/vim-stay'
 
 " To check if good for my workflow
 " Plug 'tpope/vim-obsession'
@@ -112,6 +113,8 @@ set laststatus=2
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
+set viewoptions=cursor,folds,slash,unix
+
 " Buffers
 set hidden                  " TextEdit might fail if hidden is not set.
 set autowrite
@@ -123,7 +126,7 @@ set ignorecase              " case insensitive matching
 set smartcase
 
 " Markdown languages
-let g:markdown_fenced_languages = ['css', 'js=javascript', 'javascript', 'json=javascript']
+let g:markdown_fenced_languages = ['css', 'js=javascript', 'javascript', 'json=javascript', 'bash']
 
 " Backup Config
 set history=1000 " Remember everything
@@ -141,23 +144,17 @@ set backup
 let &directory=CreateAndExpand(cacheDir . '/swap')
 set noswapfile
 
-
 filetype plugin indent on   " allows auto-indenting depending on file type
 syntax enable               " syntax highlighting
 
-" LSP
-lua << EOF
-require'nvim_lsp'.tsserver.setup{on_attach=require'diagnostic'.on_attach}
-require'nvim_lsp'.gopls.setup{on_attach=require'diagnostic'.on_attach}
-require'nvim_lsp'.vuels.setup{on_attach=require'diagnostic'.on_attach}
-require'nvim_lsp'.vimls.setup{}
-EOF
+lua require('lspserver')
 
 " Diagnostics
 let g:diagnostic_enable_virtual_text = 1
 let g:diagnostic_insert_delay = 1
 
 " Completion
+inoremap <silent><expr> <c-space> completion#trigger_completion()
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 let g:completion_enable_snippet = 'UltiSnips'
 let g:completion_items_priority = {
@@ -274,26 +271,6 @@ let g:user_emmet_settings = {
             \      'extends' : 'jsx',
             \  },
             \}
-" }}}
-" Snippets {{{
-
-" " Edit snippets
-" nnoremap <leader>csl :CocCommand snippets.editSnippets<CR>
-
-" " Use for trigger snippet expand.
-" imap <c-l> <Plug>(coc-snippets-expand)
-
-" " Use <C-j> for select text for visual placeholder of snippet.
-" vmap <C-j> <Plug>(coc-snippets-select)
-
-" " Use <C-j> for jump to next placeholder, it's default of coc.nvim
-" let g:coc_snippet_next = '<c-j>'
-
-" " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-" let g:coc_snippet_prev = '<c-k>'
-
-" Use <C-j> for both expand and jump (make expand higher priority.)
-" imap <C-j> <Plug>(coc-snippets-expand-jump)
 " }}}
 " Tmux nav {{{
 let g:tmux_navigator_save_on_switch = 1
@@ -471,6 +448,12 @@ au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeou
 
 " Autoread inside vim
 au FocusGained,BufEnter * :checktime
+
+augroup stay_no_lcd
+  autocmd!
+  autocmd User BufStaySavePre  if haslocaldir() | let w:lcd = getcwd() | cd - | cd - | endif
+  autocmd User BufStaySavePost if exists('w:lcd') | execute 'lcd' fnameescape(w:lcd) | unlet w:lcd | endif
+augroup END
 " }}}
 " Keymaps {{{
 
