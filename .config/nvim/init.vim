@@ -10,6 +10,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'haya14busa/is.vim'
+Plug 'haya14busa/vim-asterisk'
 Plug 'sheerun/vim-polyglot'
 Plug 'moll/vim-bbye'
 Plug 'tpope/vim-commentary'
@@ -36,6 +37,8 @@ Plug 'nvim-lua/completion-nvim'
 Plug 'dense-analysis/ale'
 Plug 'blueyed/vim-diminactive'
 Plug 'zhimsel/vim-stay'
+Plug 'steelsojka/completion-buffers'
+Plug 'voldikss/vim-floaterm'
 
 " To check if good for my workflow
 " Plug 'tpope/vim-obsession'
@@ -125,6 +128,8 @@ set incsearch
 set ignorecase              " case insensitive matching
 set smartcase
 
+set pastetoggle=<F10>
+
 " Markdown languages
 let g:markdown_fenced_languages = ['css', 'js=javascript', 'javascript', 'json=javascript', 'bash']
 
@@ -146,6 +151,15 @@ set noswapfile
 
 filetype plugin indent on   " allows auto-indenting depending on file type
 syntax enable               " syntax highlighting
+
+set splitbelow
+set splitright
+
+" File Find
+set path+=**
+set wildmenu
+set wildignore+=**/node_modules/**
+set wcm=<C-Z>
 
 lua require('lspserver')
 
@@ -173,6 +187,12 @@ let g:completion_items_priority = {
             \ 'File' : 1,
             \}
 
+let g:completion_chain_complete_list = [
+    \ {'complete_items': ['lsp', 'snippet', 'buffer', 'buffers']},
+    \ {'mode': '<c-p>'},
+    \ {'mode': '<c-n>'}
+\ ]
+
 " nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gd            <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K             <cmd>lua vim.lsp.buf.hover()<CR>
@@ -189,7 +209,6 @@ inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Plugins Config
-
 " Fzf {{{
 let g:fzf_history_dir = '~/.config/nvim/fzf-history'
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
@@ -199,7 +218,7 @@ nnoremap <silent> <leader>h :Helptags<CR>
 nnoremap <silent> <leader><leader> :Files<CR>
 nnoremap <silent> <C-f> :BLines<CR>
 nnoremap <silent> <leader>bb :Buffers<CR>
-nnoremap <silent> <leader>fr :History<CR>
+nnoremap <silent> <leader>fh :History<CR>
 nnoremap <silent> <leader>fc :History:<CR>
 nnoremap <silent> <leader>t :BTags<CR>
 nnoremap <silent> <leader>rg :Rg!<CR>
@@ -323,6 +342,9 @@ let test#strategy = "neovim"
 " Yank Highlight {{{
 let g:highlightedyank_highlight_duration = 400
 "}}}
+" Vim Asterisk {{{
+map *  <Plug>(asterisk-z*)
+"}}}
 " vim-sandwich {{{
 runtime macros/sandwich/keymap/surround.vim
 " }}}
@@ -339,6 +361,7 @@ let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \   'vue': ['eslint', 'prettier'],
 \   'typescript': ['eslint', 'prettier'],
+\   'html': ['prettier'],
 \}
 let g:ale_fix_on_save = 1
 let g:ale_hover_to_preview = 1
@@ -347,7 +370,8 @@ let g:ale_hover_to_preview = 1
 let g:lightline = {
 \  'colorscheme': 'tender',
 \  'active': {
-\    'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filenameOrLastFolderOfIndex', 'modified' ] ]
+\    'left':  [ [ 'mode', 'paste' ], [ 'readonly', 'filenameOrLastFolderOfIndex', 'modified' ] ],
+\    'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'filetype' ] ]
 \  },
 \  'component_function': {
 \    'gitbranch': 'fugitive#head',
@@ -382,15 +406,11 @@ function! LightLineFixIndexFiles()
     endif
 endfunction
 " }}}
+" Floaterm {{{
+let g:floaterm_autoclose = 1
 
-set splitbelow
-set splitright
-
-" File Find
-set path+=**
-set wildmenu
-set wildignore+=**/node_modules/**
-set wcm=<C-Z>
+nnoremap <leader>gl :<C-u>FloatermNew lazygit<CR>
+" }}}
 
 " Common Autocmd {{{
 augroup cursorLineOnActivePaneOnly
@@ -495,8 +515,6 @@ nnoremap <C-c> <C-c>:echo<cr>
 " :noh for the win!
 nnoremap <CR> :noh<CR><CR>
 
-" TODO: Add one for spellchecking.
-
 " Fold
 nnoremap <leader>z za
 
@@ -520,9 +538,6 @@ nnoremap <leader>P "*P
 
 " Select pasted text
 nnoremap gp `[v`]
-
-" VERY CUSTOM: Paste and format styles to object properties (css-in-js)
-nnoremap <leader>sto o<Esc>p<Esc>`[v`]=gv:!st2obj.awk<CR>
 
 " Add numbered jumps to jumplist
 nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
