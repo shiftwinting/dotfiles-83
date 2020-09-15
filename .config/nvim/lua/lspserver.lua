@@ -6,4 +6,5 @@ lsp.vuels.setup{on_attach=require'diagnostic'.on_attach}
 lsp.sumneko_lua.setup{on_attach=require'diagnostic'.on_attach}
 lsp.vimls.setup{}
 lsp.cssls.setup{}
+lsp.dartls.setup{}
 

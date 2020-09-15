@@ -40,7 +40,7 @@ bindkey '^e' edit-command-line
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 export PATH="$HOME/own-scripts:$PATH"
 export PATH="$PATH:$HOME/go/bin"
-
+export PATH="$PATH:$HOME/flutter/bin"
 
 # DOOM EMACS
 export PATH=~/.emacs.d/bin:$PATH
