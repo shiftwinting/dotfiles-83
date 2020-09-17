@@ -40,10 +40,10 @@ bindkey '^e' edit-command-line
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 export PATH="$HOME/own-scripts:$PATH"
 export PATH="$PATH:$HOME/go/bin"
-export PATH="$PATH:$HOME/flutter/bin"
 
-# DOOM EMACS
-export PATH=~/.emacs.d/bin:$PATH
+# Flutter
+export PATH="$PATH:$HOME/flutter/bin"
+export PATH="$PATH:$HOME/flutter/bin/cache/dart-sdk/bin"
 
 # Python 3
 export PATH="$HOME/Library/Python/3.7/bin:$PATH"

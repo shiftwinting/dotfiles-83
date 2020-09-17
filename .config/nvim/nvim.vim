@@ -1,5 +1,7 @@
 call plug#begin('~/.config/nvim/plugged')
 
+let g:polyglot_disabled = ['go']
+
 " Plugins {{{
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -39,6 +41,7 @@ Plug 'blueyed/vim-diminactive'
 Plug 'zhimsel/vim-stay'
 Plug 'steelsojka/completion-buffers'
 Plug 'voldikss/vim-floaterm'
+Plug 'liuchengxu/vista.vim'
 
 " To check if good for my workflow
 " Plug 'tpope/vim-obsession'
@@ -185,7 +188,7 @@ let g:completion_items_priority = {
             \ 'Buffers' : 1,
             \ 'TabNine' : 0,
             \ 'File' : 1,
-            \}
+            \ }
 
 let g:completion_chain_complete_list = [
     \ {'complete_items': ['lsp', 'snippet', 'buffer', 'buffers']},
@@ -197,9 +200,9 @@ let g:completion_chain_complete_list = [
 nnoremap <silent> gd            <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K             <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gD            <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <space>ac     <cmd>lua vim.lsp.buf.code_action()<CR>
-nnoremap <silent> <space>rn     <cmd>lua vim.lsp.buf.rename()<CR>
-nnoremap <silent> <space>gr     <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> <leader>ac    <cmd>lua vim.lsp.buf.code_action()<CR>
+nnoremap <silent> <leader>rn    <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <silent> <leader>gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> [g            :<c-u>PrevDiagnosticCycle<CR>
 nnoremap <silent> ]g            :<c-u>NextDiagnosticCycle<CR>
 " nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
@@ -215,7 +218,7 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
 " Maps
 nnoremap <silent> <leader>h :Helptags<CR>
-nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <leader><leader> :Files<CR>
 nnoremap <silent> <C-f> :BLines<CR>
 nnoremap <silent> <leader>bb :Buffers<CR>
 nnoremap <silent> <leader>fh :History<CR>
@@ -247,9 +250,6 @@ let g:go_auto_type_info = 1
 let g:go_doc_popup_window = 1
 
 " nnoremap <leader>gd :<C-u>GoDiagnostics<cr>
-" }}}
-" Polyglot {{{
-let g:polyglot_disabled = ['go']
 " }}}
 " bbye {{{
 nnoremap <Leader>q :Bdelete<CR>
@@ -496,7 +496,7 @@ inoremap {<CR> {<CR>}<C-o>O
 inoremap [<CR> [<CR>]<C-o>O
 
 " Quick init.vim changes
-nnoremap <leader>ie :e ~/.config/nvim/init.vim<cr>
+nnoremap <leader>ie :e ~/.config/nvim/nvim.vim<cr>
 nnoremap <leader>ir :so %<cr>
 
 " Reselect visual block after indent
@@ -555,4 +555,11 @@ function! OpenPluginDocs()
 endfunction
 
 command OpenPluginDocs :call OpenPluginDocs()
+" }}}
+" Lua {{{
+nnoremap <leader>lp             :<c-u>lua print()<left>
+nnoremap <silent> <leader>la    :lua vim.lsp.buf.code_action()<left>
+
+command LspInspect          :lua print(vim.inspect(vim.lsp))<cr>
+command LspAttachedClients  :lua print(vim.inspect(vim.lsp.buf_get_clients()))
 " }}}

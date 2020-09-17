@@ -5,6 +5,7 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 Plug 'wellle/targets.vim'
+Plug 'machakann/vim-sandwich'
 
 call plug#end()
 " }}}
@@ -17,7 +18,6 @@ nnoremap <leader>w :Write<CR>
 nnoremap ; :
 nnoremap : ;
 
-nnoremap <c-p> :Edit<CR>
 nnoremap <CR> :noh<CR><CR>
 
 " Comments
@@ -30,13 +30,8 @@ nmap gcc <Plug>VSCodeCommentaryLine
 nnoremap [h :call VSCodeCall('workbench.action.editor.previousChange')<cr>
 nnoremap ]h :call VSCodeCall('workbench.action.editor.nextChange')<cr>
 nnoremap <leader>gs :call VSCodeCall('git.openChange')<cr>
-" nnoremap [h :call VSCodeCall('workbench.action.compareEditor.previousChange')<cr>
-" nnoremap ]h :call VSCodeCall('workbench.action.compareEditor.nextChange')<cr>
 
 " Problems
 nnoremap [g :call VSCodeCall('editor.action.marker.prevInFiles')<cr>
 nnoremap ]g :call VSCodeCall('editor.action.marker.nextInFiles')<cr>
 
-" Search
-nnoremap [q :call VSCodeCall('search.action.focusPreviousSearchResult')<cr>
-nnoremap ]q :call VSCodeCall('search.action.focusNextSearchResult')<cr>
