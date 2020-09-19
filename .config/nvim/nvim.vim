@@ -42,6 +42,11 @@ Plug 'zhimsel/vim-stay'
 Plug 'steelsojka/completion-buffers'
 Plug 'voldikss/vim-floaterm'
 Plug 'liuchengxu/vista.vim'
+Plug 'norcalli/nvim_utils'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 
 " To check if good for my workflow
 " Plug 'tpope/vim-obsession'
@@ -207,6 +212,10 @@ nnoremap <silent> [g            :<c-u>PrevDiagnosticCycle<CR>
 nnoremap <silent> ]g            :<c-u>NextDiagnosticCycle<CR>
 " nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 
+let g:LanguageClient_serverCommands = {
+    \ 'dart': ['dart', '/Users/aorrego/flutter/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot', '--lsp'],
+    \ }
+
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -362,7 +371,6 @@ let g:ale_fixers = {
 \   'vue': ['eslint', 'prettier'],
 \   'typescript': ['eslint', 'prettier'],
 \   'html': ['prettier'],
-\   'dart': ['dartfmt'],
 \}
 let g:ale_fix_on_save = 1
 let g:ale_hover_to_preview = 1
@@ -556,10 +564,20 @@ endfunction
 
 command OpenPluginDocs :call OpenPluginDocs()
 " }}}
-" Lua {{{
+" Dev {{{
+" Lua
 nnoremap <leader>lp             :<c-u>lua print()<left>
 nnoremap <silent> <leader>la    :lua vim.lsp.buf.code_action()<left>
+nnoremap <leader>lr :lua vim.lsp.stop_client(vim.lsp.get_active_clients())<cr>
 
 command LspInspect          :lua print(vim.inspect(vim.lsp))<cr>
 command LspAttachedClients  :lua print(vim.inspect(vim.lsp.buf_get_clients()))
+
+" Highlight utils
+function! SynGroup()
+    let l:s = synID(line('.'), col('.'), 1)
+    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+endfun
+
+nnoremap <leader>hg :call SynGroup()<cr>
 " }}}

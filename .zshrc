@@ -13,6 +13,8 @@ setopt HIST_IGNORE_ALL_DUPS
 export VISUAL=nvim
 export EDITOR=nvim
 
+export MANPAGER='nvim +Man!'
+
 # Basic auto/tab complete:
 autoload -U compinit
 zstyle ':completion:*' menu select
