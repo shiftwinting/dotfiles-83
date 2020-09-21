@@ -4,11 +4,32 @@ require'nvim_utils'
 lsp.tsserver.setup{on_attach=require'diagnostic'.on_attach}
 lsp.gopls.setup{on_attach=require'diagnostic'.on_attach}
 lsp.vuels.setup{on_attach=require'diagnostic'.on_attach}
-lsp.sumneko_lua.setup{on_attach=require'diagnostic'.on_attach}
 lsp.vimls.setup{}
 lsp.cssls.setup{}
 
--- Dart + Flutter
+-- Lua {{{
+lsp.sumneko_lua.setup{
+  settings={
+    Lua={
+      runtime={ version="LuaJIT", path=vim.split(package.path, ';') };
+      completion={ keywordSnippet="Disable" };
+      diagnostics={
+        enable=true,
+        globals= { 'vim', 'describe', 'it', 'before_each', 'after_each' }
+      };
+      workspace={
+        library={
+          [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+          [vim.fn.expand('~/build/neovim/src/nvim/lua')] = true,
+        }
+      }
+    }
+  };
+  on_attach=require'diagnostic'.on_attach
+}
+-- }}}
+
+-- Dart + Flutter {{{
 local dart_options = {
   onlyAnalyzeProjectsWithOpenFiles = false,
   suggestFromUnimportedLibraries = true,
@@ -28,7 +49,6 @@ local on_closing_labels = function (...)
   for i,l in ipairs(labels) do
     local name =  l.label
     local line = l.range['end'].line
-    -- set virtual text
     vim.api.nvim_buf_set_virtual_text(
       0,
       closing_labels_namespace,
@@ -53,5 +73,6 @@ lsp.dartls.setup{
     ['textDocument/codeAction'] = on_code_action;
   };
 }
+-- }}}
 
 -- vim.lsp.set_log_level("debug")
