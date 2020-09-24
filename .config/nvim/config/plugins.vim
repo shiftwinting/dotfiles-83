@@ -152,7 +152,7 @@ let g:ale_javascript_eslint_use_global = 1
 let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \   'vue': ['eslint', 'prettier'],
-\   'typescript': ['eslint', 'prettier'],
+\   'typescript': ['prettier'],
 \   'html': ['prettier'],
 \   'go': ['goimports'],
 \   'dart': ['dartfmt'],

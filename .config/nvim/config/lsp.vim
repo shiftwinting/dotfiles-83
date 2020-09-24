@@ -31,7 +31,6 @@ let g:completion_chain_complete_list = [
 \ ]
 
 " TODO: Add more of this stuff
-" nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gd            <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K             <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gD            <cmd>lua vim.lsp.buf.implementation()<CR>
@@ -40,8 +39,3 @@ nnoremap <silent> <leader>rn    <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> <leader>gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> [g            :<c-u>PrevDiagnosticCycle<CR>
 nnoremap <silent> ]g            :<c-u>NextDiagnosticCycle<CR>
-" nnoremap <silent> <leader>sh <cmd>lua vim.lsp.buf.signature_help()<CR>
-
-" let g:LanguageClient_serverCommands = {
-"     \ 'dart': ['dart', '/Users/aorrego/flutter/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot', '--lsp'],
-"     \ }
