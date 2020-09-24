@@ -81,5 +81,5 @@ function! LoadSession()
   endif
 endfunction
 
-au VimEnter * nested :call LoadSession()
-au VimLeave * :call MakeSession()
+au VimEnter * nested if argc() == 0 | :call LoadSession() | endif
+au VimLeave * if argc() == 0 | :call MakeSession() | endif

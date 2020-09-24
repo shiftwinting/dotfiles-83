@@ -109,6 +109,7 @@ set foldnestmax=2
 set signcolumn=yes
 set backspace=indent,eol,start
 set shell=zsh
+set showtabline=1
 
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect

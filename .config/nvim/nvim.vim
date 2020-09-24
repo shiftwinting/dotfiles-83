@@ -28,8 +28,3 @@ endfun
 nnoremap <leader>hg :call ShowHighlightGroups()<cr>
 " }}}
 
-" Dev {{{
-" Lua
-nnoremap <leader>lp :<c-u>lua print(vim.inspect())<left><left>
-nnoremap <leader>lr :lua vim.lsp.stop_client(vim.lsp.get_active_clients())<cr>
-" }}}
