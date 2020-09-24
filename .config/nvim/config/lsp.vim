@@ -1,4 +1,4 @@
-lua require('lspserver')
+lua require('lspsetup')
 
 " Diagnostics
 let g:diagnostic_enable_virtual_text = 1

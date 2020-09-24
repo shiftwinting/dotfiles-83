@@ -65,5 +65,5 @@ nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
 
 " Debug
 nnoremap <leader>m :<c-u>ccl \| Messages \| res +20<CR>
-nnoremap <leader>lr :<c-u>lua require('lspserver').reset_config()<CR>
+nnoremap <leader>lr :<c-u>lua require('lspsetup.utils').reset_config()<CR>
 nnoremap <leader>lp :<c-u>lua print(vim.inspect())<left><left>
