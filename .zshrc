@@ -37,8 +37,7 @@ source ~/.zsh_plugins.sh
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-# Path stuff
-# {{{
+# Path stuff {{{
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 export PATH="$HOME/own-scripts:$PATH"
 export PATH="$PATH:$HOME/go/bin"
@@ -50,6 +49,9 @@ export PATH="$PATH:$HOME/flutter/bin/cache/dart-sdk/bin"
 # Python 3
 export PATH="$HOME/Library/Python/3.7/bin:$PATH"
 
+# Rust
+export PATH="$HOME/.cargo/bin:$PATH"
+
 # NVM - Node
 export PATH=~/.nvm/versions/node/v12.13.0/bin:$PATH
 export NVM_DIR="$HOME/.nvm"
@@ -59,6 +61,8 @@ export NVM_DIR="$HOME/.nvm"
 # Android Development
 export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
+
+# }}}
 
 # FZF {{{
 
@@ -130,11 +134,13 @@ bip() {
 }
 
 # }}}
+
 # Forgit {{{
 
 FORGIT_LOG_GRAPH_ENABLE=false
 
 # }}}
+
 # Git {{{
 
 # Git checkout recent
@@ -171,6 +177,7 @@ fshow_preview() {
 }
 
 # }}}
+
 # Utils {{{
 alarmin() {
     seconds=$(( $2 * 60 ))

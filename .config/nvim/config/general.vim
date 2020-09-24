@@ -1,5 +1,12 @@
 call plug#begin('~/.config/nvim/plugged')
 
+function! s:local_plug(package_name) abort " {{{
+  if isdirectory(expand('~/own-projects/nvplugins/' . a:package_name))
+    execute "Plug '~/own-projects/nvplugins/" . a:package_name . "'"
+  endif
+endfunction
+" }}}
+
 " Plugins {{{
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -30,25 +37,30 @@ Plug 'wellle/targets.vim'
 Plug 'machakann/vim-sandwich'
 Plug 'markonm/traces.vim'
 Plug 'diepm/vim-rest-console'
-Plug 'neovim/nvim-lsp'
-Plug 'nvim-lua/diagnostic-nvim'
-Plug 'nvim-lua/completion-nvim'
 Plug 'dense-analysis/ale'
 Plug 'blueyed/vim-diminactive'
 Plug 'zhimsel/vim-stay'
 Plug 'steelsojka/completion-buffers'
 Plug 'voldikss/vim-floaterm'
 Plug 'liuchengxu/vista.vim'
-Plug 'norcalli/nvim_utils'
+Plug 'tpope/vim-scriptease'
+
+" Lua
+Plug 'neovim/nvim-lsp'
+Plug 'nvim-lua/diagnostic-nvim'
+Plug 'nvim-lua/completion-nvim'
+Plug 'nvim-lua/plenary.nvim'
+
+" Local plugins
+call s:local_plug('lsp_extensions.nvim')
+
 " Plug 'autozimu/LanguageClient-neovim', {
 "     \ 'branch': 'next',
 "     \ 'do': 'bash install.sh',
 "     \ }
 
-" To check if good for my workflow
-" Plug 'tpope/vim-obsession'
-
 " }}}
+
 " Themes {{{
 Plug 'jacoborus/tender.vim'
 Plug 'gosukiwi/vim-atom-dark'
