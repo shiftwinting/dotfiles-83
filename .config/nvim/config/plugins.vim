@@ -155,6 +155,7 @@ let g:ale_fixers = {
 \   'typescript': ['eslint', 'prettier'],
 \   'html': ['prettier'],
 \   'go': ['goimports'],
+\   'dart': ['dartfmt'],
 \}
 let g:ale_fix_on_save = 1
 let g:ale_hover_to_preview = 1

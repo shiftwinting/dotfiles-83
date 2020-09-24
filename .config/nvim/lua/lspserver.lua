@@ -1,4 +1,5 @@
 local lsp = require'nvim_lsp'
+local dart_config = require'dartls'
 
 lsp.tsserver.setup{on_attach=require'diagnostic'.on_attach}
 lsp.gopls.setup{on_attach=require'diagnostic'.on_attach}
@@ -30,47 +31,12 @@ lsp.sumneko_lua.setup{
 -- }}}
 
 -- Dart + Flutter {{{
-local dart_options = {
-  onlyAnalyzeProjectsWithOpenFiles = false,
-  suggestFromUnimportedLibraries = true,
-  closingLabels = true,
-  outline = true,
-  flutterOutline = false
-};
-
-local closing_labels_namespace = vim.api.nvim_create_namespace('dart_closing_labels')
-
-local on_closing_labels = function (...)
-  local arg = {...}
-  local labels = arg[3].labels
-
-  vim.api.nvim_buf_clear_namespace(0, closing_labels_namespace, 0, -1)
-
-  for i,l in ipairs(labels) do
-    local name =  l.label
-    local line = l.range['end'].line
-    vim.api.nvim_buf_set_virtual_text(
-      0,
-      closing_labels_namespace,
-      line,
-      {{'// '..name, 'Comment'}},
-      {}
-    )
-    print(i, name, line)
-  end
-end
-
-local on_code_action = function (...)
-  local arg = {...}
-  print(vim.inspect(arg))
-end
-
 lsp.dartls.setup{
-  on_attach=require'diagnostic'.on_attach;
-  init_options=dart_options;
+  on_attach = require'diagnostic'.on_attach,
+  init_options = dart_config.init_options,
+  capabilities = dart_config.capabilities,
   callbacks = {
-    ['dart/textDocument/publishClosingLabels'] = on_closing_labels;
-    ['textDocument/codeAction'] = on_code_action;
+    ['dart/textDocument/publishClosingLabels'] = dart_config.on_closing_labels,
   };
 }
 -- }}}
