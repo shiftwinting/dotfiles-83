@@ -42,6 +42,8 @@ lsp.dartls.setup{
   capabilities = dartls.capabilities,
   callbacks = {
     ['dart/textDocument/publishClosingLabels'] = dartls.on_closing_labels,
+    -- ['dart/textDocument/publishOutline'] = dartls.on_outline,
+    ['dart/textDocument/publishFlutterOutline'] = dartls.on_flutter_outline,
   };
 }
 -- }}}
