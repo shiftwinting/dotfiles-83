@@ -48,6 +48,7 @@ Plug 'liuchengxu/vista.vim'
 Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-eunuch'
 Plug 'stefandtw/quickfix-reflector.vim'
+Plug 'Yggdroot/indentLine'
 
 " Lua
 Plug 'neovim/nvim-lsp'
@@ -182,3 +183,7 @@ set path+=**
 set wildmenu
 set wildignore+=**/node_modules/**
 set wcm=<C-Z>
+
+" Conceal
+set concealcursor-=n
+

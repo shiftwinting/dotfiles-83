@@ -26,7 +26,7 @@ alias dv="docker volume"
 alias dco="docker-compose"
 
 # Config
-alias conf='hub --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias conf='lg --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # Zsh plugins
 alias zsh_install_plugin='antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh && source ~/.zshrc'

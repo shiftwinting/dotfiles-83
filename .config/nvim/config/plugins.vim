@@ -77,6 +77,10 @@ let g:tmux_navigator_save_on_switch = 1
 
 " Vimwiki {{{
 let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
+
+let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*', '*.wiki']
+let g:indentLine_fileTypeExclude = ['vimwiki']
+let g:indentLine_bufTypeExclude = ['help', 'terminal', 'vimwiki']
 " }}}
 
 " Vimux {{{
