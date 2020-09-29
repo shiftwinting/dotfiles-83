@@ -67,3 +67,5 @@ nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
 nnoremap <leader>m :<c-u>ccl \| Messages \| res +20<CR>
 nnoremap <leader>lr :<c-u>lua require('lspsetup.utils').reset_config()<CR>
 nnoremap <leader>lp :<c-u>lua print(vim.inspect())<left><left>
+
+" vim:sw=2 ts=2 et

@@ -48,7 +48,6 @@ Plug 'liuchengxu/vista.vim'
 Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-eunuch'
 Plug 'stefandtw/quickfix-reflector.vim'
-Plug 'Yggdroot/indentLine'
 
 " Lua
 Plug 'neovim/nvim-lsp'
@@ -58,11 +57,6 @@ Plug 'nvim-lua/plenary.nvim'
 
 " Local plugins
 call s:local_plug('lsp_extensions.nvim')
-
-" Plug 'autozimu/LanguageClient-neovim', {
-"     \ 'branch': 'next',
-"     \ 'do': 'bash install.sh',
-"     \ }
 
 " }}}
 
@@ -83,11 +77,11 @@ let cacheDir = expand(nvimDir . '/.cache')
 
 " Basic Functions {{{
 function! CreateAndExpand(path)
-    if !isdirectory(expand(a:path))
-        call mkdir(expand(a:path), 'p')
-    endif
+  if !isdirectory(expand(a:path))
+    call mkdir(expand(a:path), 'p')
+  endif
 
-    return expand(a:path)
+  return expand(a:path)
 endfunction
 " }}}
 
@@ -187,3 +181,4 @@ set wcm=<C-Z>
 " Conceal
 set concealcursor-=n
 
+" vim:sw=2 ts=2 et

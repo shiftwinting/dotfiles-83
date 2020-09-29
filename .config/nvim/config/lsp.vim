@@ -25,10 +25,10 @@ let g:completion_items_priority = {
             \ }
 
 let g:completion_chain_complete_list = [
-    \ {'complete_items': ['lsp', 'snippet', 'buffer', 'buffers']},
-    \ {'mode': '<c-p>'},
-    \ {'mode': '<c-n>'}
-\ ]
+            \ {'complete_items': ['lsp', 'snippet', 'buffer', 'buffers']},
+            \ {'mode': '<c-p>'},
+            \ {'mode': '<c-n>'}
+            \ ]
 
 " TODO: Add more of this stuff
 nnoremap <silent> gd            <cmd>lua vim.lsp.buf.definition()<CR>
@@ -39,3 +39,5 @@ nnoremap <silent> <leader>rn    <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> <leader>gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> [g            :<c-u>PrevDiagnosticCycle<CR>
 nnoremap <silent> ]g            :<c-u>NextDiagnosticCycle<CR>
+
+" vim:sw=2 ts=2 et

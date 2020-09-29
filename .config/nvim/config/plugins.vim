@@ -46,12 +46,12 @@ highlight GitGutterChange guifg=#96E1EF
 let g:gitgutter_map_keys = 0
 
 function! GitGutterNextHunkCycle()
-    let line = line('.')
-    silent! GitGutterNextHunk
-    if line('.') == line
-        1
-        GitGutterNextHunk
-    endif
+  let line = line('.')
+  silent! GitGutterNextHunk
+  if line('.') == line
+    1
+    GitGutterNextHunk
+  endif
 endfunction
 
 nnoremap ]h :call GitGutterNextHunkCycle()<CR>
@@ -65,10 +65,10 @@ nmap <leader>gp <Plug>(GitGutterPreviewHunk)
 
 " Emmet {{{
 let g:user_emmet_settings = {
-            \  'javascript' : {
-            \      'extends' : 'jsx',
-            \  },
-            \}
+      \  'javascript' : {
+      \      'extends' : 'jsx',
+      \  },
+      \}
 " }}}
 
 " Tmux nav {{{
@@ -77,10 +77,11 @@ let g:tmux_navigator_save_on_switch = 1
 
 " Vimwiki {{{
 let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
+" }}}
 
-let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*', '*.wiki']
-let g:indentLine_fileTypeExclude = ['vimwiki']
-let g:indentLine_bufTypeExclude = ['help', 'terminal', 'vimwiki']
+" IndentLine {{{
+let g:indentLine_concealcursor = 'ic'
+let g:indentLine_conceallevel = 2
 " }}}
 
 " Vimux {{{
@@ -88,11 +89,11 @@ nnoremap <leader>vl :w<CR>:<C-u>VimuxRunLastCommand<CR>
 inoremap <leader>vl <Esc>:w<CR>:<C-u>VimuxRunLastCommand<CR>
 
 function! VimuxSlime()
-    if !exists("g:VimuxRunnerIndex")
-        call VimuxOpenRunner()
-    endif
-    silent call VimuxSendText(@v)
-    " call VimuxSendKeys("Enter")
+  if !exists("g:VimuxRunnerIndex")
+    call VimuxOpenRunner()
+  endif
+  silent call VimuxSendText(@v)
+  " call VimuxSendKeys("Enter")
 endfunction
 
 vnoremap <leader>vs "vygv<C-c>:call VimuxSlime()<CR>
@@ -115,12 +116,12 @@ cmap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<C-t>" : "<S
 
 " MatchTagAlways {{{
 let g:mta_filetypes = {
-            \ 'html' : 1,
-            \ 'xhtml' : 1,
-            \ 'xml' : 1,
-            \ 'jinja' : 1,
-            \ 'javascript' : 1,
-            \}
+      \ 'html' : 1,
+      \ 'xhtml' : 1,
+      \ 'xml' : 1,
+      \ 'jinja' : 1,
+      \ 'javascript' : 1,
+      \}
 " }}}
 
 " Tagalong {{{
@@ -154,55 +155,55 @@ nnoremap <space>ee :UltiSnipsEdit<CR>
 let g:ale_javascript_eslint_executable = 'eslint_d'
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_fixers = {
-\   'javascript': ['eslint'],
-\   'vue': ['eslint', 'prettier'],
-\   'typescript': ['prettier'],
-\   'html': ['prettier'],
-\   'go': ['goimports'],
-\   'dart': ['dartfmt'],
-\}
+      \   'javascript': ['eslint'],
+      \   'vue': ['eslint', 'prettier'],
+      \   'typescript': ['prettier'],
+      \   'html': ['prettier'],
+      \   'go': ['goimports'],
+      \   'dart': ['dartfmt'],
+      \}
 let g:ale_fix_on_save = 1
 let g:ale_hover_to_preview = 1
 " }}}
 
 " Lightline {{{
 let g:lightline = {
-\  'colorscheme': 'tender',
-\  'active': {
-\    'left':  [ [ 'mode', 'paste' ], [ 'readonly', 'filenameOrLastFolderOfIndex', 'modified' ] ],
-\    'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'filetype' ] ]
-\  },
-\  'component_function': {
-\    'gitbranch': 'fugitive#head',
-\    'filenameOrLastFolderOfIndex': 'LightLineFixIndexFiles'
-\  },
-\  'mode_map': {
-\    'n' : 'N',
-\    'i' : 'I',
-\    'R' : 'R',
-\    'v' : 'V',
-\    'V' : 'VL',
-\    "\<C-v>": 'VB',
-\    'c' : 'C',
-\    's' : 'S',
-\    'S' : 'S',
-\    "\<C-s>": 'SB',
-\    't': 'T',
-\  }
-\ }
+      \  'colorscheme': 'tender',
+      \  'active': {
+      \    'left':  [ [ 'mode', 'paste' ], [ 'readonly', 'filenameOrLastFolderOfIndex', 'modified' ] ],
+      \    'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'filetype' ] ]
+      \  },
+      \  'component_function': {
+      \    'gitbranch': 'fugitive#head',
+      \    'filenameOrLastFolderOfIndex': 'LightLineFixIndexFiles'
+      \  },
+      \  'mode_map': {
+      \    'n' : 'N',
+      \    'i' : 'I',
+      \    'R' : 'R',
+      \    'v' : 'V',
+      \    'V' : 'VL',
+      \    "\<C-v>": 'VB',
+      \    'c' : 'C',
+      \    's' : 'S',
+      \    'S' : 'S',
+      \    "\<C-s>": 'SB',
+      \    't': 'T',
+      \  }
+      \ }
 
 function! LightLineFixIndexFiles()
-    let filenameonly = split(expand('%:t:r'), '\.')
+  let filenameonly = split(expand('%:t:r'), '\.')
 
-    if !len(filenameonly)
-        return ''
-    endif
+  if !len(filenameonly)
+    return ''
+  endif
 
-    if filenameonly[0] ==? 'index'
-        return remove(split(expand('%:h'), '/'), -1) . '/' . expand('%:t')
-    else
-        return expand('%:t')
-    endif
+  if filenameonly[0] ==? 'index'
+    return remove(split(expand('%:h'), '/'), -1) . '/' . expand('%:t')
+  else
+    return expand('%:t')
+  endif
 endfunction
 " }}}
 
@@ -210,4 +211,8 @@ endfunction
 let g:floaterm_autoclose = 1
 
 nnoremap <leader>gl :<C-u>FloatermNew lazygit<CR>
+
+command Conf FloatermNew lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME
 " }}}
+
+" vim:sw=2 ts=2 et

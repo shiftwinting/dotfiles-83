@@ -1,49 +1,49 @@
 augroup cursorLineOnActivePaneOnly
-    autocmd!
-    autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-    autocmd WinLeave * setlocal nocursorline
+  autocmd!
+  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
 augroup END
 
 augroup disableAutoComments
-    autocmd!
-    autocmd BufEnter * setlocal formatoptions-=c formatoptions-=q formatoptions-=n formatoptions-=r formatoptions-=o formatoptions-=l
+  autocmd!
+  autocmd BufEnter * setlocal formatoptions-=c formatoptions-=q formatoptions-=n formatoptions-=r formatoptions-=o formatoptions-=l
 augroup END
 
 augroup removeTraillingSpaces
-    autocmd!
-    autocmd BufWritePre * %s/\s\+$//e
+  autocmd!
+  autocmd BufWritePre * %s/\s\+$//e
 augroup END
 
 augroup foldMethodMarkerOnVimFiles
-    autocmd!
-    autocmd FileType vim,zsh setlocal foldmethod=marker
+  autocmd!
+  autocmd FileType vim,zsh setlocal foldmethod=marker sw=2 ts=2 et
 augroup END
 
 augroup OverwriteFoldedHiColor
-    autocmd!
-    autocmd ColorScheme nord highlight Folded guifg=#81A1C1
+  autocmd!
+  autocmd ColorScheme nord highlight Folded guifg=#81A1C1
 augroup END
 
 augroup Dirvish
-    autocmd!
-    autocmd FileType dirvish nnoremap <buffer> <leader>n :edit %
-    autocmd FileType dirvish nnoremap <buffer> <leader>m :!mkdir %
-    autocmd FileType dirvish nnoremap <buffer> <leader>t :!touch %
+  autocmd!
+  autocmd FileType dirvish nnoremap <buffer> <leader>n :edit %
+  autocmd FileType dirvish nnoremap <buffer> <leader>m :!mkdir %
+  autocmd FileType dirvish nnoremap <buffer> <leader>t :!touch %
 augroup END
 
 augroup Vue
-    autocmd!
-    autocmd FileType vue setlocal commentstring=\/\/\ %s
+  autocmd!
+  autocmd FileType vue setlocal commentstring=\/\/\ %s
 augroup END
 
 augroup templates
-    autocmd!
-    autocmd BufNewFile *.editorconfig 0r ~/.config/nvim/templates/.editorconfig
+  autocmd!
+  autocmd BufNewFile *.editorconfig 0r ~/.config/nvim/templates/.editorconfig
 augroup END
 
 augroup LSP
-    autocmd!
-    autocmd BufEnter * lua require'completion'.on_attach()
+  autocmd!
+  autocmd BufEnter * lua require'completion'.on_attach()
 augroup END
 
 augroup stay_no_lcd
@@ -83,3 +83,5 @@ endfunction
 
 au VimEnter * nested if argc() == 0 | :call LoadSession() | endif
 au VimLeave * if argc() == 0 | :call MakeSession() | endif
+
+" vim:sw=2 ts=2 et
