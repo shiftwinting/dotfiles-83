@@ -23,6 +23,7 @@ traverse_children = function(root, level, filter_fn)
 
     -- TODO: This is just for debugging
     if pass_filter then
+      -- This is the action to do with the node
       if level == 0 then print(get_node_name(node))
       else print(('-'):rep(level), get_node_name(node)) end
     end
