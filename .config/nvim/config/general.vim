@@ -147,6 +147,9 @@ set smartcase
 
 set pastetoggle=<F10>
 
+set exrc
+set secure
+
 " Markdown languages
 let g:markdown_fenced_languages = ['css', 'js=javascript', 'javascript', 'json=javascript', 'bash']
 
