@@ -165,6 +165,8 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 1
 let g:ale_hover_to_preview = 1
 
+let g:ale_set_loclist = 0
+
 " Custom Highlights
 hi ALEError gui=underline
 
