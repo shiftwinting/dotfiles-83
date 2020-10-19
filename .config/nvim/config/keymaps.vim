@@ -14,6 +14,7 @@ inoremap <C-s> <Esc>:w<cr>
 " Brackets
 inoremap {<CR> {<CR>}<C-o>O
 inoremap [<CR> [<CR>]<C-o>O
+inoremap (<CR> (<CR>)<C-o>O
 
 " Quick init.vim changes
 nnoremap <leader>ie :e ~/.config/nvim/nvim.vim<cr>
