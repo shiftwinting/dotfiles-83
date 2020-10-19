@@ -55,6 +55,10 @@ Plug 'nvim-lua/diagnostic-nvim'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-lua/plenary.nvim'
 
+" Treesitter
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/playground'
+
 " Local plugins
 call s:local_plug('lsp_extensions.nvim')
 
