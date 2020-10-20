@@ -50,8 +50,10 @@ lsp.dartls.setup{
 
 -- Treesitter
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "all",     -- one of "all", "language", or a list of languages
+  indent = {
+    enable = true
+  },
   highlight = {
-    enable = true,              -- false will disable the whole extension
+    enable = true,
   },
 }

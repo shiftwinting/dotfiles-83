@@ -10,6 +10,7 @@ let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 let g:completion_enable_snippet = 'UltiSnips'
 let g:completion_items_priority = {
             \ 'Field': 11,
+            \ 'Property': 7,
             \ 'Function': 7,
             \ 'Variables': 7,
             \ 'Method': 10,
@@ -25,7 +26,7 @@ let g:completion_items_priority = {
             \ }
 
 let g:completion_chain_complete_list = [
-            \ {'complete_items': ['lsp', 'snippet', 'buffer', 'buffers']},
+            \ {'complete_items': ['lsp', 'snippet', 'path', 'buffer', 'buffers']},
             \ {'mode': '<c-p>'},
             \ {'mode': '<c-n>'}
             \ ]
