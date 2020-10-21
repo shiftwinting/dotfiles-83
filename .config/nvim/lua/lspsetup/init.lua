@@ -7,7 +7,7 @@ lsp.tsserver.setup{on_attach=require'diagnostic'.on_attach}
 lsp.gopls.setup{on_attach=require'diagnostic'.on_attach}
 lsp.vuels.setup{on_attach=require'diagnostic'.on_attach}
 lsp.vimls.setup{}
--- lsp.cssls.setup{}
+lsp.cssls.setup{}
 lsp.rust_analyzer.setup{}
 
 -- Custom callbacks
@@ -42,7 +42,18 @@ lsp.dartls.setup{
   capabilities = dartls.capabilities,
   callbacks = {
     ['dart/textDocument/publishClosingLabels'] = dartls.on_closing_labels,
+    -- ['dart/textDocument/publishOutline'] = dartls.on_outline,
+    ['dart/textDocument/publishFlutterOutline'] = dartls.show_flutter_ui_guides,
   };
 }
 -- }}}
 
+-- Treesitter
+require'nvim-treesitter.configs'.setup {
+  indent = {
+    enable = true
+  },
+  highlight = {
+    enable = true,
+  },
+}

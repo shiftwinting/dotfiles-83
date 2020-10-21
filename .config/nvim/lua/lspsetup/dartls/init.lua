@@ -5,7 +5,7 @@ M.init_options = {
   suggestFromUnimportedLibraries = true,
   closingLabels = true,
   outline = true,
-  flutterOutline = false
+  flutterOutline = true
 };
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -27,20 +27,7 @@ M.capabilities.textDocument.codeAction = {
   }
 }
 
-
-local closing_labels_ns = vim.api.nvim_create_namespace('dart.closing_labels')
-
-M.on_closing_labels = function(_, _, result)
-  local prefix = '// '
-  local highlight = 'Comment'
-
-  vim.api.nvim_buf_clear_namespace(0, closing_labels_ns, 0, -1)
-
-  for _,l in ipairs(result.labels) do
-    local name =  l.label
-    local line = l.range['end'].line
-    vim.api.nvim_buf_set_virtual_text(0, closing_labels_ns, line, { { prefix .. name, highlight } }, {})
-  end
-end
+M.on_closing_labels = require'lspsetup.dartls.closing_labels'.on_closing_labels
+M.show_flutter_ui_guides = require'lspsetup.dartls.flutter_guides'.show_flutter_ui_guides
 
 return M

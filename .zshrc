@@ -53,7 +53,7 @@ export PATH="$HOME/Library/Python/3.7/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 # NVM - Node
-export PATH=~/.nvm/versions/node/v12.13.0/bin:$PATH
+export PATH=~/.nvm/versions/node/v12.18.0/bin:$PATH
 export NVM_DIR="$HOME/.nvm"
 . $NVM_DIR/nvm.sh --no-use
 . $NVM_DIR/bash_completion

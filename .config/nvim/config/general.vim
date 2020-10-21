@@ -8,6 +8,8 @@ endfunction
 " }}}
 
 " Plugins {{{
+
+" TODO: Add comments about plugins or groups of plugins... not sure now what they do now...
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'editorconfig/editorconfig-vim'
@@ -44,6 +46,8 @@ Plug 'steelsojka/completion-buffers'
 Plug 'voldikss/vim-floaterm'
 Plug 'liuchengxu/vista.vim'
 Plug 'tpope/vim-scriptease'
+Plug 'tpope/vim-eunuch'
+Plug 'stefandtw/quickfix-reflector.vim'
 
 " Lua
 Plug 'neovim/nvim-lsp'
@@ -51,13 +55,12 @@ Plug 'nvim-lua/diagnostic-nvim'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-lua/plenary.nvim'
 
+" Treesitter
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/playground'
+
 " Local plugins
 call s:local_plug('lsp_extensions.nvim')
-
-" Plug 'autozimu/LanguageClient-neovim', {
-"     \ 'branch': 'next',
-"     \ 'do': 'bash install.sh',
-"     \ }
 
 " }}}
 
@@ -78,11 +81,11 @@ let cacheDir = expand(nvimDir . '/.cache')
 
 " Basic Functions {{{
 function! CreateAndExpand(path)
-    if !isdirectory(expand(a:path))
-        call mkdir(expand(a:path), 'p')
-    endif
+  if !isdirectory(expand(a:path))
+    call mkdir(expand(a:path), 'p')
+  endif
 
-    return expand(a:path)
+  return expand(a:path)
 endfunction
 " }}}
 
@@ -148,6 +151,9 @@ set smartcase
 
 set pastetoggle=<F10>
 
+set exrc
+set secure
+
 " Markdown languages
 let g:markdown_fenced_languages = ['css', 'js=javascript', 'javascript', 'json=javascript', 'bash']
 
@@ -178,3 +184,8 @@ set path+=**
 set wildmenu
 set wildignore+=**/node_modules/**
 set wcm=<C-Z>
+
+" Conceal
+set concealcursor-=n
+
+" vim:sw=2 ts=2 et

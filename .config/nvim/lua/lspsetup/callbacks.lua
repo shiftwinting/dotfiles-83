@@ -2,7 +2,7 @@ local M = {}
 local utils = require'lspsetup.utils'
 
 M.code_action_callback = function(_, _, result)
-  if vim.tbl_isempty(result) then
+  if result == nil or vim.tbl_isempty(result) then
     print('[code_actions] No code actions available')
     return
   end
