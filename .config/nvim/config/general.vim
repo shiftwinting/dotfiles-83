@@ -68,6 +68,7 @@ call s:local_plug('lsp_extensions.nvim')
 Plug 'jacoborus/tender.vim'
 Plug 'gosukiwi/vim-atom-dark'
 Plug 'frankier/neovim-colors-solarized-truecolor-only'
+Plug 'arcticicestudio/nord-vim'
 " }}}
 
 call plug#end()

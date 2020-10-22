@@ -2,15 +2,29 @@
   // Base
   "editor.fontSize": 14,
   "files.trimTrailingWhitespace": true,
+  "vim.highlightedyank.enable": true,
+  "vim.highlightedyank.duration": 250,
+  "editor.fontFamily": "MesloLGS NF",
+  "editor.minimap.enabled": false,
+  "vim.smartRelativeLine": true,
 
   // Vim
   "vim.leader": "<space>",
   "vim.visualstar": true,
   "vim.normalModeKeyBindingsNonRecursive": [
     { "before": ["K"], "after": ["g", "h"] },
+    { "before": ["Y"], "after": ["y", "$"] },
+    { "before": [";"], "after": [":"] },
+    { "before": [":"], "commands": ["workbench.action.showCommands"] },
     { "before": ["<leader>", "w"], "commands": ["workbench.action.files.save"] },
     { "before": ["<leader>", "p"], "commands": ["workbench.action.quickOpen"] },
     { "before": ["[", "g"], "commands": ["editor.action.marker.prev"] },
     { "before": ["]", "g"], "commands": ["editor.action.marker.next"] },
+    { "before": ["[", "e"], "commands": ["editor.action.moveLinesUpAction"] },
+    { "before": ["]", "e"], "commands": ["editor.action.moveLinesDownAction"] },
+    { "before": ["ctrl+k"], "commands": ["workbench.action.nextSideBarView"] },
+    { "before": ["ctrl+j"], "commands": ["workbench.action.previousSideBarView"] },
   ],
+  "window.zoomLevel": 0,
+  "workbench.colorTheme": "Nord",
 }

@@ -1,4 +1,5 @@
 [
+    // Close everything
     {
         "key": "ctrl+c",
         "command": "closeAccessibilityHelp",
@@ -68,5 +69,19 @@
         "key": "ctrl+c",
         "command": "closeReferenceSearch",
         "when": "editorFocus && referenceSearchVisible"
+    },
+
+    // Sidebar
+    {
+        "key": "ctrl+j",
+        "command": "workbench.action.nextSideBarView"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "workbench.action.previousSideBarView"
+    },
+    {
+        "key": "ctrl+-",
+        "command": "workbench.action.toggleSidebarVisibility"
     },
 ]
