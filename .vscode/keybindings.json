@@ -1,0 +1,72 @@
+[
+    {
+        "key": "ctrl+c",
+        "command": "closeAccessibilityHelp",
+        "when": "accessibilityHelpWidgetVisible && editorFocus"
+    },
+    {
+        "key": "ctrl+c",
+        "command": "closeBreakpointWidget",
+        "when": "breakpointWidgetVisible && textInputFocus"
+    },
+    {
+        "key": "ctrl+c",
+        "command": "closeDirtyDiff",
+        "when": "dirtyDiffVisible"
+    },
+    {
+        "key": "ctrl+c",
+        "command": "closeFindWidget",
+        "when": "editorFocus && findWidgetVisible"
+    },
+    {
+        "key": "ctrl+c",
+        "command": "closeMarkersNavigation",
+        "when": "editorFocus && markersNavigationVisible"
+    },
+    {
+        "key": "ctrl+c",
+        "command": "closeParameterHints",
+        "when": "editorFocus && parameterHintsVisible"
+    },
+    {
+        "key": "ctrl+c",
+        "command": "closeReferenceSearch",
+        "when": "inReferenceSearchEditor && !config.editor.stablePeek"
+    },
+    {
+        "key": "ctrl+c",
+        "command": "closeReplaceInFilesWidget",
+        "when": "replaceInputBoxFocus && searchViewletVisible"
+    },
+    {
+        "key": "ctrl+c",
+        "command": "editor.closeCallHierarchy",
+        "when": "callHierarchyVisible && !config.editor.stablePeek"
+    },
+    {
+        "key": "ctrl+c",
+        "command": "editor.cancelOperation",
+        "when": "cancellableOperation"
+    },
+    {
+        "key": "ctrl+c",
+        "command": "workbench.action.closeQuickOpen",
+        "when": "inQuickOpen"
+    },
+    {
+        "key": "ctrl+c",
+        "command": "cancelOnTypeRenameInput",
+        "when": "editorTextFocus && onTypeRenameInputVisible"
+    },
+    {
+        "key": "ctrl+c",
+        "command": "cancelRenameInput",
+        "when": "editorFocus && renameInputVisible"
+    },
+    {
+        "key": "ctrl+c",
+        "command": "closeReferenceSearch",
+        "when": "editorFocus && referenceSearchVisible"
+    },
+]

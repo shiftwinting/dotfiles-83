@@ -1,3 +1,16 @@
 {
-    "editor.fontSize": 14,
+  // Base
+  "editor.fontSize": 14,
+  "files.trimTrailingWhitespace": true,
+
+  // Vim
+  "vim.leader": "<space>",
+  "vim.visualstar": true,
+  "vim.normalModeKeyBindingsNonRecursive": [
+    { "before": ["K"], "after": ["g", "h"] },
+    { "before": ["<leader>", "w"], "commands": ["workbench.action.files.save"] },
+    { "before": ["<leader>", "p"], "commands": ["workbench.action.quickOpen"] },
+    { "before": ["[", "g"], "commands": ["editor.action.marker.prev"] },
+    { "before": ["]", "g"], "commands": ["editor.action.marker.next"] },
+  ],
 }
