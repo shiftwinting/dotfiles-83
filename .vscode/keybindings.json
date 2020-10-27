@@ -84,4 +84,14 @@
         "key": "ctrl+-",
         "command": "workbench.action.toggleSidebarVisibility"
     },
+
+    // Splits
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.navigateRight"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.navigateLeft"
+    },
 ]

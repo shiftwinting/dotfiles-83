@@ -4,14 +4,11 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
 " Maps
 nnoremap <silent> <leader>h :Helptags<CR>
-nnoremap <silent> <leader><leader> :Files<CR>
+nnoremap <silent> <leader>f :Files<CR>
 nnoremap <silent> <C-f> :BLines<CR>
 nnoremap <silent> <leader>bb :Buffers<CR>
-nnoremap <silent> <leader>fh :History<CR>
-nnoremap <silent> <leader>fc :History:<CR>
 nnoremap <silent> <leader>t :BTags<CR>
 nnoremap <silent> <leader>rg :Rg!<CR>
-nnoremap <silent> <leader>fl :Rg!<space>
 nnoremap <silent> <leader>* :Rg! <C-R><C-W><CR>
 vnoremap <silent> <leader>* y:Rg! <C-r>0<CR>
 cnoremap <C-e> <C-c>:Commands<CR>
