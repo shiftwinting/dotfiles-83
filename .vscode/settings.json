@@ -7,12 +7,15 @@
   "editor.fontFamily": "MesloLGS NF",
   "editor.minimap.enabled": false,
   "vim.smartRelativeLine": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
 
   // Vim
   "vim.leader": "<space>",
   "vim.visualstar": true,
+  "vim.insertModeKeyBindingsNonRecursive": [
+    { "before": ["ctrl+e"], "after": ["ctrl+o", "A", ";", "<Esc>"] },
+  ],
   "vim.normalModeKeyBindingsNonRecursive": [
     { "before": ["K"], "after": ["g", "h"] },
     { "before": ["Y"], "after": ["y", "$"] },
@@ -22,20 +25,34 @@
       "before": ["<leader>", "w"],
       "commands": ["workbench.action.files.save"]
     },
-    { "before": ["<leader>", "f"], "commands": ["workbench.action.quickOpen"] },
+    {
+      "before": ["<leader>", "i", "e"],
+      "commands": ["workbench.action.openSettingsJson"]
+    },
+    {
+      "before": ["<leader>", "r", "n"],
+      "commands": ["editor.action.rename"]
+    },
+    { "before": ["<leader>", "p"], "commands": ["workbench.action.quickOpen"] },
     { "before": ["[", "g"], "commands": ["editor.action.marker.prev"] },
     { "before": ["]", "g"], "commands": ["editor.action.marker.next"] },
     { "before": ["[", "e"], "commands": ["editor.action.moveLinesUpAction"] },
     { "before": ["]", "e"], "commands": ["editor.action.moveLinesDownAction"] },
-    { "before": ["ctrl+k"], "commands": ["workbench.action.nextSideBarView"] },
-    {
-      "before": ["ctrl+j"],
-      "commands": ["workbench.action.previousSideBarView"]
-    }
   ],
   "window.zoomLevel": 0,
   "workbench.colorTheme": "Nord",
 
   // Vsnips
-  "Vsnips.SnipsDir": ["/Users/aorrego/.config/nvim/own_snippets"]
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [80],
+    "editor.selectionHighlight": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": false
+  },
+  "dart.previewFlutterUiGuides": true,
+  "dart.previewFlutterUiGuidesCustomTracking": true
 }

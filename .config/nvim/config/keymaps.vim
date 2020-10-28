@@ -8,13 +8,9 @@ nnoremap ,<leader> :b #<cr>
 
 " Insert cool stuff
 inoremap <C-b> <left>
-inoremap <C-CR> <C-o>o
+inoremap <C-CR> <CR><C-o>O
 inoremap <C-s> <Esc>:w<cr>
-
-" Brackets
-inoremap {<CR> {<CR>}<C-o>O
-inoremap [<CR> [<CR>]<C-o>O
-inoremap (<CR> (<CR>)<C-o>O
+inoremap <C-h> <Left>
 
 " Quick init.vim changes
 nnoremap <leader>ie :e ~/.config/nvim/nvim.vim<cr>

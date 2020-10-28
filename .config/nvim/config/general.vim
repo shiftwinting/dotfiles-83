@@ -9,7 +9,6 @@ endfunction
 
 " Plugins {{{
 
-" TODO: Add comments about plugins or groups of plugins... not sure now what they do now...
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'editorconfig/editorconfig-vim'
@@ -47,7 +46,9 @@ Plug 'voldikss/vim-floaterm'
 Plug 'liuchengxu/vista.vim'
 Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-abolish'
 Plug 'stefandtw/quickfix-reflector.vim'
+Plug 'tmsvg/pear-tree'
 
 " Lua
 Plug 'neovim/nvim-lsp'

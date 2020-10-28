@@ -1,97 +1,117 @@
 [
-    // Close everything
-    {
-        "key": "ctrl+c",
-        "command": "closeAccessibilityHelp",
-        "when": "accessibilityHelpWidgetVisible && editorFocus"
-    },
-    {
-        "key": "ctrl+c",
-        "command": "closeBreakpointWidget",
-        "when": "breakpointWidgetVisible && textInputFocus"
-    },
-    {
-        "key": "ctrl+c",
-        "command": "closeDirtyDiff",
-        "when": "dirtyDiffVisible"
-    },
-    {
-        "key": "ctrl+c",
-        "command": "closeFindWidget",
-        "when": "editorFocus && findWidgetVisible"
-    },
-    {
-        "key": "ctrl+c",
-        "command": "closeMarkersNavigation",
-        "when": "editorFocus && markersNavigationVisible"
-    },
-    {
-        "key": "ctrl+c",
-        "command": "closeParameterHints",
-        "when": "editorFocus && parameterHintsVisible"
-    },
-    {
-        "key": "ctrl+c",
-        "command": "closeReferenceSearch",
-        "when": "inReferenceSearchEditor && !config.editor.stablePeek"
-    },
-    {
-        "key": "ctrl+c",
-        "command": "closeReplaceInFilesWidget",
-        "when": "replaceInputBoxFocus && searchViewletVisible"
-    },
-    {
-        "key": "ctrl+c",
-        "command": "editor.closeCallHierarchy",
-        "when": "callHierarchyVisible && !config.editor.stablePeek"
-    },
-    {
-        "key": "ctrl+c",
-        "command": "editor.cancelOperation",
-        "when": "cancellableOperation"
-    },
-    {
-        "key": "ctrl+c",
-        "command": "workbench.action.closeQuickOpen",
-        "when": "inQuickOpen"
-    },
-    {
-        "key": "ctrl+c",
-        "command": "cancelOnTypeRenameInput",
-        "when": "editorTextFocus && onTypeRenameInputVisible"
-    },
-    {
-        "key": "ctrl+c",
-        "command": "cancelRenameInput",
-        "when": "editorFocus && renameInputVisible"
-    },
-    {
-        "key": "ctrl+c",
-        "command": "closeReferenceSearch",
-        "when": "editorFocus && referenceSearchVisible"
-    },
+  // Close everything
+  {
+    "key": "ctrl+c",
+    "command": "closeAccessibilityHelp",
+    "when": "accessibilityHelpWidgetVisible && editorFocus"
+  },
+  {
+    "key": "ctrl+c",
+    "command": "closeBreakpointWidget",
+    "when": "breakpointWidgetVisible && textInputFocus"
+  },
+  {
+    "key": "ctrl+c",
+    "command": "closeDirtyDiff",
+    "when": "dirtyDiffVisible"
+  },
+  {
+    "key": "ctrl+c",
+    "command": "closeFindWidget",
+    "when": "editorFocus && findWidgetVisible"
+  },
+  {
+    "key": "ctrl+c",
+    "command": "closeMarkersNavigation",
+    "when": "editorFocus && markersNavigationVisible"
+  },
+  {
+    "key": "ctrl+c",
+    "command": "closeParameterHints",
+    "when": "editorFocus && parameterHintsVisible"
+  },
+  {
+    "key": "ctrl+c",
+    "command": "closeReferenceSearch",
+    "when": "inReferenceSearchEditor && !config.editor.stablePeek"
+  },
+  {
+    "key": "ctrl+c",
+    "command": "closeReplaceInFilesWidget",
+    "when": "replaceInputBoxFocus && searchViewletVisible"
+  },
+  {
+    "key": "ctrl+c",
+    "command": "editor.closeCallHierarchy",
+    "when": "callHierarchyVisible && !config.editor.stablePeek"
+  },
+  {
+    "key": "ctrl+c",
+    "command": "editor.cancelOperation",
+    "when": "cancellableOperation"
+  },
+  {
+    "key": "ctrl+c",
+    "command": "workbench.action.closeQuickOpen",
+    "when": "inQuickOpen"
+  },
+  {
+    "key": "ctrl+c",
+    "command": "cancelOnTypeRenameInput",
+    "when": "editorTextFocus && onTypeRenameInputVisible"
+  },
+  {
+    "key": "ctrl+c",
+    "command": "cancelRenameInput",
+    "when": "editorFocus && renameInputVisible"
+  },
+  {
+    "key": "ctrl+c",
+    "command": "closeReferenceSearch",
+    "when": "editorFocus && referenceSearchVisible"
+  },
 
-    // Sidebar
-    {
-        "key": "ctrl+j",
-        "command": "workbench.action.nextSideBarView"
-    },
-    {
-        "key": "ctrl+k",
-        "command": "workbench.action.previousSideBarView"
-    },
-    {
-        "key": "ctrl+-",
-        "command": "workbench.action.toggleSidebarVisibility"
-    },
+  // Sidebar
+  {
+    "key": "ctrl+j",
+    "command": "workbench.action.nextSideBarView"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.previousSideBarView"
+  },
+  {
+    "key": "ctrl+-",
+    "command": "workbench.action.toggleSidebarVisibility"
+  },
 
-    // Splits
-    {
-        "key": "ctrl+l",
-        "command": "workbench.action.navigateRight"
-    },
-    {
-        "key": "ctrl+h",
-        "command": "workbench.action.navigateLeft"
-    },
+  // Splits
+  {
+    "key": "ctrl+l",
+    "command": "workbench.action.navigateRight"
+  },
+  {
+    "key": "ctrl+h",
+    "command": "workbench.action.navigateLeft"
+  },
+
+  // Save
+  {
+    "key": "ctrl+s",
+    "command": "workbench.action.files.save"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "workbench.action.quickOpen"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "extension.vim_ctrl+p",
+    "when": "suggestWidgetVisible && vim.active && vim.use<C-p> && !inDebugRepl || vim.active && vim.use<C-p> && !inDebugRepl && vim.mode == 'CommandlineInProgress' || vim.active && vim.use<C-p> && !inDebugRepl && vim.mode == 'SearchInProgressMode'"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "workbench.action.quickOpenSelectPrevious",
+    "when": "inQuickOpen"
+  },
 ]
