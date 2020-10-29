@@ -13,7 +13,7 @@ inoremap <C-s> <Esc>:w<cr>
 inoremap <C-h> <Left>
 
 " Quick init.vim changes
-nnoremap <leader>ie :e ~/.config/nvim/config/<C-z>
+nnoremap <leader>ie :e ~/.config/nvim/config/
 nnoremap <leader>ir :so %<cr>
 
 " Reselect visual block after indent
@@ -26,10 +26,6 @@ nnoremap Y y$
 " make n always search forward and N backward
 nnoremap <expr> n 'Nn'[v:searchforward]
 nnoremap <expr> N 'nN'[v:searchforward]
-
-" Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Hide annoying quit message
 nnoremap <C-c> <C-c>:echo<cr>
