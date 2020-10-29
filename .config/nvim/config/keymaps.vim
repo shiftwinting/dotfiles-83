@@ -7,20 +7,20 @@ nnoremap <C-g> :echo expand('%')<CR>
 nnoremap ,<leader> :b #<cr>
 
 " Insert cool stuff
-inoremap <C-b> <left>
+inoremap <C-b> <C-x><C-p>
 inoremap <C-CR> <CR><C-o>O
 inoremap <C-s> <Esc>:w<cr>
 inoremap <C-h> <Left>
 
 " Quick init.vim changes
-nnoremap <leader>ie :e ~/.config/nvim/nvim.vim<cr>
+nnoremap <leader>ie :e ~/.config/nvim/config/<C-z>
 nnoremap <leader>ir :so %<cr>
 
 " Reselect visual block after indent
 vnoremap < <gv
 vnoremap > >gv
 
-" Make Y consistentjwith C and D. See :help Y.
+" Make Y consistent with C and D. See :help Y.
 nnoremap Y y$
 
 " make n always search forward and N backward

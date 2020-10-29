@@ -8,7 +8,6 @@ endfunction
 " }}}
 
 " Plugins {{{
-
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'editorconfig/editorconfig-vim'
@@ -55,6 +54,10 @@ Plug 'neovim/nvim-lsp'
 Plug 'nvim-lua/diagnostic-nvim'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-lua/plenary.nvim'
+
+" Only for LSP Snippets
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
 
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter'
@@ -115,6 +118,7 @@ set signcolumn=yes
 set backspace=indent,eol,start
 set shell=zsh
 set showtabline=1
+set pumheight=20
 
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
@@ -135,20 +139,17 @@ set sidescroll=5
 
 set confirm
 set laststatus=2
-
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-
 set viewoptions=cursor,folds,slash,unix
 
 " Buffers
-set hidden                  " TextEdit might fail if hidden is not set.
+" TextEdit might fail if hidden is not set.
+set hidden
 set autowrite
 set autoread
 
 " Search
 set incsearch
-set ignorecase              " case insensitive matching
+set ignorecase
 set smartcase
 
 set pastetoggle=<F10>
@@ -187,7 +188,6 @@ set wildmenu
 set wildignore+=**/node_modules/**
 set wcm=<C-Z>
 
-" Conceal
 set concealcursor-=n
 
 " vim:sw=2 ts=2 et

@@ -6,29 +6,26 @@ let g:diagnostic_insert_delay = 1
 
 " Completion
 imap <silent> <c-n> <Plug>(completion_trigger)
-let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+let g:completion_sorting = 'length'
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy', 'all']
 let g:completion_enable_snippet = 'UltiSnips'
 let g:completion_items_priority = {
             \ 'Field': 11,
+            \ 'Constant': 11,
+            \ 'Variables': 11,
             \ 'Property': 7,
             \ 'Function': 7,
-            \ 'Variables': 7,
             \ 'Variable': 7,
             \ 'Method': 10,
             \ 'Interfaces': 5,
-            \ 'Constant': 5,
             \ 'Class': 5,
             \ 'Keyword': 4,
             \ 'UltiSnips' : 1,
-            \ 'vim-vsnip' : 0,
-            \ 'Buffer' : 1,
-            \ 'Buffers' : 1,
-            \ 'TabNine' : 0,
             \ 'File' : 1,
             \ }
 
 let g:completion_chain_complete_list = [
-            \ {'complete_items': ['lsp', 'snippet', 'path', 'buffer', 'buffers']},
+            \ {'complete_items': ['lsp', 'snippet', 'path']},
             \ {'mode': '<c-p>'},
             \ {'mode': '<c-n>'}
             \ ]
