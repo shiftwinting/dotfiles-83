@@ -8,7 +8,7 @@ let g:diagnostic_insert_delay = 1
 imap <silent> <c-n> <Plug>(completion_trigger)
 let g:completion_sorting = 'length'
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy', 'all']
-let g:completion_enable_snippet = 'UltiSnips'
+" let g:completion_enable_snippet = 'UltiSnips'
 let g:completion_items_priority = {
             \ 'Field': 11,
             \ 'Constant': 11,

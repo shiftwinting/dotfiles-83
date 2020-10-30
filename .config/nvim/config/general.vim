@@ -24,7 +24,6 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'itchyny/lightline.vim'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
@@ -38,7 +37,7 @@ Plug 'machakann/vim-sandwich'
 Plug 'markonm/traces.vim'
 Plug 'diepm/vim-rest-console'
 Plug 'dense-analysis/ale'
-Plug 'blueyed/vim-diminactive'
+" Plug 'blueyed/vim-diminactive'
 Plug 'zhimsel/vim-stay'
 Plug 'steelsojka/completion-buffers'
 Plug 'voldikss/vim-floaterm'
@@ -77,7 +76,7 @@ Plug 'arcticicestudio/nord-vim'
 
 call plug#end()
 
-colorscheme tender
+colorscheme desert
 " colorscheme solarized
 set background=dark
 
@@ -118,7 +117,7 @@ set signcolumn=yes
 set backspace=indent,eol,start
 set shell=zsh
 set showtabline=1
-set pumheight=20
+set pumheight=10
 
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect

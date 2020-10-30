@@ -13,6 +13,7 @@ nnoremap <silent> <leader>rg :Rg!<CR>
 nnoremap <silent> <leader>* :Rg! <C-R><C-W><CR>
 vnoremap <silent> <leader>* y:Rg! <C-r>0<CR>
 cnoremap <C-e> <C-c>:Commands<CR>
+inoremap <C-l> <C-o>:Snippets<CR>
 
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
