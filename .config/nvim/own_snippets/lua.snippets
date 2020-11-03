@@ -1,0 +1,17 @@
+snippet p "print"
+print($1)$0
+endsnippet
+
+snippet fn "function (simple)"
+function(${1:params})
+	${2:-- body}
+end$0
+endsnippet
+
+snippet ins "vim.inspect" i
+vim.inspect($0)
+endsnippet
+
+snippet tblk "tbl_keys" i
+print(vim.inspect(tbl.keys($0)))
+endsnippet
