@@ -161,6 +161,7 @@ let g:ale_fixers = {
       \   'html': ['prettier'],
       \   'go': ['goimports'],
       \   'dart': ['dartfmt'],
+      \   'rust': ['rustfmt'],
       \}
        " \   'javascript': ['eslint'],
 let g:ale_fix_on_save = 1
@@ -169,6 +170,9 @@ let g:ale_set_loclist = 0
 
 " Custom Highlights
 hi ALEError gui=underline
+
+nnoremap ]a :ALENextWrap<CR>
+nnoremap [a :ALEPreviousWrap<CR>
 
 " }}}
 

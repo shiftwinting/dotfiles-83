@@ -72,12 +72,13 @@ Plug 'jacoborus/tender.vim'
 Plug 'gosukiwi/vim-atom-dark'
 Plug 'frankier/neovim-colors-solarized-truecolor-only'
 Plug 'arcticicestudio/nord-vim'
+Plug 'adrian5/oceanic-next-vim'
 " }}}
 
 call plug#end()
 
-colorscheme desert
-" colorscheme solarized
+" colorscheme desert
+colorscheme oceanicnext
 set background=dark
 
 let nvimDir  = '$HOME/.config/nvim'

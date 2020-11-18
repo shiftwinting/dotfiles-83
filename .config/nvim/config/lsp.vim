@@ -10,6 +10,7 @@ let g:completion_sorting = 'length'
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy', 'all']
 " let g:completion_enable_snippet = 'UltiSnips'
 let g:completion_items_priority = {
+            \ 'EnumMember': 11,
             \ 'Field': 11,
             \ 'Constant': 11,
             \ 'Variables': 11,
