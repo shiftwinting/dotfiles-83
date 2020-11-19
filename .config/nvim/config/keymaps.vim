@@ -12,6 +12,7 @@ inoremap <C-CR> <CR><C-o>O
 inoremap <C-s> <Esc>:w<cr>
 inoremap <C-h> <Left>
 inoremap <C-e> <C-o>$;<Esc>
+inoremap {<cr> {<cr>}<c-o>O
 
 " Quick init.vim changes
 nnoremap <leader>ie :e ~/.config/nvim/config/

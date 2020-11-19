@@ -27,7 +27,6 @@ Plug 'SirVer/ultisnips'
 Plug 'itchyny/lightline.vim'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'vimwiki/vimwiki'
 Plug 'benmills/vimux'
 Plug 'justinmk/vim-dirvish'
 Plug 'Valloric/MatchTagAlways'
@@ -99,10 +98,10 @@ set encoding=utf-8
 set linebreak
 set nocompatible            " disable compatibility to old-time vi
 set showmatch               " show matching brackets
-set tabstop=4               " number of columns occupied by a tab character
-set softtabstop=4           " see multiple spaces as tabstops so <BS> does the right thing
+set tabstop=2               " number of columns occupied by a tab character
+set softtabstop=2           " see multiple spaces as tabstops so <BS> does the right thing
 set expandtab               " converts tabs to white space
-set shiftwidth=4            " width for autoindents
+set shiftwidth=2            " width for autoindents
 set autoindent              " indent a new line the same amount as the line just typed
 set number relativenumber   " add line numbers
 set termguicolors           " Use term colors
