@@ -83,7 +83,7 @@ let g:vimwiki_key_mappings =
       \ 'headers': 0,
       \ }
 let g:vimwiki_table_mappings = 0
-
+let g:vimwiki_auto_chdir = 1
 " }}}
 
 " IndentLine {{{
