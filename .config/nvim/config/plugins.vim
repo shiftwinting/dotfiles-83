@@ -77,6 +77,13 @@ let g:tmux_navigator_save_on_switch = 1
 
 " Vimwiki {{{
 let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
+" Fix issue with tab for snippets
+let g:vimwiki_table_mappings = 0
+let g:vimwiki_key_mappings =
+      \ {
+      \ 'headers': 0,
+      \ }
+
 " }}}
 
 " IndentLine {{{

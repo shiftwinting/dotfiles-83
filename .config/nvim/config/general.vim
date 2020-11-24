@@ -46,6 +46,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-abolish'
 Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'tmsvg/pear-tree'
+Plug 'vimwiki/vimwiki'
 
 " Lua
 Plug 'neovim/nvim-lsp'
