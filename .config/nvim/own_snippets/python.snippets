@@ -26,3 +26,45 @@
 snippet pr "print" b
 print($0)
 endsnippet
+
+snippet fn "def" b
+def $1($2):
+	$0
+endsnippet
+
+snippet if "if" b
+if $1:
+	$0
+endsnippet
+
+snippet ife "if else" b
+if $1:
+	$2
+else:
+	$0
+endsnippet
+
+snippet t "True" b
+True
+endsnippet
+
+snippet f "False" b
+False
+endsnippet
+
+snippet n "None" b
+None
+endsnippet
+
+snippet r "False" b
+return $0
+endsnippet
+
+snippet try "try catch" b
+try:
+	$1
+except $2:
+	$0
+endsnippet
+
+

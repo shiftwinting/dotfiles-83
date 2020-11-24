@@ -165,6 +165,7 @@ let g:ale_fixers = {
       \   'javascript': ['eslint'],
       \   'typescript': ['eslint'],
       \   'typescriptreact': ['eslint'],
+      \   'python': ['black'],
       \   'go': ['goimports'],
       \   'dart': ['dartfmt'],
       \   'rust': ['rustfmt'],

@@ -9,6 +9,7 @@ lsp.vuels.setup{on_attach=require'diagnostic'.on_attach}
 lsp.vimls.setup{}
 lsp.cssls.setup{}
 lsp.rust_analyzer.setup{}
+lsp.jedi_language_server.setup{}
 
 -- Custom callbacks
 vim.lsp.callbacks['textDocument/codeAction'] = callbacks.code_action_callback
