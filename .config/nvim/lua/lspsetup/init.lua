@@ -1,11 +1,11 @@
-local lsp = require'nvim_lsp'
+local lsp = require'lspconfig'
 local callbacks = require'lspsetup.callbacks'
 local dartls = require'lspsetup.dartls'
 
 -- Init
-lsp.tsserver.setup{on_attach=require'diagnostic'.on_attach}
-lsp.gopls.setup{on_attach=require'diagnostic'.on_attach}
-lsp.vuels.setup{on_attach=require'diagnostic'.on_attach}
+lsp.tsserver.setup{}
+lsp.gopls.setup{}
+lsp.vuels.setup{}
 lsp.vimls.setup{}
 lsp.cssls.setup{}
 lsp.rust_analyzer.setup{}
@@ -16,7 +16,7 @@ vim.lsp.callbacks['textDocument/codeAction'] = callbacks.code_action_callback
 
 -- Lua {{{
 lsp.sumneko_lua.setup{
-  on_attach=require'diagnostic'.on_attach,
+  cmd={'~/builds/lua-language-server/bin/macOS/lua-language-server'},
   settings={
     Lua={
       runtime={ version="LuaJIT", path=vim.split(package.path, ';') };
@@ -38,7 +38,6 @@ lsp.sumneko_lua.setup{
 
 -- Dart + Flutter {{{
 lsp.dartls.setup{
-  on_attach = require'diagnostic'.on_attach,
   init_options = dartls.init_options,
   capabilities = dartls.capabilities,
   callbacks = {
@@ -50,11 +49,12 @@ lsp.dartls.setup{
 -- }}}
 
 -- Treesitter
--- require'nvim-treesitter.configs'.setup {
---   indent = {
---     enable = true
---   },
---   highlight = {
---     enable = true,
---   },
--- }
+require'nvim-treesitter.configs'.setup {
+  indent = {
+    enable = true
+  },
+  highlight = {
+    enable = true,
+    disable = { "bash" }
+  },
+}

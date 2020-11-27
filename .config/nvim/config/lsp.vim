@@ -8,7 +8,6 @@ let g:diagnostic_insert_delay = 1
 imap <silent> <c-n> <Plug>(completion_trigger)
 let g:completion_sorting = 'length'
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy', 'all']
-" let g:completion_enable_snippet = 'UltiSnips'
 let g:completion_items_priority = {
             \ 'EnumMember': 11,
             \ 'Field': 11,
@@ -35,8 +34,8 @@ let g:completion_chain_complete_list = [
 " Custom implemented or not needed
 nnoremap <silent> K             <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> <leader>ac    <cmd>lua vim.lsp.buf.code_action()<CR>
-nnoremap <silent> [g            :<c-u>PrevDiagnosticCycle<CR>
-nnoremap <silent> ]g            :<c-u>NextDiagnosticCycle<CR>
+nnoremap <silent> [g            <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap <silent> ]g            <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 
 " To analyze
 nnoremap <silent> gd            <cmd>lua vim.lsp.buf.definition()<CR>

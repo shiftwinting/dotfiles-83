@@ -50,7 +50,6 @@ Plug 'vimwiki/vimwiki'
 
 " Lua
 Plug 'neovim/nvim-lsp'
-Plug 'nvim-lua/diagnostic-nvim'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-lua/plenary.nvim'
 
