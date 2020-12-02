@@ -75,17 +75,6 @@ let g:user_emmet_expandabbr_key = '<C-y><Space>'
 let g:tmux_navigator_save_on_switch = 1
 " }}}
 
-" Vimwiki {{{
-let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
-" Fix issue with tab for snippets
-let g:vimwiki_key_mappings =
-      \ {
-      \ 'headers': 0,
-      \ }
-let g:vimwiki_table_mappings = 0
-let g:vimwiki_auto_chdir = 1
-" }}}
-
 " IndentLine {{{
 let g:indentLine_concealcursor = 'ic'
 let g:indentLine_conceallevel = 2
