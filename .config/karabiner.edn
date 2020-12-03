@@ -41,6 +41,8 @@
 
 
  :applications  {;; define applications
+                 :obsidian ["^md\\.obsidian$"]
+
                  :Browsers [;; these strings are regex to match applications bundle_identifiers
                             ;; you can find bundle_identifiers in the Info.plist file of an applications
                             ;; eg. in /Applications/Mail.app/Contents/Info.plist
@@ -67,13 +69,22 @@
                  [:f [:open "/Applications/Obsidian.app"]]
                  ]}
 
-        ;; - [ ] ctrl-h/l for tab change on brave
         {:des   "browsers"
          :rules [
                  [:condi :Browsers]
                  [:!Th :!CSopen_bracket]
                  [:!Tl :!CSclose_bracket]
                  [:!Tw :!Cw]
+                 ]}
+
+        {:des   "Obsidian"
+         :rules [
+                 [:condi :obsidian]
+                 [:!Tk :up_arrow]
+                 [:!Tj :down_arrow]
+                 [:!Tp :!Cp]
+                 [:!To :!Co]
+                 [:!Tc :escape]
                  ]}
 
         ]
