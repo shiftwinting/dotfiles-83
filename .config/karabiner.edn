@@ -93,6 +93,9 @@
                  [:condi :slack]
                  [:!Tk :!SOup_arrow]
                  [:!Tj :!SOdown_arrow]
+                 [:!Tt :!SCt]
+                 [:!Tf :!Ck]
+                 [:!Tc :escape]
                  ]}
 
         ]
