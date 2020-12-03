@@ -75,6 +75,7 @@
                  [:!Th :!CSopen_bracket]
                  [:!Tl :!CSclose_bracket]
                  [:!Tw :!Cw]
+                 [:!Tspacebar :!Cgrave_accent_and_tilde]
                  ]}
 
         {:des   "Obsidian"
