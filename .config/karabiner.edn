@@ -17,6 +17,15 @@
 ;; https://github.com/yqrashawn/GokuRakuJoudo/blob/master/examples.org
 
 {
+ :templates {:open "open \"%s\""}
+
+ :simlayers {;; make w key a simlayer key
+             ;; layers works too, but only recommended for none typing keys
+             ;; like . , tab
+             ;; or keys like z, which used less often
+             :launch-mode {:key :l}
+             } ;; simlayers
+
  :profiles {
             :Default {  :default true
                       :sim     50     ;; simultaneous_threshold_milliseconds (def: 50)
@@ -30,12 +39,22 @@
                       }
             } ;; profiles
 
- :templates {:open "open \"%s\""}
- :simlayers {;; make w key a simlayer key
-             ;; layers works too, but only recommended for none typing keys
-             ;; like . , tab
-             ;; or keys like z, which used less often
-             :launch-mode {:key :l}}
+
+ :applications  {;; define applications
+                 :Browsers [;; these strings are regex to match applications bundle_identifiers
+                            ;; you can find bundle_identifiers in the Info.plist file of an applications
+                            ;; eg. in /Applications/Mail.app/Contents/Info.plist
+                            ;; search for "CFBundleIdentifier"
+                            ;; you can also find bundle_identifiers using command line:
+                            ;; osascript -e 'id of app "Google Chrome"'
+                            "^org\\.mozilla\\.firefox$"
+                            "^org\\.mozilla\\.firefoxdeveloperedition$"
+                            "^com\\.google\\.Chrome$"
+                            "^com\\.brave\\.Browser$"
+                            "^org\\.chromium\\.Chromium$"
+                            "^com\\.google\\.Chrome\\.canary$"
+                            "^com\\.apple\\.Safari$"]}
+
  :main [
         {:des   "caps_lock to esc when pressed alone, to ctrl as modifier"
          :rules [[:##caps_lock :left_control nil {:alone :escape}]]}
@@ -46,6 +65,15 @@
                  [:s [:open "/Applications/Slack.app"]]
                  [:d [:open "/Applications/Alacritty.app"]]
                  [:f [:open "/Applications/Obsidian.app"]]
+                 ]}
+
+        ;; - [ ] ctrl-h/l for tab change on brave
+        {:des   "browsers"
+         :rules [
+                 [:condi :Browsers]
+                 [:!Th :!CSopen_bracket]
+                 [:!Tl :!CSclose_bracket]
+                 [:!Tw :!Cw]
                  ]}
 
         ]
