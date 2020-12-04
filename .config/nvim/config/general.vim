@@ -95,27 +95,21 @@ endfunction
 " Base Config
 set encoding=utf-8
 set linebreak
-set nocompatible            " disable compatibility to old-time vi
 set showmatch               " show matching brackets
 set tabstop=2               " number of columns occupied by a tab character
 set softtabstop=2           " see multiple spaces as tabstops so <BS> does the right thing
-set expandtab               " converts tabs to white space
 set shiftwidth=2            " width for autoindents
-set autoindent              " indent a new line the same amount as the line just typed
+set expandtab               " converts tabs to white space
 set number relativenumber   " add line numbers
 set termguicolors           " Use term colors
 set cursorline              " Current line highlight
 set mouse=a                 " Allow mouse usage
-set showtabline=0           " Hide tabs line
 set numberwidth=5
 set updatetime=250          " Increases the speed of git gutter
-set showcmd                 " Show incomplete commands
 set foldmethod=manual
 set foldnestmax=2
 set signcolumn=yes
-set backspace=indent,eol,start
 set shell=zsh
-set showtabline=1
 set pumheight=10
 
 " Set completeopt to have a better completion experience
@@ -143,24 +137,16 @@ set viewoptions=cursor,folds,slash,unix
 " TextEdit might fail if hidden is not set.
 set hidden
 set autowrite
-set autoread
 
 " Search
-set incsearch
 set ignorecase
 set smartcase
-
-set pastetoggle=<F10>
 
 set exrc
 set secure
 
 " Markdown languages
 let g:markdown_fenced_languages = ['css', 'js=javascript', 'javascript', 'json=javascript', 'bash']
-
-" Backup Config
-set history=1000 " Remember everything
-set undolevels=1000
 
 " Nice persistent undos
 let &undodir=CreateAndExpand(cacheDir . '/undo')
@@ -182,10 +168,7 @@ set splitright
 
 " File Find
 set path+=**
-set wildmenu
 set wildignore+=**/node_modules/**
 set wcm=<C-Z>
-
-set concealcursor-=n
 
 " vim:sw=2 ts=2 et
