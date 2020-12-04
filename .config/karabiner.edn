@@ -86,6 +86,7 @@
                  [:j :!Sopen_bracket]
                  [:k :!Sclose_bracket]
                  [:l :!Sgrave_accent_and_tilde]
+                 [:h [:!Sgrave_accent_and_tilde :slash]]
                  ]}
 
         {:des   "browsers"
