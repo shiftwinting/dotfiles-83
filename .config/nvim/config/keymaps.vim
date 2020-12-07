@@ -7,7 +7,6 @@ nnoremap <C-g> :echo expand('%')<CR>
 nnoremap ,<leader> :b #<cr>
 
 " Insert cool stuff
-inoremap <C-b> <C-x><C-p>
 inoremap <C-CR> <CR><C-o>O
 inoremap <C-s> <Esc>:w<cr>
 inoremap <C-h> <Left>

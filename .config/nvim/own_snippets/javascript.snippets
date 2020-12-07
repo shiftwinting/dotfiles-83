@@ -33,12 +33,20 @@ snippet imp "import"
 import ${0:def} from '${1}'
 endsnippet
 
+snippet req "require"
+const $0 = require('$1')
+endsnippet
+
 snippet c "const"
 const ${1} = ${2}
 endsnippet
 
 snippet cl "console.log"
 console.log($0)
+endsnippet
+
+snippet ar "arrow symbol" i
+=> $0
 endsnippet
 
 snippet af "arrow function" i

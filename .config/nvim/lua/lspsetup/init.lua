@@ -1,5 +1,5 @@
 local lsp = require'lspconfig'
-local callbacks = require'lspsetup.callbacks'
+local handlers = require'lspsetup.handlers'
 local dartls = require'lspsetup.dartls'
 
 -- Init
@@ -11,8 +11,8 @@ lsp.cssls.setup{}
 lsp.rust_analyzer.setup{}
 lsp.jedi_language_server.setup{}
 
--- Custom callbacks
-vim.lsp.callbacks['textDocument/codeAction'] = callbacks.code_action_callback
+-- Custom handlers
+vim.lsp.handlers['textDocument/codeAction'] = handlers.code_action_callback
 
 -- Lua {{{
 lsp.sumneko_lua.setup{
@@ -40,7 +40,7 @@ lsp.sumneko_lua.setup{
 lsp.dartls.setup{
   init_options = dartls.init_options,
   capabilities = dartls.capabilities,
-  callbacks = {
+  handlers = {
     ['dart/textDocument/publishClosingLabels'] = dartls.on_closing_labels,
     -- ['dart/textDocument/publishOutline'] = dartls.on_outline,
     ['dart/textDocument/publishFlutterOutline'] = dartls.show_flutter_ui_guides,
