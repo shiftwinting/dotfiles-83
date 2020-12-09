@@ -18,6 +18,12 @@ if $1 {
 }
 endsnippet
 
+snippet ife "if err"
+if err != nil {
+	$0
+}
+endsnippet
+
 snippet for "for"
 for $1 {
 	$0
@@ -29,3 +35,8 @@ for $1 := range $2 {
 	$0
 }
 endsnippet
+
+snippet : ":="
+:= $0
+endsnippet
+
