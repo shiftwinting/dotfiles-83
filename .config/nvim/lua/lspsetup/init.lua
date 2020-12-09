@@ -16,7 +16,7 @@ vim.lsp.handlers['textDocument/codeAction'] = handlers.code_action_callback
 
 -- Lua {{{
 lsp.sumneko_lua.setup{
-  cmd={'~/builds/lua-language-server/bin/macOS/lua-language-server'},
+  cmd={vim.fn.expand('$HOME')..'/builds/lua-language-server/bin/macOS/lua-language-server'},
   settings={
     Lua={
       runtime={ version="LuaJIT", path=vim.split(package.path, ';') };
