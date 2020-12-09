@@ -26,6 +26,7 @@
              :launch-mode {:key :l}
              :screenshot-mode {:key :s}
              :complete-mode {:key :spacebar}
+             :tmux-mode {:key :t}
              } ;; simlayers
 
  :profiles {
@@ -87,6 +88,12 @@
                  [:k :!Sclose_bracket]
                  [:l :!Sgrave_accent_and_tilde]
                  [:h [:!Sgrave_accent_and_tilde :slash]]
+                 ]}
+
+        {:des   "tmux mode"
+         :rules [:tmux-mode
+                 [:n [:!Ta :n]]
+                 [:p [:!Ta :p]]
                  ]}
 
         {:des   "browsers"
