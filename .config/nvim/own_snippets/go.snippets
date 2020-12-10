@@ -1,5 +1,11 @@
 snippet fn "fn"
-func $1($2) {
+func $1($2)$3 {
+	$0
+}
+endsnippet
+
+snippet fnm "fn - method"
+func ($1) $2($3)$4 {
 	$0
 }
 endsnippet
@@ -18,7 +24,17 @@ if $1 {
 }
 endsnippet
 
-snippet ife "if err"
+snippet switch "switch"
+switch $1 {
+	$0
+}
+endsnippet
+
+snippet case "case"
+case $1:$0
+endsnippet
+
+snippet ierr "if err"
 if err != nil {
 	$0
 }
@@ -32,6 +48,12 @@ endsnippet
 
 snippet range "range"
 for $1 := range $2 {
+	$0
+}
+endsnippet
+
+snippet struct "struct"
+type $1 struct {
 	$0
 }
 endsnippet

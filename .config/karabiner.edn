@@ -25,7 +25,7 @@
              ;; or keys like z, which used less often
              :launch-mode {:key :l}
              :screenshot-mode {:key :s}
-             :complete-mode {:key :spacebar}
+             :complete-mode {:key :p}
              :tmux-mode {:key :t}
              } ;; simlayers
 
@@ -84,9 +84,8 @@
                  [:s :!S0]
                  [:d :open_bracket]
                  [:f :close_bracket]
-                 [:j :!Sopen_bracket]
-                 [:k :!Sclose_bracket]
-                 [:l :!Sgrave_accent_and_tilde]
+                 [:c :!Sopen_bracket]
+                 [:v :!Sclose_bracket]
                  [:h [:!Sgrave_accent_and_tilde :slash]]
                  ]}
 
