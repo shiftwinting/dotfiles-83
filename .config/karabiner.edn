@@ -25,7 +25,7 @@
              ;; or keys like z, which used less often
              :launch-mode {:key :l}
              :screenshot-mode {:key :s}
-             :complete-mode {:key :p}
+             :complete-mode {:key :k}
              :tmux-mode {:key :t}
              } ;; simlayers
 
