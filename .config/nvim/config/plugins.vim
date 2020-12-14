@@ -2,6 +2,35 @@
 let g:fzf_history_dir = '~/.config/nvim/fzf-history'
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
+function! s:generate_relative_js(path)
+  let target = getcwd() . '/' . (join(a:path))
+  let base = expand('%:p:h')
+
+  let prefix = ""
+  while stridx(target, base) != 0
+    let base = substitute(system('dirname ' . base), '\n\+$', '', '')
+    let prefix = '../' . prefix
+  endwhile
+
+  if prefix == ''
+    let prefix = './'
+  endif
+
+  let relative = prefix . substitute(target, base . '/', '', '')
+
+  let withJsTrunc = substitute(relative, '\.[tj]sx\=$', "", "")
+
+  return withJsTrunc
+
+endfunction
+
+function! JsFzfImport()
+  return fzf#vim#complete#path(
+        \ "fd",
+        \ fzf#wrap({ 'reducer': function('s:generate_relative_js')})
+        \ )
+endfunction
+
 " Maps
 nnoremap <silent> <C-p> :Files<CR>
 nnoremap <silent> <C-f> :BLines<CR>
@@ -21,7 +50,7 @@ omap <leader><tab> <plug>(fzf-maps-o)
 
 " Insert
 " imap <c-x><c-k> <plug>(fzf-complete-word)
-" imap <c-x><c-f> <plug>(fzf-complete-path)
+inoremap <expr> <c-x><c-f> JsFzfImport()
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
