@@ -51,6 +51,7 @@ Plug 'tmsvg/pear-tree'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/popup.nvim'
 
 " Only for LSP Snippets
 Plug 'hrsh7th/vim-vsnip'
@@ -59,6 +60,8 @@ Plug 'hrsh7th/vim-vsnip-integ'
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/playground'
+
+Plug 'nvim-telescope/telescope.nvim'
 
 " Local plugins
 call s:local_plug('lsp_extensions.nvim')

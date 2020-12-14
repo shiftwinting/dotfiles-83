@@ -181,6 +181,10 @@ let g:UltiSnipsSnippetDirectories=["own_snippets"]
 nnoremap <space>ee :UltiSnipsEdit<CR>
 " }}}
 
+" Pear Tree {{{
+let g:pear_tree_ft_disabled = ['TelescopePrompt']
+" }}}
+
 " ALE {{{
 let g:ale_javascript_eslint_executable = 'eslint_d'
 let g:ale_javascript_eslint_use_global = 1
