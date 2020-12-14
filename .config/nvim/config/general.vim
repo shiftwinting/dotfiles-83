@@ -36,31 +36,21 @@ Plug 'machakann/vim-sandwich'
 Plug 'markonm/traces.vim'
 Plug 'diepm/vim-rest-console'
 Plug 'dense-analysis/ale'
-" Plug 'blueyed/vim-diminactive'
 Plug 'zhimsel/vim-stay'
-Plug 'steelsojka/completion-buffers'
 Plug 'voldikss/vim-floaterm'
-Plug 'liuchengxu/vista.vim'
 Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-abolish'
 Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'tmsvg/pear-tree'
-
-" Lua
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
-
-" Only for LSP Snippets
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/vim-vsnip-integ'
-
-" Treesitter
+Plug 'hrsh7th/vim-vsnip'          " Only for LSP Snippets
+Plug 'hrsh7th/vim-vsnip-integ'    " Only for LSP Snippets
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/playground'
-
 Plug 'nvim-telescope/telescope.nvim'
 
 " Local plugins
