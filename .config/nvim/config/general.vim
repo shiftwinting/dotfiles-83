@@ -162,6 +162,6 @@ set splitright
 " File Find
 set path+=**
 set wildignore+=**/node_modules/**
-set wcm=<C-Z>
+set wildcharm=<C-Z>
 
 " vim:sw=2 ts=2 et

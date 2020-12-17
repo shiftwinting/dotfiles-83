@@ -13,6 +13,8 @@ inoremap <C-h> <Left>
 inoremap <C-e> <C-o>$;<Esc>
 inoremap {<cr> {<cr>}<c-o>O
 
+inoremap <C-b> <C-x><C-p>
+
 " Quick init.vim changes
 nnoremap <leader>ie :e ~/.config/nvim/config/
 nnoremap <leader>ir :so %<cr>
