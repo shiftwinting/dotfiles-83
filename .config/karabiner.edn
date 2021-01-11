@@ -24,7 +24,6 @@
              ;; like . , tab
              ;; or keys like z, which used less often
              :launch-mode {:key :l}
-             :tmux-mode {:key :t}
              } ;; simlayers
 
  :profiles {
@@ -68,12 +67,6 @@
                  [:s [:open "/Applications/Slack.app"]]
                  [:d [:open "/Applications/Alacritty.app"]]
                  [:f [:open "/Applications/Obsidian.app"]]
-                 ]}
-
-        {:des   "tmux mode"
-         :rules [:tmux-mode
-                 [:n [:!Ta :n]]
-                 [:p [:!Ta :p]]
                  ]}
 
         {:des   "browsers"
