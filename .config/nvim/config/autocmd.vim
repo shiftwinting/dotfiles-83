@@ -4,11 +4,6 @@ augroup cursorLineOnActivePaneOnly
   autocmd WinLeave * setlocal nocursorline
 augroup END
 
-augroup disableAutoComments
-  autocmd!
-  autocmd BufEnter * setlocal formatoptions-=c formatoptions-=q formatoptions-=n formatoptions-=r formatoptions-=o formatoptions-=l
-augroup END
-
 augroup removeTraillingSpaces
   autocmd!
   autocmd BufWritePre * %s/\s\+$//e
@@ -46,7 +41,7 @@ augroup LSP
   autocmd BufEnter * lua require'completion'.on_attach()
 augroup END
 
-augroup stay_no_lcd
+augroup stayNoLCD
   autocmd!
   autocmd User BufStaySavePre  if haslocaldir() | let w:lcd = getcwd() | cd - | cd - | endif
   autocmd User BufStaySavePost if exists('w:lcd') | execute 'lcd' fnameescape(w:lcd) | unlet w:lcd | endif

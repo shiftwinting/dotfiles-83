@@ -10,6 +10,7 @@ lsp.vimls.setup{}
 lsp.cssls.setup{}
 lsp.rust_analyzer.setup{}
 lsp.jedi_language_server.setup{}
+lsp.bashls.setup{}
 
 -- Custom handlers
 vim.lsp.handlers['textDocument/codeAction'] = handlers.code_action_callback

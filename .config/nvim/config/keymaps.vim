@@ -11,7 +11,7 @@ inoremap <C-CR> <CR><C-o>O
 inoremap <C-s> <Esc>:w<cr>
 inoremap <C-h> <Left>
 inoremap <C-e> <C-o>$;<Esc>
-inoremap {<cr> {<cr>}<c-o>O
+" inoremap {<cr> {<cr>}<c-o>O
 
 inoremap <C-b> <C-x><C-p>
 

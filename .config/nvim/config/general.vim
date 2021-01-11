@@ -52,6 +52,9 @@ Plug 'hrsh7th/vim-vsnip-integ'    " Only for LSP Snippets
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/playground'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'tsiemens/vim-aftercolors'
+Plug 'dbeniamine/cheat.sh-vim'
+
 
 " Local plugins
 call s:local_plug('lsp_extensions.nvim')
@@ -64,12 +67,14 @@ Plug 'gosukiwi/vim-atom-dark'
 Plug 'frankier/neovim-colors-solarized-truecolor-only'
 Plug 'arcticicestudio/nord-vim'
 Plug 'adrian5/oceanic-next-vim'
+Plug 'romainl/Apprentice'
 " }}}
 
 call plug#end()
 
-" colorscheme desert
-colorscheme oceanicnext
+colorscheme desert
+
+" colorscheme oceanicnext
 set background=dark
 
 let nvimDir  = '$HOME/.config/nvim'

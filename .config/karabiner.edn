@@ -24,7 +24,6 @@
              ;; like . , tab
              ;; or keys like z, which used less often
              :launch-mode {:key :l}
-             :screenshot-mode {:key :s}
              :complete-mode {:key :k}
              :tmux-mode {:key :t}
              } ;; simlayers
@@ -64,12 +63,6 @@
         {:des   "caps_lock to esc when pressed alone, to ctrl as modifier"
          :rules [[:##caps_lock :left_control nil {:alone :escape}]]}
 
-        {:des   "screenshot mode"
-         :rules [:screenshot-mode
-                 [:j :!SC4]
-                 [:k :!STC4]
-                 ]}
-
         {:des   "launch mode"
          :rules [:launch-mode
                  [:a [:open "/Applications/Brave Browser.app"]]
@@ -102,6 +95,7 @@
                  [:!Tl :!CSclose_bracket]
                  [:!Tw :!Cw]
                  [:!Tr :!Cr]
+                 [:!Tt :!Ct]
                  [:!Tspacebar :!Cgrave_accent_and_tilde]
                  ]}
 

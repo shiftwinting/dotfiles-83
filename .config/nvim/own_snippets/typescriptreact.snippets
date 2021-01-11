@@ -1,29 +1,4 @@
 extends typescript
-# A valid snippet should starts with:
-#
-#		snippet trigger_word [ "description" [ options ] ]
-#
-# and end with:
-#
-#		endsnippet
-#
-# Snippet options:
-#
-#		b - Beginning of line.
-#		i - In-word expansion.
-#		w - Word boundary.
-#		r - Regular expression
-#		e - Custom context snippet
-#		A - Snippet will be triggered automatically, when condition matches.
-#
-# Basic example:
-#
-#		snippet emitter "emitter properties" b
-#		private readonly ${1} = new Emitter<$2>()
-#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
-#		endsnippet
-#
-# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
 
 snippet rtb "React Test Boilerplate"
 import React from 'react'
@@ -42,17 +17,13 @@ describe('${1:Component}', () => {
 endsnippet
 
 snippet rfc "React functional component" b
-import React from 'react'
-
-interface Props {}
-
-const ${1:Component}: React.FC<Props> = () => {
+function ${1:Component}(): JSX.Element {
 	return (
 		<div>
-			<h1>Hello ${1:Component}!</h1>
+			<h1>Hello $1!</h1>
 		</div>
 	)
 }
 
-export default ${1:Component}
+export default $1
 endsnippet

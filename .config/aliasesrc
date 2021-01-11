@@ -1,5 +1,7 @@
-alias ls='lsd -al'
+alias ls='lsd'
+alias tree='lsd --tree -I node_modules'
 alias c='clear'
+alias cs='cht.sh'
 
 # Easy zsh config
 alias ze="v ~/.zshrc"
