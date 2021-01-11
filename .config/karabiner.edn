@@ -1,3 +1,4 @@
+;; Cheatsheet
 ;; !  | means mandatory
 ;; #  | means optional
 ;; C  | left_command
@@ -12,7 +13,6 @@
 ;; !! | mandatory command + control + optional + shift (hyper)
 ;; ## | optional any
 
-
 ;; Docs
 ;; https://github.com/yqrashawn/GokuRakuJoudo/blob/master/examples.org
 
@@ -24,7 +24,6 @@
              ;; like . , tab
              ;; or keys like z, which used less often
              :launch-mode {:key :l}
-             :complete-mode {:key :k}
              :tmux-mode {:key :t}
              } ;; simlayers
 
@@ -69,17 +68,6 @@
                  [:s [:open "/Applications/Slack.app"]]
                  [:d [:open "/Applications/Alacritty.app"]]
                  [:f [:open "/Applications/Obsidian.app"]]
-                 ]}
-
-        {:des   "complete mode"
-         :rules [:complete-mode
-                 [:a :!S9]
-                 [:s :!S0]
-                 [:d :open_bracket]
-                 [:f :close_bracket]
-                 [:c :!Sopen_bracket]
-                 [:v :!Sclose_bracket]
-                 [:h [:!Sgrave_accent_and_tilde :slash]]
                  ]}
 
         {:des   "tmux mode"
