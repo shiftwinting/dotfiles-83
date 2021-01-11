@@ -43,6 +43,7 @@
  :applications  {;; define applications
                  :obsidian ["^md\\.obsidian$"]
                  :slack ["^com\\.tinyspeck\\.slackmacgap$"]
+                 :alacritty ["^io\\.alacritty$"]
                  :Browsers [;; these strings are regex to match applications bundle_identifiers
                             ;; you can find bundle_identifiers in the Info.plist file of an applications
                             ;; eg. in /Applications/Mail.app/Contents/Info.plist
@@ -98,6 +99,14 @@
                  [:!Tj :!SOdown_arrow]
                  [:!Tt :!SCt]
                  [:!Tf :!Ck]
+                 ]}
+
+        {:des   "alacritty"
+         :rules [
+                 [:condi :alacritty]
+                 [:!Cj :!Oj]
+                 [:!Ck :!Ok]
+                 [:!Cl :!Ol]
                  ]}
 
         ]
