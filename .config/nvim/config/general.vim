@@ -54,7 +54,7 @@ Plug 'nvim-treesitter/playground'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'tsiemens/vim-aftercolors'
 Plug 'dbeniamine/cheat.sh-vim'
-
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
 " Local plugins
 call s:local_plug('lsp_extensions.nvim')
