@@ -2,4 +2,5 @@ zsh-users/zsh-syntax-highlighting
 wfxr/forgit
 rupa/z
 romkatv/powerlevel10k
+soimort/translate-shell
 
