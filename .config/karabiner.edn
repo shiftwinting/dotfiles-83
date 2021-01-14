@@ -68,6 +68,7 @@
                  [:s [:open "/Applications/Slack.app"]]
                  [:d [:open "/Applications/Alacritty.app"]]
                  [:f [:open "/Applications/Obsidian.app"]]
+                 [:g [:open "/Applications/Mattermost.app"]]
                  ]}
 
         {:des   "browsers"
@@ -84,10 +85,11 @@
         {:des   "obsidian"
          :rules [
                  [:condi :obsidian]
+                 [:!Tc :escape]
                  [:!Tk :up_arrow]
                  [:!Tj :down_arrow]
-                 [:!Tp :!Cp]
-                 [:!To :!Co]
+                 [:!STp :!Cp]
+                 [:!Tp :!Co]
                  [:!Tn :!Cn]
                  [:!Tspacebar :!Cgrave_accent_and_tilde]
                  ]}
