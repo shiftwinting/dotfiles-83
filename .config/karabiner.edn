@@ -76,7 +76,6 @@
                  [:condi :Browsers]
                  [:!Th :!CSopen_bracket]
                  [:!Tl :!CSclose_bracket]
-                 [:!Tw :!Cw]
                  [:!Tr :!Cr]
                  [:!Tt :!Ct]
                  [:!Tspacebar :!Cgrave_accent_and_tilde]
@@ -106,10 +105,12 @@
         {:des   "alacritty"
          :rules [
                  [:condi :alacritty]
-                 [:!Cj :!Oj]
-                 [:!Ck :!Ok]
-                 [:!Cl :!Ol]
+                 [:!Ca :!S9]
+                 [:!Cs :!S0]
+                 [:!Cd :open_bracket]
+                 [:!Cf :close_bracket]
+                 [:!Cj :!Sopen_bracket]
+                 [:!Ck :!Sclose_bracket]
                  ]}
-
         ]
  }
