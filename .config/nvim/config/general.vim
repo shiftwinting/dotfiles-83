@@ -74,7 +74,6 @@ call plug#end()
 
 colorscheme desert
 
-" colorscheme oceanicnext
 set background=dark
 
 let nvimDir  = '$HOME/.config/nvim'

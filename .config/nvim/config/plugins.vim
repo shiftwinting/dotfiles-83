@@ -54,11 +54,6 @@ inoremap <expr> <c-x><c-f> JsFzfImport()
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case --iglob !yarn.lock '.shellescape(<q-args>),
-  \   1,
-  \   {'options': '--delimiter : --nth 2..'})
 " }}}
 
 " bbye {{{
@@ -190,6 +185,7 @@ let g:ale_javascript_eslint_executable = 'eslint_d'
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_linters = {
       \   'javascript': ['eslint'],
+      \   'javascriptreact': ['eslint'],
       \   'typescript': ['eslint'],
       \   'typescriptreact': ['eslint'],
       \}
@@ -197,6 +193,7 @@ let g:ale_fixers = {
       \   'vue': ['eslint'],
       \   'html': ['prettier'],
       \   'javascript': ['eslint'],
+      \   'javascriptreact': ['eslint'],
       \   'typescript': ['eslint'],
       \   'typescriptreact': ['eslint'],
       \   'python': ['black'],
@@ -224,7 +221,10 @@ let g:lightline = {
       \  },
       \  'component_function': {
       \    'gitbranch': 'fugitive#head',
-      \    'filenameOrLastFolderOfIndex': 'LightLineFixIndexFiles'
+      \    'filenameOrLastFolderOfIndex': 'LightLineFixIndexFiles',
+      \  },
+      \  'tab_component_function': {
+      \    'cwdtail': 'GetCWDTail'
       \  },
       \  'mode_map': {
       \    'n' : 'N',
@@ -238,8 +238,16 @@ let g:lightline = {
       \    'S' : 'S',
       \    "\<C-s>": 'SB',
       \    't': 'T',
-      \  }
+      \  },
+      \  'tab': {
+      \     'active': [ 'cwdtail', 'modified' ],
+      \     'inactive': [ 'cwdtail', 'modified' ]
+      \   }
       \ }
+
+function! GetCWDTail(n) abort
+  return fnamemodify(getcwd(tabpagewinnr(a:n), a:n), ':t')
+endfunction
 
 function! LightLineFixIndexFiles()
   let filenameonly = split(expand('%:t:r'), '\.')
@@ -262,6 +270,10 @@ let g:floaterm_autoclose = 1
 nnoremap <leader>gl :<C-u>FloatermNew lazygit<CR>
 
 command Conf FloatermNew lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME
+" }}}
+
+" Markdown Preview {{{
+let g:mkdp_auto_close = 0
 " }}}
 
 " vim:sw=2 ts=2 et

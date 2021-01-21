@@ -11,12 +11,6 @@ inoremap <C-CR> <CR><C-o>O
 inoremap <C-s> <Esc>:w<cr>
 inoremap <C-h> <Left>
 inoremap <C-l> <Right>
-
-" Pairs ergonomics
-inoremap <M-j> ()<Left>
-inoremap <M-k> []<Left>
-inoremap <M-l> {}<Left>
-
 inoremap <C-b> <C-x><C-p>
 
 " Quick init.vim changes
