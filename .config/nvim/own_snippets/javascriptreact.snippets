@@ -1,0 +1,22 @@
+extends javascript
+
+snippet cm "comment (jsx)"
+{/* $0 */}
+endsnippet
+
+snippet nrc "New React Component"
+import React from 'react'
+import PropTypes from 'prop-types'
+
+export const ${1:`!v expand('%:t:r')`} = () => {
+	return (
+		<div>
+			<h1>Hola $1 genial</h1>
+		</div>
+	)
+}
+
+$1.propTypes = {}
+
+export default $1
+endsnippet
