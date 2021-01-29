@@ -46,6 +46,7 @@ cnoremap $d <CR>:d<CR>``
 
 " Clipboard
 nnoremap <leader>y "*y
+nnoremap <leader>Y "*y$
 vnoremap <leader>y "*y
 nnoremap <leader>p "*p
 nnoremap <leader>P "*P

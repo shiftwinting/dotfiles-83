@@ -36,10 +36,10 @@ augroup templates
   autocmd BufNewFile *.editorconfig 0r ~/.config/nvim/templates/.editorconfig
 augroup END
 
-augroup LSP
-  autocmd!
-  autocmd BufEnter * lua require'completion'.on_attach()
-augroup END
+" augroup LSP
+"   autocmd!
+"   autocmd BufEnter * lua require'completion'.on_attach()
+" augroup END
 
 augroup stayNoLCD
   autocmd!

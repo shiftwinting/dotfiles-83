@@ -31,7 +31,7 @@ Plug 'benmills/vimux'
 Plug 'justinmk/vim-dirvish'
 Plug 'Valloric/MatchTagAlways'
 Plug 'AndrewRadev/tagalong.vim'
-Plug 'wellle/targets.vim'
+" Plug 'wellle/targets.vim'
 Plug 'machakann/vim-sandwich'
 Plug 'markonm/traces.vim'
 Plug 'diepm/vim-rest-console'
@@ -44,7 +44,8 @@ Plug 'tpope/vim-abolish'
 Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'tmsvg/pear-tree'
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
+" Plug 'nvim-lua/completion-nvim'
+Plug 'hrsh7th/nvim-compe'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'hrsh7th/vim-vsnip'          " Only for LSP Snippets
@@ -68,6 +69,7 @@ Plug 'frankier/neovim-colors-solarized-truecolor-only'
 Plug 'arcticicestudio/nord-vim'
 Plug 'adrian5/oceanic-next-vim'
 Plug 'romainl/Apprentice'
+Plug 'flazz/vim-colorschemes'
 " }}}
 
 call plug#end()
@@ -108,9 +110,11 @@ set foldnestmax=2
 set signcolumn=yes
 set shell=zsh
 set pumheight=10
+set nowrap
 
 " Set completeopt to have a better completion experience
-set completeopt=menuone,noinsert,noselect
+" set completeopt=menuone,noinsert,noselect
+set completeopt=menu,menuone,noselect
 
 " Avoid showing message extra message when using completion
 set shortmess+=c
@@ -123,7 +127,7 @@ set nowritebackup
 
 let mapleader=" "
 
-set scrolloff=5
+set scrolloff=2
 set sidescroll=5
 
 set confirm
