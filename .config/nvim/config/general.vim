@@ -31,7 +31,7 @@ Plug 'benmills/vimux'
 Plug 'justinmk/vim-dirvish'
 Plug 'Valloric/MatchTagAlways'
 Plug 'AndrewRadev/tagalong.vim'
-" Plug 'wellle/targets.vim'
+Plug 'wellle/targets.vim'
 Plug 'machakann/vim-sandwich'
 Plug 'markonm/traces.vim'
 Plug 'diepm/vim-rest-console'
@@ -50,7 +50,8 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'hrsh7th/vim-vsnip'          " Only for LSP Snippets
 Plug 'hrsh7th/vim-vsnip-integ'    " Only for LSP Snippets
-Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/playground'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'tsiemens/vim-aftercolors'

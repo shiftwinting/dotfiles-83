@@ -1,4 +1,5 @@
 " Common
+
 nnoremap <leader>w :w!<CR>
 nnoremap ; :
 nnoremap : ;
@@ -37,15 +38,22 @@ nnoremap <CR> :noh<CR><CR>
 " Fold
 nnoremap <leader>z za
 
-" Allows incsearch highlighting for range commands
-cnoremap $t <CR>:t''<CR>
-cnoremap $T <CR>:T''<CR>
-cnoremap $m <CR>:m''<CR>
-cnoremap $M <CR>:M''<CR>
-cnoremap $d <CR>:d<CR>``
+" Magic actions for search
+cnoremap <expr> <C-y> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>:t''<CR>" : "<C-y>"
+cnoremap <expr> <C-b> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>:m''<CR>" : "<C-b>"
+cnoremap <expr> <C-d> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>:d<CR>``" : "<C-d>"
+
+" Better search
+cmap <expr> <Tab>   getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<C-g>" : "<C-Z>"
+cmap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<C-t>" : "<S-Tab>"
+
+" Tabs
+nnoremap [t :tabp<CR>
+nnoremap ]t :tabn<CR>
 
 " Clipboard
 nnoremap <leader>y "*y
+nnoremap <leader>yb V$%y
 nnoremap <leader>Y "*y$
 vnoremap <leader>y "*y
 nnoremap <leader>p "*p
@@ -53,7 +61,6 @@ nnoremap <leader>P "*P
 
 " Select pasted text
 nnoremap gp `[v`]
-
 " Add numbered jumps to jumplist
 nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
 nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
