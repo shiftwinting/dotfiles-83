@@ -128,6 +128,8 @@ require('telescope').setup{
   -- }
 }
 
+require('telescope').load_extension('fzy_native')
+
 -- Treesitter objects
 require'nvim-treesitter.configs'.setup {
   textobjects = {

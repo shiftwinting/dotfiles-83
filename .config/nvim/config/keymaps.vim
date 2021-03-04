@@ -15,7 +15,7 @@ inoremap <C-l> <Right>
 inoremap <C-b> <C-x><C-p>
 
 " Quick init.vim changes
-nnoremap <leader>ie :e ~/.config/nvim/config/
+nnoremap <leader>ie :tabe ~/.config/nvim/config/general.vim \| tcd ~/.config/nvim<cr>
 nnoremap <leader>ir :so %<cr>
 
 " Reselect visual block after indent

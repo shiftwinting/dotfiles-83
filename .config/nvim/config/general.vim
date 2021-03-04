@@ -34,29 +34,29 @@ Plug 'AndrewRadev/tagalong.vim'
 Plug 'wellle/targets.vim'
 Plug 'machakann/vim-sandwich'
 Plug 'markonm/traces.vim'
-Plug 'diepm/vim-rest-console'
 Plug 'dense-analysis/ale'
 Plug 'zhimsel/vim-stay'
 Plug 'voldikss/vim-floaterm'
 Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-abolish'          " Learn to use this one
 Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'tmsvg/pear-tree'
 Plug 'neovim/nvim-lspconfig'
-" Plug 'nvim-lua/completion-nvim'
 Plug 'hrsh7th/nvim-compe'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'hrsh7th/vim-vsnip'          " Only for LSP Snippets
 Plug 'hrsh7th/vim-vsnip-integ'    " Only for LSP Snippets
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-Plug 'nvim-treesitter/playground'
-Plug 'nvim-telescope/telescope.nvim'
 Plug 'tsiemens/vim-aftercolors'
-Plug 'dbeniamine/cheat.sh-vim'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+
+" Treesitter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
+
+" Telescope
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
 " Local plugins
 call s:local_plug('lsp_extensions.nvim')

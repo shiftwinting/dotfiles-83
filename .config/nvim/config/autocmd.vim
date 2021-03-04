@@ -36,15 +36,15 @@ augroup templates
   autocmd BufNewFile *.editorconfig 0r ~/.config/nvim/templates/.editorconfig
 augroup END
 
-" augroup LSP
-"   autocmd!
-"   autocmd BufEnter * lua require'completion'.on_attach()
-" augroup END
-
 augroup stayNoLCD
   autocmd!
   autocmd User BufStaySavePre  if haslocaldir() | let w:lcd = getcwd() | cd - | cd - | endif
   autocmd User BufStaySavePost if exists('w:lcd') | execute 'lcd' fnameescape(w:lcd) | unlet w:lcd | endif
+augroup END
+
+augroup QuickfixBottom
+  autocmd!
+  autocmd BufWinEnter quickfix norm J
 augroup END
 
 au BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')

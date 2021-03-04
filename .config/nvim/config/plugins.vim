@@ -1,48 +1,20 @@
-" Fzf {{{
+" Fzf -> Telescope {{{
+
 let g:fzf_history_dir = '~/.config/nvim/fzf-history'
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
-function! s:generate_relative_js(path)
-  let target = getcwd() . '/' . (join(a:path))
-  let base = expand('%:p:h')
-
-  let prefix = ""
-  while stridx(target, base) != 0
-    let base = substitute(system('dirname ' . base), '\n\+$', '', '')
-    let prefix = '../' . prefix
-  endwhile
-
-  if prefix == ''
-    let prefix = './'
-  endif
-
-  let relative = prefix . substitute(target, base . '/', '', '')
-
-  let withJsTrunc = substitute(relative, '\.[tj]sx\=$', "", "")
-
-  return withJsTrunc
-
-endfunction
-
-function! JsFzfImport()
-  return fzf#vim#complete#path(
-        \ "fd",
-        \ fzf#wrap({ 'reducer': function('s:generate_relative_js')})
-        \ )
-endfunction
-
 " Maps
-nnoremap <silent> <C-p> :Files<CR>
-nnoremap <silent> <C-f> :BLines<CR>
-nnoremap <silent> <leader>fc :History:<CR>
-nnoremap <silent> <leader>s :Snippets<CR>
-nnoremap <silent> <leader>bb :Buffers<CR>
-nnoremap <silent> <leader>t :BTags<CR>
-nnoremap <silent> <leader>rg :Rg!<CR>
-nnoremap <silent> <leader>* :Rg! <C-R><C-W><CR>
-vnoremap <silent> <leader>* y:Rg! <C-r>0<CR>
-cnoremap <C-e> <C-c>:Commands<CR>
-inoremap <C-l> <C-o>:Snippets<CR>
+nnoremap <silent> <C-p> :Telescope find_files<cr>
+nnoremap <silent> <C-f> :Telescope current_buffer_fuzzy_find<cr>
+nnoremap <silent> <leader>fc :Telescope command_history<cr>
+nnoremap <silent> <leader>s :Snippets<cr>
+nnoremap <silent> <leader>bb :Buffers<cr>
+nnoremap <silent> <leader>t :BTags<cr>
+nnoremap <silent> <leader>rg :Rg!<cr>
+nnoremap <silent> <leader>* :Rg! <C-R><C-W><cr>
+vnoremap <silent> <leader>* y:Rg! <C-r>0<cr>
+cnoremap <C-e> <C-c>:Commands<cr>
+inoremap <C-l> <C-o>:Snippets<cr>
 
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
@@ -50,14 +22,13 @@ omap <leader><tab> <plug>(fzf-maps-o)
 
 " Insert
 " imap <c-x><c-k> <plug>(fzf-complete-word)
-inoremap <expr> <c-x><c-f> JsFzfImport()
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
 " }}}
 
 " bbye {{{
-nnoremap <Leader>q :Bdelete<CR>
+nnoremap <Leader>q :Bdelete<cr>
 " }}}
 
 " Git {{{
@@ -82,7 +53,7 @@ function! GitGutterNextHunkCycle()
   endif
 endfunction
 
-nnoremap ]h :call GitGutterNextHunkCycle()<CR>
+nnoremap ]h :call GitGutterNextHunkCycle()<cr>
 nmap [h <Plug>(GitGutterPrevHunk)
 
 nmap <leader>gs <Plug>(GitGutterStageHunk)
@@ -110,8 +81,8 @@ let g:indentLine_conceallevel = 2
 " }}}
 
 " Vimux {{{
-nnoremap <leader>vl :w<CR>:<C-u>VimuxRunLastCommand<CR>
-inoremap <leader>vl <Esc>:w<CR>:<C-u>VimuxRunLastCommand<CR>
+nnoremap <leader>vl :w<cr>:<C-u>VimuxRunLastCommand<CR>
+inoremap <leader>vl <Esc>:w<cr>:<C-u>VimuxRunLastCommand<CR>
 
 function! VimuxSlime()
   if !exists("g:VimuxRunnerIndex")
@@ -121,9 +92,9 @@ function! VimuxSlime()
   " call VimuxSendKeys("Enter")
 endfunction
 
-vnoremap <leader>vs "vygv<C-c>:call VimuxSlime()<CR>
-nnoremap <leader>vs i<Esc>"vyip:call VimuxSlime()<CR>gi<Esc>l
-inoremap <leader>vs <Esc>"vyip:call VimuxSlime()<CR>gi
+vnoremap <leader>vs "vygv<C-c>:call VimuxSlime()<cr>
+nnoremap <leader>vs i<Esc>"vyip:call VimuxSlime()<cr>gi<Esc>l
+inoremap <leader>vs <Esc>"vyip:call VimuxSlime()<cr>gi
 " }}}
 
 " Fugitive {{{
@@ -173,7 +144,7 @@ runtime macros/sandwich/keymap/surround.vim
 let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsSnippetDirectories=["own_snippets"]
 
-nnoremap <space>ee :UltiSnipsEdit<CR>
+nnoremap <space>ee :UltiSnipsEdit<cr>
 " }}}
 
 " Pear Tree {{{
@@ -208,8 +179,8 @@ let g:ale_set_loclist = 0
 " Custom Highlights
 hi ALEError gui=underline
 
-nnoremap ]a :ALENextWrap<CR>
-nnoremap [a :ALEPreviousWrap<CR>
+nnoremap ]a :ALENextWrap<cr>
+nnoremap [a :ALEPreviousWrap<cr>
 
 " }}}
 
@@ -269,7 +240,7 @@ let g:floaterm_autoclose = 1
 let g:floaterm_width = 0.95
 let g:floaterm_height = 0.95
 
-nnoremap <leader>gl :<C-u>FloatermNew lazygit<CR>
+nnoremap <leader>gl :<C-u>FloatermNew lazygit<cr>
 
 command Conf FloatermNew lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME
 " }}}
