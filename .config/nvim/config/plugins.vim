@@ -5,7 +5,7 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
 " Maps
 nnoremap <silent> <C-p> :Telescope find_files<cr>
-nnoremap <silent> <C-f> :Telescope current_buffer_fuzzy_find<cr>
+nnoremap <silent> <C-f> :lua require('baldore.telescope').buffer_lines()<cr>
 nnoremap <silent> <leader>fc :Telescope command_history<cr>
 nnoremap <silent> <leader>s :Snippets<cr>
 nnoremap <silent> <leader>bb :Buffers<cr>
@@ -14,7 +14,6 @@ nnoremap <silent> <leader>rg :Rg!<cr>
 nnoremap <silent> <leader>* :Rg! <C-R><C-W><cr>
 vnoremap <silent> <leader>* y:Rg! <C-r>0<cr>
 cnoremap <C-e> <C-c>:Commands<cr>
-inoremap <C-l> <C-o>:Snippets<cr>
 
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)

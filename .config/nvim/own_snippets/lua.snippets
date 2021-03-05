@@ -8,10 +8,14 @@ function(${1:params})
 end$0
 endsnippet
 
-snippet ins "vim.inspect" i
-vim.inspect($0)
+snippet cl "vim.inspect" i
+print(vim.inspect($0))
 endsnippet
 
 snippet tblk "tbl_keys" i
 print(vim.inspect(tbl.keys($0)))
+endsnippet
+
+snippet rmap "reload map example" i
+vim.api.nvim_set_keymap('n', '<leader><leader>r', [[ <Cmd>lua require('plenary.reload').reload_module('baldore.telescope')<CR> ]], { noremap = true, silent = true })
 endsnippet

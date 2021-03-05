@@ -114,8 +114,7 @@ set pumheight=10
 set nowrap
 
 " Set completeopt to have a better completion experience
-" set completeopt=menuone,noinsert,noselect
-set completeopt=menu,menuone,noselect
+set completeopt=menuone,noselect
 
 " Avoid showing message extra message when using completion
 set shortmess+=c

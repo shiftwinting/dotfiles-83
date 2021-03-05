@@ -1,5 +1,4 @@
 " Common
-
 nnoremap <leader>w :w!<CR>
 nnoremap ; :
 nnoremap : ;
@@ -10,8 +9,6 @@ nnoremap ,<leader> :b #<cr>
 " Insert cool stuff
 inoremap <C-CR> <CR><C-o>O
 inoremap <C-s> <Esc>:w<cr>
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
 inoremap <C-b> <C-x><C-p>
 
 " Quick init.vim changes
@@ -61,9 +58,13 @@ nnoremap <leader>P "*P
 
 " Select pasted text
 nnoremap gp `[v`]
+
 " Add numbered jumps to jumplist
 nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
 nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
+
+" Open current ftplugin file
+nnoremap <leader>ef :e ~/.config/nvim/after/ftplugin/<C-R>=&filetype<CR>.vim<CR>
 
 " Debug
 nnoremap <leader>m :<c-u>ccl \| Messages \| res +20<CR>
