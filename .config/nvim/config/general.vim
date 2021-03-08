@@ -35,6 +35,7 @@ Plug 'wellle/targets.vim'
 Plug 'machakann/vim-sandwich'
 Plug 'markonm/traces.vim'
 Plug 'dense-analysis/ale'
+Plug 'nathunsmitty/nvim-ale-diagnostic'
 Plug 'zhimsel/vim-stay'
 Plug 'voldikss/vim-floaterm'
 Plug 'tpope/vim-scriptease'
@@ -70,7 +71,8 @@ Plug 'frankier/neovim-colors-solarized-truecolor-only'
 Plug 'arcticicestudio/nord-vim'
 Plug 'adrian5/oceanic-next-vim'
 Plug 'romainl/Apprentice'
-Plug 'flazz/vim-colorschemes'
+Plug 'glepnir/zephyr-nvim'
+
 " }}}
 
 call plug#end()

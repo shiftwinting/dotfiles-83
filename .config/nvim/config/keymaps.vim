@@ -44,6 +44,10 @@ cnoremap <expr> <C-d> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>:d<CR>
 cmap <expr> <Tab>   getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<C-g>" : "<C-Z>"
 cmap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<C-t>" : "<S-Tab>"
 
+" Tab when pumvisible
+imap <expr> <Tab>   pumvisible() ? "<C-n>" : "<Tab>"
+imap <expr> <S-Tab> pumvisible() ? "<C-p>" : "<S-Tab>"
+
 " Tabs
 nnoremap [t :tabp<CR>
 nnoremap ]t :tabn<CR>

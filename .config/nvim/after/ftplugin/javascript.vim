@@ -29,4 +29,7 @@ inoremap ; :
 inoremap : ;
 inoremap <expr> <c-x><c-f> JsFzfImport()
 
+" Open test for current file
+nnoremap <silent> <leader>ot :exe 'e' printf('%s.test.%s', expand('%:r'), expand('%:e'))<CR>
+
 vnoremap <leader>is :sort /'.*'/ r<CR>
