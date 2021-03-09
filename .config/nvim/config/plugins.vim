@@ -13,6 +13,7 @@ nnoremap <silent> <leader>t :BTags<cr>
 nnoremap <silent> <leader>rg :Rg!<cr>
 nnoremap <silent> <leader>* :Rg! <C-R><C-W><cr>
 vnoremap <silent> <leader>* y:Rg! <C-r>0<cr>
+nnoremap <silent> <leader>u :Telescope ultisnips<cr>
 cnoremap <C-e> <C-c>:Commands<cr>
 
 nmap <leader><tab> <plug>(fzf-maps-n)

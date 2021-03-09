@@ -59,26 +59,9 @@ function ${1}(${2}) {
 }
 endsnippet
 
-
 # React
-snippet sst "React - set state"
-this.setState({ $0 })
-endsnippet
-
-snippet gst "React - get state"
-const { ${0} } = this.state
-endsnippet
-
-snippet gpr "React - get props"
-const { ${0} } = this.props
-endsnippet
-
 snippet pr "React - prop"
-${1:prop}=${0}
-endsnippet
-
-snippet gthis "Destruct this"
-const { ${0} } = this
+${1:prop}={$0}
 endsnippet
 
 snippet rrpw "React - Render Props Wrap"
@@ -87,12 +70,6 @@ snippet rrpw "React - Render Props Wrap"
 		${VISUAL}
 	)}
 </$1>
-endsnippet
-
-snippet cam "Class autobind method"
-${1:method} = (${2:params}) => {
-	$0
-}
 endsnippet
 
 # Tests

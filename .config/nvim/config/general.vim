@@ -58,6 +58,7 @@ Plug 'nvim-treesitter/playground'
 " Telescope
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'baldore/telescope-ultisnips.nvim'
 
 " Local plugins
 call s:local_plug('lsp_extensions.nvim')
