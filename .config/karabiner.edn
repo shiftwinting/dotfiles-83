@@ -43,6 +43,7 @@
  :applications  {;; define applications
                  :obsidian ["^md\\.obsidian$"]
                  :slack ["^com\\.tinyspeck\\.slackmacgap$"]
+                 :mattermost ["^Mattermost\\.Desktop$"]
                  :alacritty ["^io\\.alacritty$"]
                  :Browsers [;; these strings are regex to match applications bundle_identifiers
                             ;; you can find bundle_identifiers in the Info.plist file of an applications
@@ -100,6 +101,14 @@
                  [:!Tj :!SOdown_arrow]
                  [:!Tt :!SCt]
                  [:!Tf :!Ck]
+                 ]}
+
+        {:des   "mattermost"
+         :rules [
+                 [:condi :mattermost]
+                 [:!Tk :!SOup_arrow]
+                 [:!Tj :!SOdown_arrow]
+                 [:!Cup_arrow :up_arrow]
                  ]}
 
         {:des   "alacritty"
