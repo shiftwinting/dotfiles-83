@@ -7,6 +7,9 @@ function! s:local_plug(package_name) abort " {{{
 endfunction
 " }}}
 
+" Polyglot config
+let g:polyglot_disabled = ['autoindent']
+
 " Plugins {{{
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -58,7 +61,7 @@ Plug 'nvim-treesitter/playground'
 " Telescope
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
-Plug 'baldore/telescope-ultisnips.nvim'
+Plug 'fhill2/telescope-ultisnips.nvim'
 
 " Local plugins
 call s:local_plug('lsp_extensions.nvim')
