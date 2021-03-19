@@ -1,5 +1,8 @@
 call plug#begin('~/.config/nvim/plugged')
 
+" TODO: Temporal...
+let g:vimspector_enable_mappings = 'HUMAN'
+
 function! s:local_plug(package_name) abort " {{{
   if isdirectory(expand('~/own-projects/nvplugins/' . a:package_name))
     execute "Plug '~/own-projects/nvplugins/" . a:package_name . "'"
@@ -53,6 +56,9 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'hrsh7th/vim-vsnip'          " Only for LSP Snippets
 Plug 'hrsh7th/vim-vsnip-integ'    " Only for LSP Snippets
 Plug 'tsiemens/vim-aftercolors'
+Plug 'puremourning/vimspector'
+Plug 'glepnir/lspsaga.nvim'
+Plug 'ludovicchabant/vim-gutentags'
 
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -76,12 +82,14 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'adrian5/oceanic-next-vim'
 Plug 'romainl/Apprentice'
 Plug 'glepnir/zephyr-nvim'
+Plug 'tanvirtin/nvim-monokai'
+Plug 'chriskempson/base16-vim'
 
 " }}}
 
 call plug#end()
 
-colorscheme desert
+colorscheme base16-nord
 
 set background=dark
 

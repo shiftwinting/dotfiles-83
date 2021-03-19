@@ -1,11 +1,11 @@
-" Fzf -> Telescope {{{
+" Fzf + Telescope {{{
 
 let g:fzf_history_dir = '~/.config/nvim/fzf-history'
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
 " Maps
 nnoremap <silent> <C-p> :Telescope find_files<cr>
-nnoremap <silent> <C-f> :lua require('baldore.telescope').buffer_lines()<cr>
+nnoremap <silent> <leader>fl :lua require('baldore.telescope').buffer_lines()<cr>
 nnoremap <silent> <leader>fc :Telescope command_history<cr>
 nnoremap <silent> <leader>s :Snippets<cr>
 nnoremap <silent> <leader>bb :Buffers<cr>
@@ -53,8 +53,8 @@ function! GitGutterNextHunkCycle()
   endif
 endfunction
 
-nnoremap ]h :call GitGutterNextHunkCycle()<cr>
-nmap [h <Plug>(GitGutterPrevHunk)
+nnoremap ]g :call GitGutterNextHunkCycle()<cr>
+nnoremap [g :GitGutterPrevHunk<cr>
 
 nmap <leader>gs <Plug>(GitGutterStageHunk)
 nmap <leader>gu <Plug>(GitGutterUndoHunk)
@@ -81,20 +81,20 @@ let g:indentLine_conceallevel = 2
 " }}}
 
 " Vimux {{{
-nnoremap <leader>vl :w<cr>:<C-u>VimuxRunLastCommand<CR>
-inoremap <leader>vl <Esc>:w<cr>:<C-u>VimuxRunLastCommand<CR>
+" nnoremap <leader>vl :w<cr>:<C-u>VimuxRunLastCommand<CR>
+" inoremap <leader>vl <Esc>:w<cr>:<C-u>VimuxRunLastCommand<CR>
 
-function! VimuxSlime()
-  if !exists("g:VimuxRunnerIndex")
-    call VimuxOpenRunner()
-  endif
-  silent call VimuxSendText(@v)
-  " call VimuxSendKeys("Enter")
-endfunction
+" function! VimuxSlime()
+"   if !exists("g:VimuxRunnerIndex")
+"     call VimuxOpenRunner()
+"   endif
+"   silent call VimuxSendText(@v)
+"   " call VimuxSendKeys("Enter")
+" endfunction
 
-vnoremap <leader>vs "vygv<C-c>:call VimuxSlime()<cr>
-nnoremap <leader>vs i<Esc>"vyip:call VimuxSlime()<cr>gi<Esc>l
-inoremap <leader>vs <Esc>"vyip:call VimuxSlime()<cr>gi
+" vnoremap <leader>vs "vygv<C-c>:call VimuxSlime()<cr>
+" nnoremap <leader>vs i<Esc>"vyip:call VimuxSlime()<cr>gi<Esc>l
+" inoremap <leader>vs <Esc>"vyip:call VimuxSlime()<cr>gi
 " }}}
 
 " Fugitive {{{
@@ -159,6 +159,7 @@ let g:ale_linters = {
       \   'javascriptreact': ['eslint'],
       \   'typescript': ['eslint'],
       \   'typescriptreact': ['eslint'],
+      \   'go': ['golangci-lint'],
       \}
 let g:ale_fixers = {
       \   'vue': ['eslint'],

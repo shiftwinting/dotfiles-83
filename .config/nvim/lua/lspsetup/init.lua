@@ -91,3 +91,8 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     update_in_insert = false,
   }
 )
+
+-- lspsaga
+local saga = require 'lspsaga'
+saga.init_lsp_saga()
+
