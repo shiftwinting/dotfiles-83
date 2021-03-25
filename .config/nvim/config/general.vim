@@ -58,7 +58,10 @@ Plug 'hrsh7th/vim-vsnip-integ'    " Only for LSP Snippets
 Plug 'tsiemens/vim-aftercolors'
 Plug 'puremourning/vimspector'
 Plug 'glepnir/lspsaga.nvim'
-Plug 'ludovicchabant/vim-gutentags'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-colorscheme-switcher'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+Plug 'tpope/vim-obsession'
 
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -89,7 +92,7 @@ Plug 'chriskempson/base16-vim'
 
 call plug#end()
 
-colorscheme base16-nord
+colorscheme base16-paraiso
 
 set background=dark
 
@@ -120,7 +123,6 @@ set cursorline              " Current line highlight
 set mouse=a                 " Allow mouse usage
 set numberwidth=5
 set updatetime=250          " Increases the speed of git gutter
-set foldmethod=manual
 set foldnestmax=2
 set signcolumn=yes
 set shell=zsh

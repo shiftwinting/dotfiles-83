@@ -76,8 +76,8 @@ function! LoadSession()
   endif
 endfunction
 
-au VimEnter * nested if argc() == 0 | :call LoadSession() | endif
-au VimLeave * if argc() == 0 | :call MakeSession() | endif
+" au VimEnter * nested if argc() == 0 | :call LoadSession() | endif
+" au VimLeave * if argc() == 0 | :call MakeSession() | endif
 
 au InsertEnter * :set norelativenumber
 au InsertLeave * :set relativenumber
