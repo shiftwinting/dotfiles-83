@@ -63,6 +63,9 @@ Plug 'xolox/vim-colorscheme-switcher'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'tpope/vim-obsession'
 
+" TODO: Take a look at this
+" https://github.com/RRethy/vim-illuminate
+
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
