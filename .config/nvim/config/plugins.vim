@@ -104,10 +104,6 @@ nnoremap <leader>gb :Gblame<cr>
 
 " incsearch {{{
 let g:asterisk#keeppos = 1
-
-cmap <expr> <Tab>   getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<C-g>" : "<C-Z>"
-cmap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<C-t>" : "<S-Tab>"
-
 " }}}
 
 " MatchTagAlways {{{

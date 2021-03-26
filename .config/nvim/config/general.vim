@@ -65,6 +65,12 @@ Plug 'tpope/vim-obsession'
 
 " TODO: Take a look at this
 " https://github.com/RRethy/vim-illuminate
+" https://github.com/easymotion/vim-easymotion -> Improved a lot... may worth
+" lightline alternatives
+" https://github.com/glepnir/galaxyline.nvim -> Lightline replacement
+" https://github.com/tjdevries/express_line.nvim
+" https://github.com/hoob3rt/lualine.nvim
+" https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils
 
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
