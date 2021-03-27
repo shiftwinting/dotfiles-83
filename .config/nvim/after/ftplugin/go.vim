@@ -5,8 +5,8 @@ inoremap <buffer> : ;
 imap <buffer> ' <Plug>(PearTreeOpener_")
 imap <buffer> " <Plug>(PearTreeOpener_')
 
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set colorcolumn=80
+setlocal tabstop=4
+setlocal softtabstop=4
+setlocal shiftwidth=4
+setlocal colorcolumn=80
 

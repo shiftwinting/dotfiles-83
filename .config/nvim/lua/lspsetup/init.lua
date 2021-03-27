@@ -4,7 +4,6 @@ local dartls = require'lspsetup.dartls'
 
 -- Init
 lsp.tsserver.setup{}
-lsp.gopls.setup{}
 lsp.vuels.setup{}
 lsp.vimls.setup{}
 lsp.cssls.setup{}
@@ -14,6 +13,14 @@ lsp.bashls.setup{}
 
 -- Custom handlers
 vim.lsp.handlers['textDocument/codeAction'] = handlers.code_action_callback
+
+-- gopls
+lsp.gopls.setup{
+  on_attach = function(client)
+    -- [[ other on_attach code ]]
+    require 'illuminate'.on_attach(client)
+  end,
+}
 
 -- Lua {{{
 lsp.sumneko_lua.setup{

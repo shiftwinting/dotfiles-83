@@ -31,8 +31,8 @@ nnoremap / /\v
 vnoremap / /\v
 cnoremap %s/ %smagic/
 cnoremap \>s/ \>smagic/
-nnoremap :g/ :g/\v
-nnoremap :g// :g//
+" nnoremap :g/ :g/\v
+" nnoremap :g// :g//
 
 " better gx
 nnoremap <silent> gx :silent execute '!open ' . shellescape(expand('<cWORD>'), 1)<CR>

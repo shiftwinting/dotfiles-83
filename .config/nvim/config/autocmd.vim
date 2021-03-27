@@ -55,9 +55,7 @@ au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeou
 " Autoread inside vim
 au FocusGained,BufEnter * :checktime
 
-au InsertEnter * :set norelativenumber
-au InsertLeave * :set relativenumber
-au CmdLineEnter * set norelativenumber | redraw
-au CmdlineLeave * set relativenumber
+au InsertEnter * set norelativenumber
+au InsertLeave * set relativenumber
 
 " vim:sw=2 ts=2 et

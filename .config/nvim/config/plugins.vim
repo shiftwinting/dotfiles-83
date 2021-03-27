@@ -246,4 +246,17 @@ command Conf FloatermNew lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME
 let g:mkdp_auto_close = 0
 " }}}
 
+" Illuminate {{{
+highlight LspIlluminate gui=underline
+
+hi def link LspReferenceText LspIlluminate
+hi def link LspReferenceWrite LspIlluminate
+hi def link LspReferenceRead LspIlluminate
+" }}}
+
+" Vim Sneak {{{
+map f <Plug>Sneak_s
+map F <Plug>Sneak_S
+" }}}
+
 " vim:sw=2 ts=2 et

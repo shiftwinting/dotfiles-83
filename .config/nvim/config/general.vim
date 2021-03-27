@@ -62,11 +62,11 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-colorscheme-switcher'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'tpope/vim-obsession'
+Plug 'RRethy/vim-illuminate'
+Plug 'justinmk/vim-sneak'
 
 " TODO: Take a look at this
-" https://github.com/RRethy/vim-illuminate
-" https://github.com/easymotion/vim-easymotion -> Improved a lot... may worth
-" lightline alternatives
+" lightline lua alternatives
 " https://github.com/glepnir/galaxyline.nvim -> Lightline replacement
 " https://github.com/tjdevries/express_line.nvim
 " https://github.com/hoob3rt/lualine.nvim
