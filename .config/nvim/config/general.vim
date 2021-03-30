@@ -48,7 +48,7 @@ Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-abolish'          " Learn to use this one
 Plug 'stefandtw/quickfix-reflector.vim'
-Plug 'tmsvg/pear-tree'
+Plug 'cohama/lexima.vim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
 Plug 'nvim-lua/plenary.nvim'
@@ -66,11 +66,11 @@ Plug 'RRethy/vim-illuminate'
 Plug 'justinmk/vim-sneak'
 
 " TODO: Take a look at this
+" https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils
 " lightline lua alternatives
 " https://github.com/glepnir/galaxyline.nvim -> Lightline replacement
 " https://github.com/tjdevries/express_line.nvim
 " https://github.com/hoob3rt/lualine.nvim
-" https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils
 
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -101,7 +101,7 @@ Plug 'chriskempson/base16-vim'
 
 call plug#end()
 
-colorscheme base16-paraiso
+colorscheme base16-gruvbox-dark-hard
 
 set background=dark
 

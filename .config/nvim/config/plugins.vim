@@ -143,8 +143,8 @@ let g:UltiSnipsSnippetDirectories=["own_snippets"]
 nnoremap <space>ee :UltiSnipsEdit<cr>
 " }}}
 
-" Pear Tree {{{
-let g:pear_tree_ft_disabled = ['TelescopePrompt']
+" Lexima {{{
+let g:lexima_enable_newline_rules = 1
 " }}}
 
 " ALE {{{

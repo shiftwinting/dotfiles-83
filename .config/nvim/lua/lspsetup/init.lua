@@ -3,7 +3,6 @@ local handlers = require'lspsetup.handlers'
 local dartls = require'lspsetup.dartls'
 
 -- Init
-lsp.tsserver.setup{}
 lsp.vuels.setup{}
 lsp.vimls.setup{}
 lsp.cssls.setup{}
@@ -17,7 +16,13 @@ vim.lsp.handlers['textDocument/codeAction'] = handlers.code_action_callback
 -- gopls
 lsp.gopls.setup{
   on_attach = function(client)
-    -- [[ other on_attach code ]]
+    require 'illuminate'.on_attach(client)
+  end,
+}
+
+-- tsserver
+lsp.tsserver.setup{
+  on_attach = function(client)
     require 'illuminate'.on_attach(client)
   end,
 }

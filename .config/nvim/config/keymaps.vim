@@ -3,13 +3,8 @@ nnoremap <leader>w :w!<CR>
 nnoremap ; :
 nmap : <Plug>Sneak_;
 map Q <nop>
-nnoremap <C-g> :echo expand('%')<CR>
+" nnoremap <C-g> :echo expand('%')<CR>
 nnoremap <CR> :noh<CR><CR>
-
-" insert cool stuff
-inoremap <C-CR> <CR><C-o>O
-inoremap <C-s> <Esc>:w<cr>
-inoremap <C-b> <C-x><C-p>
 
 " quick init.vim changes
 nnoremap <leader>ie :tabe ~/.config/nvim/config/general.vim \| tcd ~/.config/nvim<cr>
@@ -31,8 +26,6 @@ nnoremap / /\v
 vnoremap / /\v
 cnoremap %s/ %smagic/
 cnoremap \>s/ \>smagic/
-" nnoremap :g/ :g/\v
-" nnoremap :g// :g//
 
 " better gx
 nnoremap <silent> gx :silent execute '!open ' . shellescape(expand('<cWORD>'), 1)<CR>
@@ -55,6 +48,10 @@ cmap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<C-t>" : "<S
 " tab when pumvisible
 imap <expr> <Tab>   pumvisible() ? "<C-n>" : "<Tab>"
 imap <expr> <S-Tab> pumvisible() ? "<C-p>" : "<S-Tab>"
+
+" <c-p> and <c-n> use characters for history
+cnoremap <expr> <C-P> wildmenumode() ? "\<C-P>" : "\<Up>"
+cnoremap <expr> <C-N> wildmenumode() ? "\<C-N>" : "\<Down>"
 
 " tabs
 nnoremap [t :tabp<CR>

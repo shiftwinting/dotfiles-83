@@ -33,3 +33,6 @@ inoremap <expr> <c-x><c-f> JsFzfImport()
 nnoremap <silent> <leader>ot :exe 'e' printf('%s.test.%s', expand('%:r'), expand('%:e'))<CR>
 
 vnoremap <leader>is :sort /'.*'/ r<CR>
+
+" function text object
+onoremap af :normal va{V<CR>

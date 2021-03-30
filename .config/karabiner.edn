@@ -120,8 +120,8 @@
                  [:!Cf :close_bracket]
                  [:!Cj :!Sopen_bracket]
                  [:!Ck :!Sclose_bracket]
-                 [:!Cr :!Or]
-                 [:!Csemicolon :!Ssemicolon]
+                 [:!Ci :!Sequal_sign]
+                 [:!Co :equal_sign]
                  ]}
         ]
  }
