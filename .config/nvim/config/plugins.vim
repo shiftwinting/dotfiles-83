@@ -252,6 +252,9 @@ highlight LspIlluminate gui=underline
 hi def link LspReferenceText LspIlluminate
 hi def link LspReferenceWrite LspIlluminate
 hi def link LspReferenceRead LspIlluminate
+
+nnoremap [d <cmd>lua require"illuminate".next_reference{reverse=true,wrap=true}<cr>
+nnoremap ]d <cmd>lua require"illuminate".next_reference{wrap=true}<cr>
 " }}}
 
 " Vim Sneak {{{
