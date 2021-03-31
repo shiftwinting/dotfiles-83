@@ -16,7 +16,7 @@ export EDITOR=nvim
 export MANPAGER='nvim +Man!'
 
 # Basic auto/tab complete:
-autoload -U compinit
+autoload -Uz compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
@@ -24,8 +24,8 @@ _comp_options+=(globdots)
 
 bindkey '^[[Z' reverse-menu-complete
 
-bindkey "^P" up-line-or-search
-bindkey "^N" down-line-or-search
+bindkey "^P" history-beginning-search-backward
+bindkey "^N" history-beginning-search-forward
 
 # Ignore tab completion
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}'
@@ -36,6 +36,11 @@ source ~/.zsh_plugins.sh
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
+
+# Vi stuff
+bindkey -M viins '^?' backward-delete-char
+bindkey -M viins '^H' backward-delete-char
+bindkey -M viins '^W' backward-delete-word
 
 # Path stuff {{{
 export PATH="/usr/local/opt/openssl/bin:$PATH"
