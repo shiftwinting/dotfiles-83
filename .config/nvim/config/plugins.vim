@@ -260,6 +260,7 @@ nnoremap ]d <cmd>lua require"illuminate".next_reference{wrap=true}<cr>
 " Vim Sneak {{{
 map f <Plug>Sneak_s
 map F <Plug>Sneak_S
+nmap : <Plug>Sneak_;
 " }}}
 
 " vim:sw=2 ts=2 et

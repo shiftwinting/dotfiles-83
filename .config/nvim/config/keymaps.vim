@@ -1,9 +1,7 @@
 " common
 nnoremap <leader>w :w!<CR>
 nnoremap ; :
-nmap : <Plug>Sneak_;
 map Q <nop>
-" nnoremap <C-g> :echo expand('%')<CR>
 nnoremap <CR> :noh<CR><CR>
 
 " quick init.vim changes
