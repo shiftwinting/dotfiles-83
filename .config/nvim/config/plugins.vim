@@ -7,7 +7,7 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 nnoremap <silent> <C-p> :Telescope find_files<cr>
 nnoremap <silent> <leader>fl :lua require('baldore.telescope').buffer_lines()<cr>
 nnoremap <silent> <leader>fc :Telescope command_history<cr>
-nnoremap <silent> <leader>s :Snippets<cr>
+nnoremap <silent> <leader>s :Telescope ultisnips<cr>
 nnoremap <silent> <leader>bb :Buffers<cr>
 nnoremap <silent> <leader>t :BTags<cr>
 nnoremap <silent> <leader>rg :Rg!<cr>
@@ -135,6 +135,7 @@ map *  <Plug>(asterisk-z*)
 " vim-sandwich {{{
 runtime macros/sandwich/keymap/surround.vim
 " }}}
+
 
 " UltiSnips {{{
 let g:UltiSnipsExpandTrigger="<Tab>"
