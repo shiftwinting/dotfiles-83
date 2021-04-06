@@ -5,7 +5,7 @@ map Q <nop>
 nnoremap <CR> :noh<CR><CR>
 
 " quick init.vim changes
-nnoremap <leader>ie :tabe ~/.config/nvim/config/general.vim \| tcd ~/.config/nvim<cr>
+nnoremap <silent> <leader>ie :tabe ~/.config/nvim/config/general.vim \| tcd ~/.config/nvim<cr>
 nnoremap <leader>ir :so %<cr>
 
 " reselect visual block after indent
@@ -63,6 +63,9 @@ vnoremap <leader>y "*y
 nnoremap <leader>p "*p
 nnoremap <leader>P "*P
 
+" edit relative to current file
+nnoremap <leader>eh :e %:h/
+
 " select pasted text
 nnoremap gp `[v`]
 
@@ -78,6 +81,31 @@ tnoremap JK <C-\><C-n>
 tnoremap KK <C-\><C-n>G
 tnoremap <expr> <A-r> '<C-\><C-n>"' . nr2char(getchar()) . 'pi'
 nnoremap <leader>t :ter<cr>
+
+" send paragraph under cursor to terminal
+function! Exec_on_term(cmd)
+  if a:cmd=="normal"
+    exec "normal mk\"vyip"
+  else
+    exec "normal gv\"vy"
+  endif
+  if !exists("g:last_terminal_chan_id")
+    vs
+    terminal
+    let g:last_terminal_chan_id = b:terminal_job_id
+    wincmd p
+  endif
+
+  if getreg('"v') =~ "^\n"
+    call chansend(g:last_terminal_chan_id, expand("%:p")."\n")
+  else
+    call chansend(g:last_terminal_chan_id, @v)
+  endif
+  exec "normal `k"
+endfunction
+
+nnoremap <F6> :call Exec_on_term("normal")<CR>
+vnoremap <F6> :<c-u>call Exec_on_term("visual")<CR>
 
 " debug
 nnoremap <leader>m :<c-u>ccl \| Messages \| res +20<CR>

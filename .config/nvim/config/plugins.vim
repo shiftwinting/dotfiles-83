@@ -184,6 +184,7 @@ nnoremap [a :ALEPreviousWrap<cr>
 
 " Lightline {{{
 let g:lightline = {
+      \  'colorscheme': 'dracula',
       \  'active': {
       \    'left':  [ [ 'mode', 'paste' ], [ 'readonly', 'filenameOrLastFolderOfIndex', 'modified' ] ],
       \    'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'filetype' ] ]
@@ -259,8 +260,10 @@ nnoremap ]d <cmd>lua require"illuminate".next_reference{wrap=true}<cr>
 " }}}
 
 " Vim Sneak {{{
-map f <Plug>Sneak_s
-map F <Plug>Sneak_S
+map f <Plug>Sneak_f
+map F <Plug>Sneak_F
+map t <Plug>Sneak_t
+map T <Plug>Sneak_T
 nmap : <Plug>Sneak_;
 " }}}
 

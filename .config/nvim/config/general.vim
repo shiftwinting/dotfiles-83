@@ -96,12 +96,13 @@ Plug 'romainl/Apprentice'
 Plug 'glepnir/zephyr-nvim'
 Plug 'tanvirtin/nvim-monokai'
 Plug 'chriskempson/base16-vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
 
 " }}}
 
 call plug#end()
 
-colorscheme base16-gruvbox-dark-hard
+colorscheme base16-dracula
 
 set background=dark
 
