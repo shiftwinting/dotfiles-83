@@ -57,13 +57,15 @@ Plug 'hrsh7th/vim-vsnip'          " Only for LSP Snippets
 Plug 'hrsh7th/vim-vsnip-integ'    " Only for LSP Snippets
 Plug 'tsiemens/vim-aftercolors'
 Plug 'puremourning/vimspector'
-Plug 'glepnir/lspsaga.nvim'
+" Plug 'glepnir/lspsaga.nvim'
+Plug 'ckipp01/lspsaga.nvim', { 'branch': 'trimUpdate' }
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-colorscheme-switcher'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'tpope/vim-obsession'
 Plug 'RRethy/vim-illuminate'
 Plug 'justinmk/vim-sneak'
+Plug 'fatih/vim-go'
 
 " TODO: Take a look at this
 " https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils

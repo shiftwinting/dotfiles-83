@@ -30,6 +30,9 @@ lsp.tsserver.setup{
 -- Lua {{{
 lsp.sumneko_lua.setup{
   cmd={vim.fn.expand('$HOME')..'/builds/lua-language-server/bin/macOS/lua-language-server'},
+  on_attach = function(client)
+    require 'illuminate'.on_attach(client)
+  end,
   settings={
     Lua={
       runtime={ version="LuaJIT", path=vim.split(package.path, ';') };

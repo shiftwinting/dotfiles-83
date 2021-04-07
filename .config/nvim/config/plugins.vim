@@ -145,7 +145,10 @@ nnoremap <space>ee :UltiSnipsEdit<cr>
 " }}}
 
 " Lexima {{{
-let g:lexima_enable_newline_rules = 1
+let g:lexima_ctrlh_as_backspace = 1
+
+call lexima#add_rule({'char': "'", 'input': '"', 'input_after': '"', 'filetype': 'go'})
+call lexima#add_rule({'char': '"', 'input': "'", 'input_after': "'", 'filetype': 'go'})
 " }}}
 
 " ALE {{{
@@ -265,6 +268,15 @@ map F <Plug>Sneak_F
 map t <Plug>Sneak_t
 map T <Plug>Sneak_T
 nmap : <Plug>Sneak_;
+" }}}
+
+" Explainshell {{{
+let $EXPLAINSHELL_ENDPOINT = "http://localhost:5000"
+" }}}
+
+" Vim-go {{{
+let g:go_def_mapping_enabled = 0
+let g:go_doc_keywordprg_enabled = 0
 " }}}
 
 " vim:sw=2 ts=2 et
