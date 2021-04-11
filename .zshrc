@@ -37,6 +37,9 @@ source ~/.zsh_plugins.sh
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^x^e' edit-command-line
 
+# Repeat last argument
+bindkey '^O' insert-last-word
+
 # end of line
 bindkey '^E' end-of-line
 
