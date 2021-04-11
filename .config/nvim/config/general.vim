@@ -33,7 +33,6 @@ Plug 'SirVer/ultisnips'
 Plug 'itchyny/lightline.vim'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'benmills/vimux'
 Plug 'justinmk/vim-dirvish'
 Plug 'Valloric/MatchTagAlways'
 Plug 'AndrewRadev/tagalong.vim'
@@ -42,12 +41,11 @@ Plug 'machakann/vim-sandwich'
 Plug 'markonm/traces.vim'
 Plug 'dense-analysis/ale'
 Plug 'nathunsmitty/nvim-ale-diagnostic'
-Plug 'zhimsel/vim-stay'
+" Plug 'zhimsel/vim-stay'
 Plug 'voldikss/vim-floaterm'
 Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-abolish'          " Learn to use this one
-Plug 'stefandtw/quickfix-reflector.vim'
+Plug 'tpope/vim-abolish'
 Plug 'cohama/lexima.vim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
@@ -65,7 +63,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'tpope/vim-obsession'
 Plug 'RRethy/vim-illuminate'
 Plug 'justinmk/vim-sneak'
-Plug 'fatih/vim-go'
+Plug 'szw/vim-maximizer'
 
 " TODO: Take a look at this
 " https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils
@@ -171,9 +169,6 @@ set autowrite
 set ignorecase
 set smartcase
 
-set exrc
-set secure
-
 " Markdown languages
 let g:markdown_fenced_languages = ['css', 'js=javascript', 'javascript', 'json=javascript', 'bash']
 
@@ -199,5 +194,6 @@ set splitright
 set path+=**
 set wildignore+=**/node_modules/**
 set wildcharm=<C-Z>
+set wildignorecase
 
 " vim:sw=2 ts=2 et

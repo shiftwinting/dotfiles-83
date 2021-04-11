@@ -52,8 +52,8 @@ cnoremap <expr> <C-P> wildmenumode() ? "\<C-P>" : "\<Up>"
 cnoremap <expr> <C-N> wildmenumode() ? "\<C-N>" : "\<Down>"
 
 " tabs
-nnoremap [t :tabp<CR>
-nnoremap ]t :tabn<CR>
+nnoremap [t gT
+nnoremap ]t gt
 
 " clipboard
 nnoremap <leader>y "*y
@@ -81,6 +81,11 @@ tnoremap JK <C-\><C-n>
 tnoremap KK <C-\><C-n>G
 tnoremap <expr> <A-r> '<C-\><C-n>"' . nr2char(getchar()) . 'pi'
 nnoremap <leader>t :ter<cr>
+
+tnoremap <A-h> <C-\><C-N><C-w>h
+tnoremap <A-j> <C-\><C-N><C-w>j
+tnoremap <A-k> <C-\><C-N><C-w>k
+tnoremap <A-l> <C-\><C-N><C-w>l
 
 " send paragraph under cursor to terminal
 function! Exec_on_term(cmd)
