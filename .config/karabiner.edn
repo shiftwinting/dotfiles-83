@@ -114,14 +114,15 @@
         {:des   "alacritty"
          :rules [
                  [:condi :alacritty]
-                 [:!Ca :!S9]
-                 [:!Cs :!S0]
-                 [:!Cd :open_bracket]
-                 [:!Cf :close_bracket]
-                 [:!Cj :!Sopen_bracket]
-                 [:!Ck :!Sclose_bracket]
-                 [:!Ci :!Sequal_sign]
-                 [:!Co :equal_sign]
+                 [:!Ca :!Oa]
+                 [:!Cs :!Os]
+                 [:!Cd :!Od]
+                 [:!Cf :!Of]
+                 [:!Cj :!Oj]
+                 [:!Ck :!Ok]
+                 [:!Cu :!Ou]
+                 [:!Ci :!Oi]
+                 [:!Co :!Oo]
                  ]}
         ]
  }

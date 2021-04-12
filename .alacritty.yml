@@ -582,10 +582,19 @@ key_bindings:
   - { key: Return,   mods: Shift,   chars: "\x1b[13;2u" }
   - { key: Return,   mods: Control, chars: "\x1b[13;5u" }
 
+  - { key: A,        mods: Alt,     chars: "\x1ba"                       }
+  - { key: S,        mods: Alt,     chars: "\x1bs"                       }
+  - { key: D,        mods: Alt,     chars: "\x1bd"                       }
+  - { key: F,        mods: Alt,     chars: "\x1bf"                       }
   - { key: J,        mods: Alt,     chars: "\x1bj"                       }
   - { key: K,        mods: Alt,     chars: "\x1bk"                       }
   - { key: H,        mods: Alt,     chars: "\x1bh"                       }
   - { key: L,        mods: Alt,     chars: "\x1bl"                       }
+  - { key: U,        mods: Alt,     chars: "\x1bu"                       }
+  - { key: I,        mods: Alt,     chars: "\x1bi"                       }
+  - { key: O,        mods: Alt,     chars: "\x1bo"                       }
+
+  - { key: R,        mods: Alt,     chars: "\x1br"                       }
 
   #- { key: Paste,                                action: Paste          }
   #- { key: Copy,                                 action: Copy           }
