@@ -48,7 +48,8 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-abolish'
 Plug 'cohama/lexima.vim'
 Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-compe'
+" Plug 'hrsh7th/nvim-compe'
+Plug 'baldore/nvim-compe'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'hrsh7th/vim-vsnip'          " Only for LSP Snippets
@@ -122,7 +123,7 @@ endfunction
 " Base Config
 set encoding=utf-8
 set linebreak
-set showmatch               " show matching brackets
+" set showmatch               " show matching brackets
 set tabstop=2               " number of columns occupied by a tab character
 set softtabstop=2           " see multiple spaces as tabstops so <BS> does the right thing
 set shiftwidth=2            " width for autoindents
