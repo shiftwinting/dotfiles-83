@@ -44,16 +44,7 @@ highlight GitGutterChange guifg=#96E1EF
 
 let g:gitgutter_map_keys = 0
 
-function! GitGutterNextHunkCycle()
-  let line = line('.')
-  silent! GitGutterNextHunk
-  if line('.') == line
-    1
-    GitGutterNextHunk
-  endif
-endfunction
-
-nnoremap ]g :call GitGutterNextHunkCycle()<cr>
+nnoremap ]g :GitGutterNextHunk<cr>
 nnoremap [g :GitGutterPrevHunk<cr>
 
 nmap <leader>gs <Plug>(GitGutterStageHunk)

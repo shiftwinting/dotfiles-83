@@ -56,8 +56,7 @@ Plug 'hrsh7th/vim-vsnip'          " Only for LSP Snippets
 Plug 'hrsh7th/vim-vsnip-integ'    " Only for LSP Snippets
 Plug 'tsiemens/vim-aftercolors'
 Plug 'puremourning/vimspector'
-" Plug 'glepnir/lspsaga.nvim'
-Plug 'ckipp01/lspsaga.nvim', { 'branch': 'trimUpdate' }
+Plug 'glepnir/lspsaga.nvim'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-colorscheme-switcher'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
@@ -139,6 +138,7 @@ set signcolumn=yes
 set shell=zsh
 set pumheight=10
 set nowrap
+set nowrapscan
 
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noselect
