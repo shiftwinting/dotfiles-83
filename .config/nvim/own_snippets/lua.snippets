@@ -19,3 +19,9 @@ endsnippet
 snippet rmap "reload map example" i
 vim.api.nvim_set_keymap('n', '<leader><leader>r', [[ <Cmd>lua require('plenary.reload').reload_module('baldore.telescope')<CR> ]], { noremap = true, silent = true })
 endsnippet
+
+snippet if "if" i
+if $1 then
+	$0
+end
+endsnippet

@@ -14,10 +14,10 @@ augroup foldMethodMarkerOnVimFiles
   autocmd FileType vim,zsh setlocal foldmethod=marker sw=2 ts=2 et
 augroup END
 
-augroup OverwriteFoldedHiColor
-  autocmd!
-  autocmd ColorScheme nord highlight Folded guifg=#81A1C1
-augroup END
+" augroup OverwriteFoldedHiColor
+"   autocmd!
+"   autocmd ColorScheme nord highlight Folded guifg=#81A1C1
+" augroup END
 
 augroup Dirvish
   autocmd!
@@ -36,18 +36,18 @@ augroup templates
   autocmd BufNewFile *.editorconfig 0r ~/.config/nvim/templates/.editorconfig
 augroup END
 
-augroup stayNoLCD
-  autocmd!
-  autocmd User BufStaySavePre  if haslocaldir() | let w:lcd = getcwd() | cd - | cd - | endif
-  autocmd User BufStaySavePost if exists('w:lcd') | execute 'lcd' fnameescape(w:lcd) | unlet w:lcd | endif
-augroup END
+" augroup stayNoLCD
+"   autocmd!
+"   autocmd User BufStaySavePre  if haslocaldir() | let w:lcd = getcwd() | cd - | cd - | endif
+"   autocmd User BufStaySavePost if exists('w:lcd') | execute 'lcd' fnameescape(w:lcd) | unlet w:lcd | endif
+" augroup END
 
 augroup QuickfixBottom
   autocmd!
   autocmd BufWinEnter quickfix norm J
 augroup END
 
-au BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
+" au BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
 
 " Highlight yank
 au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=300}
