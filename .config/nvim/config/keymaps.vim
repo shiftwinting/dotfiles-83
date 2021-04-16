@@ -112,6 +112,22 @@ endfunction
 nnoremap <F6> :call Exec_on_term("normal")<CR>
 vnoremap <F6> :<c-u>call Exec_on_term("visual")<CR>
 
+" delete element from quickfix list
+" When using `dd` in the quickfix list, remove the item from the quickfix list.
+function! RemoveQFItem()
+  let curqfidx = line('.') - 1
+  let qfall = getqflist()
+  call remove(qfall, curqfidx)
+  call setqflist(qfall, 'r')
+  execute curqfidx + 1 . "cfirst"
+  :copen
+endfunction
+
+:command! RemoveQFItem :call RemoveQFItem()
+
+" Use map <buffer> to only map dd in the quickfix window. Requires +localmap
+autocmd FileType qf nnoremap <buffer> dd :RemoveQFItem<cr>
+
 " debug
 nnoremap <leader>m :<c-u>ccl \| Messages \| res +20<CR>
 nnoremap <leader>lr :<c-u>lua require('lspsetup.utils').reset_config()<CR>
