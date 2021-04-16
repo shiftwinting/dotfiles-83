@@ -49,6 +49,11 @@ augroup END
 
 " au BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
 
+augroup HiglightTODO
+  autocmd!
+  autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'TODO', -1)
+augroup END
+
 " Highlight yank
 au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=300}
 
