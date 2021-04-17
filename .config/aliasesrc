@@ -30,6 +30,7 @@ alias dco="docker-compose"
 # Config
 alias conf='lg --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias confg='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias cg='confg'
 
 # Zsh plugins
 alias zsh_install_plugin='antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh && source ~/.zshrc'
