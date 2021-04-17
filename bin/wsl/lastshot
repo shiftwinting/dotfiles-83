@@ -1,0 +1,9 @@
+#!/bin/bash
+# lastshot: copies the last screenshot path to the clipboard
+
+SHOTS_ROOT="/mnt/c/Users/Los osos/Desktop/screenshots"
+LAST_SHOT=$(ls -t "$SHOTS_ROOT" | head -n 1)
+
+echo "$SHOTS_ROOT/$LAST_SHOT"
+
+exit 0
