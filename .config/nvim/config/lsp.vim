@@ -2,7 +2,11 @@ lua require('lspsetup')
 lua require('baldore.telescope')
 
 " completion
+let g:lexima_no_default_rules = v:true
+call lexima#set_default_rules()
+
 inoremap <silent><expr> <c-n> compe#complete()
+inoremap <silent><expr> <CR>  compe#confirm(lexima#expand('<LT>CR>', 'i'))
 
 " nnoremap <silent> gd :Lspsaga preview_definition<CR>
 nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
