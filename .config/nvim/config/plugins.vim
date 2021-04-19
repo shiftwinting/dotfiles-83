@@ -4,16 +4,15 @@ let g:fzf_history_dir = '~/.config/nvim/fzf-history'
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 
 " Maps
-nnoremap <silent> <C-p> :Telescope find_files<cr>
+nnoremap <silent> <C-p> :Files<cr>
 nnoremap <silent> <leader>fl :lua require('baldore.telescope').buffer_lines()<cr>
-nnoremap <silent> <leader>fc :Telescope command_history<cr>
+nnoremap <silent> <leader>fc :History:<cr>
 nnoremap <silent> <leader>s :Telescope ultisnips<cr>
 nnoremap <silent> <leader>bb :Buffers<cr>
 nnoremap <silent> <leader>t :BTags<cr>
 nnoremap <silent> <leader>rg :Rg<cr>
 nnoremap <silent> <leader>* :Rg <C-R><C-W><cr>
 vnoremap <silent> <leader>* y:Rg <C-r>0<cr>
-nnoremap <silent> <leader>u :Telescope ultisnips<cr>
 cnoremap <C-e> <C-c>:Commands<cr>
 
 nmap <leader><tab> <plug>(fzf-maps-n)
@@ -146,7 +145,6 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 1
 let g:ale_hover_to_preview = 1
 let g:ale_set_loclist = 0
-let g:ale_virtualtext_cursor = 1
 
 " Custom Highlights
 hi ALEError gui=underline
@@ -242,16 +240,7 @@ nmap : <Plug>Sneak_;
 " }}}
 
 " Explainshell {{{
+" ❯ docker container run --name explainshell --restart always -p 5000:5000 -d spaceinvaderone/explainshell
 let $EXPLAINSHELL_ENDPOINT = "http://localhost:5000"
 " }}}
 
-" Vim-go {{{
-let g:go_def_mapping_enabled = 0
-let g:go_doc_keywordprg_enabled = 0
-let g:go_gopls_enabled = 0
-let g:go_code_completion_enabled = 0
-let g:go_fmt_autosave = 0
-let g:go_imports_autosave = 0
-" }}}
-
-" vim:sw=2 ts=2 et

@@ -3,7 +3,14 @@ require('telescope').setup{
   defaults = {
     prompt_position = "top",
     sorting_strategy = "ascending",
-  }
+  },
+  extensions = {
+    fzf = {
+      override_generic_sorter = false, -- override the generic sorter
+      override_file_sorter = true,     -- override the file sorter
+      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+    }
+  },
   -- defaults = {
   --   vimgrep_arguments = {
   --     'rg',
@@ -48,6 +55,7 @@ require('telescope').setup{
 
 require('telescope').load_extension('fzy_native')
 require('telescope').load_extension('ultisnips')
+require('telescope').load_extension('fzf')
 
 local M = {}
 
