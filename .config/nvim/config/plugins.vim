@@ -149,8 +149,8 @@ let g:ale_set_loclist = 0
 " Custom Highlights
 hi ALEError gui=underline
 
-nnoremap ]a :ALENextWrap<cr>
-nnoremap [a :ALEPreviousWrap<cr>
+nnoremap ]a :ALENext<cr>
+nnoremap [a :ALEPrevious<cr>
 
 " }}}
 
