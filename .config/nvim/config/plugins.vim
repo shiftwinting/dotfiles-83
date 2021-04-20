@@ -206,14 +206,16 @@ function! LightLineFixIndexFiles()
 endfunction
 " }}}
 
+" FIXME: Disabled until bug changing other working directories is fixed...
+" for now use <C-z> and run what you need. Go back with fg
 " Floaterm {{{
-let g:floaterm_autoclose = 1
-let g:floaterm_width = 0.95
-let g:floaterm_height = 0.95
+" let g:floaterm_autoclose = 1
+" let g:floaterm_width = 0.95
+" let g:floaterm_height = 0.95
 
-nnoremap <leader>gl :<C-u>FloatermNew lazygit<cr>
+" nnoremap <leader>gl :<C-u>FloatermNew lazygit<cr>
 
-command Conf FloatermNew lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME
+" command Conf FloatermNew lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME
 " }}}
 
 " Markdown Preview {{{
