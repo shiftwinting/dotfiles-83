@@ -5,9 +5,9 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 
 " Maps
 nnoremap <silent> <C-p> :Files<cr>
-nnoremap <silent> <leader>fl :lua require('baldore.telescope').buffer_lines()<cr>
-nnoremap <silent> <leader>fc :History:<cr>
-nnoremap <silent> <leader>s :Telescope ultisnips<cr>
+nnoremap <silent> <leader>sb :lua require('baldore.telescope').buffer_lines()<cr>
+nnoremap <silent> <leader>sc :History:<cr>
+nnoremap <silent> <leader>ss :Telescope ultisnips<cr>
 nnoremap <silent> <leader>bb :Buffers<cr>
 nnoremap <silent> <leader>t :BTags<cr>
 nnoremap <silent> <leader>rg :Rg<cr>
@@ -234,6 +234,8 @@ nnoremap ]d <cmd>lua require"illuminate".next_reference{wrap=true}<cr>
 " }}}
 
 " Vim Sneak {{{
+let g:sneak#label = 1
+
 map f <Plug>Sneak_f
 map F <Plug>Sneak_F
 map t <Plug>Sneak_t

@@ -1,5 +1,5 @@
 " common
-nnoremap <leader>w :w!<CR>
+nnoremap <leader>fs :w!<CR>
 nnoremap ; :
 map Q <nop>
 nnoremap <CR> :noh<CR><CR>
@@ -11,6 +11,9 @@ nnoremap <leader>ir :so %<cr>
 " reselect visual block after indent
 vnoremap < <gv
 vnoremap > >gv
+
+" Insert cool stuff
+inoremap <C-b> <Left>
 
 " make Y consistent with C and D. See :help Y.
 nnoremap Y y$
@@ -127,6 +130,12 @@ endfunction
 
 " Use map <buffer> to only map dd in the quickfix window. Requires +localmap
 autocmd FileType qf nnoremap <buffer> dd :RemoveQFItem<cr>
+
+" window utils
+nnoremap <leader>wh <C-w>h
+nnoremap <leader>wj <C-w>j
+nnoremap <leader>wk <C-w>k
+nnoremap <leader>wl <C-w>l
 
 " debug
 nnoremap <leader>m :<c-u>ccl \| Messages \| res +20<CR>

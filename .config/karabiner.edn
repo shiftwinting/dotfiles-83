@@ -70,6 +70,7 @@
                  [:d [:open "/Applications/Alacritty.app"]]
                  [:f [:open "/Applications/Obsidian.app"]]
                  [:g [:open "/Applications/Mattermost.app"]]
+                 [:e [:open "/Applications/Emacs.app"]]
                  ]}
 
         {:des   "browsers"
