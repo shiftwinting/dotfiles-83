@@ -59,5 +59,45 @@
       :n ";" #'evil-ex)
 
 ;; avy
-(map! :nv "C-s" #'evil-avy-goto-char-2)
+(map! :n "C-j" #'evil-avy-goto-char-2)
 (setq avy-all-windows t)
+
+(setq select-enable-primary t)
+(defun my-org-paste-image ()
+  "Paste an image into a time stamped unique-named file in the
+same directory as the org-buffer and insert a link to this file."
+  (interactive)
+  (let* ((target-file
+          (concat
+           (make-temp-name
+            (concat (buffer-file-name)
+                    "_"
+                    (format-time-string "%Y%m%d_%H%M%S_"))) ".png"))
+         (wsl-path
+          (concat (as-windows-path(file-name-directory target-file))
+                  "\\"
+                  (file-name-nondirectory target-file)))
+         (ps-script
+          (concat "(Get-Clipboard -Format image).Save('" wsl-path "')")))
+
+    (powershell ps-script)
+
+    (if (file-exists-p target-file)
+        (progn (insert (concat "[[" target-file "]]"))
+               (org-display-inline-images))
+      (user-error
+       "Error pasting the image, make sure you have an image in the clipboard!"))
+    ))
+
+(defun as-windows-path (unix-path)
+  "Takes a unix path and returns a matching WSL path
+(e.g. \\\\wsl$\\Ubuntu-20.04\\tmp)"
+  ;; substring removes the trailing \n
+  (substring
+   (shell-command-to-string
+    (concat "wslpath -w " unix-path)) 0 -1))
+
+(defun powershell (script)
+  "executes the given script within a powershell and returns its return value"
+  (call-process "powershell.exe" nil nil nil
+                "-Command" (concat "& {" script "}")))
