@@ -97,7 +97,7 @@ require'nvim-treesitter.configs'.setup {
 require'compe'.setup {
   enabled = true;
   debug = false;
-  min_length = 2;
+  -- min_length = 2;
   preselect = 'disable';
   -- throttle_time = ... number ...;
   -- source_timeout = ... number ...;

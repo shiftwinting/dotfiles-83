@@ -101,8 +101,8 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()
 
 " colorscheme base16-dracula
-" colorscheme base16-gruvbox-dark-medium
-colorscheme base16-gruvbox-light-medium
+colorscheme base16-gruvbox-dark-medium
+" colorscheme base16-gruvbox-light-medium
 
 set background=dark
 

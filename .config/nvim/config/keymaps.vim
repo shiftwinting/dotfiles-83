@@ -12,11 +12,11 @@ nnoremap <leader>ir :so %<cr>
 vnoremap < <gv
 vnoremap > >gv
 
-" Insert cool stuff
-inoremap <C-b> <Left>
-
 " make Y consistent with C and D. See :help Y.
 nnoremap Y y$
+
+" insert utils
+inoremap <C-f> <Right>
 
 " make n always search forward and N backward
 nnoremap <expr> n 'Nn'[v:searchforward]

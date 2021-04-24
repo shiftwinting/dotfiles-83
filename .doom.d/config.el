@@ -57,3 +57,7 @@
 ;; custom evil mappings
 (map! :n ":" #'evil-repeat-find-char
       :n ";" #'evil-ex)
+
+;; avy
+(map! :nv "C-s" #'evil-avy-goto-char-2)
+(setq avy-all-windows t)
