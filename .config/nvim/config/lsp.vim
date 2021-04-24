@@ -2,7 +2,9 @@ lua require('lspsetup')
 lua require('baldore.telescope')
 
 " completion
+" lexima config must be here
 let g:lexima_no_default_rules = v:true
+let g:lexima_ctrlh_as_backspace = 1
 call lexima#set_default_rules()
 
 inoremap <silent><expr> <c-n> compe#complete()

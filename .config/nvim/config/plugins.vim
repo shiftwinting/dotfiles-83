@@ -26,10 +26,6 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 
 " }}}
 
-" bbye {{{
-nnoremap <Leader>q :Bdelete<cr>
-" }}}
-
 " Git {{{
 let g:gitgutter_sign_added = '▌'
 let g:gitgutter_sign_modified = '▌'
@@ -115,10 +111,6 @@ let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsSnippetDirectories=["own_snippets"]
 
 nnoremap <space>ee :UltiSnipsEdit<cr>
-" }}}
-
-" Lexima {{{
-let g:lexima_ctrlh_as_backspace = 1
 " }}}
 
 " ALE {{{
