@@ -1,16 +1,18 @@
 " Fzf + Telescope {{{
 
 let g:fzf_history_dir = '~/.config/nvim/fzf-history'
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
+let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.4, 'yoffset': 1, 'border': 'top' } }
 
 " Maps
 nnoremap <silent> <C-p> :Files<cr>
+nnoremap <silent> <leader><leader> :Files<cr>
 nnoremap <silent> <leader>sb :lua require('baldore.telescope').buffer_lines()<cr>
 nnoremap <silent> <leader>sc :History:<cr>
 nnoremap <silent> <leader>ss :Telescope ultisnips<cr>
 nnoremap <silent> <leader>bb :Buffers<cr>
-nnoremap <silent> <leader>t :BTags<cr>
-nnoremap <silent> <leader>rg :Rg<cr>
+nnoremap <silent> <leader>fr :History<cr>
+" nnoremap <silent> <leader>t :BTags<cr>
+nnoremap <silent> <leader>rg :Rg!<cr>
 nnoremap <silent> <leader>* :Rg <C-R><C-W><cr>
 vnoremap <silent> <leader>* y:Rg <C-r>0<cr>
 cnoremap <C-e> <C-c>:Commands<cr>
@@ -20,8 +22,7 @@ xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
 
 " Insert
-" imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
 " }}}
@@ -232,7 +233,6 @@ map f <Plug>Sneak_f
 map F <Plug>Sneak_F
 map t <Plug>Sneak_t
 map T <Plug>Sneak_T
-nmap : <Plug>Sneak_;
 " }}}
 
 " Explainshell {{{

@@ -1,6 +1,6 @@
 " common
 nnoremap <leader>fs :w!<CR>
-nnoremap ; :
+nmap <expr> ; sneak#is_sneaking() ? "\<Plug>Sneak_;" : ":"
 map Q <nop>
 nnoremap <CR> :noh<CR><CR>
 
