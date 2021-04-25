@@ -20,6 +20,10 @@ inoremap {, {<cr>},<C-o>O
 inoremap [, [<cr>],<C-o>O
 inoremap (, (<cr>),<C-o>O
 
+" select first completion if possible
+inoremap <C-x><C-p> <C-x><C-p><C-p>
+inoremap <C-x><C-n> <C-x><C-n><C-n>
+
 " insert utils
 inoremap <C-l> <Right>
 inoremap <C-e> <C-o>$
