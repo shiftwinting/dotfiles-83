@@ -62,6 +62,10 @@
 (map! :n "C-j" #'evil-avy-goto-char-2)
 (setq avy-all-windows t)
 
+;; flycheck
+(setq flycheck-javascript-eslint-executable
+      (executable-find "eslint_d"))
+
 (setq select-enable-primary t)
 (defun my-org-paste-image ()
   "Paste an image into a time stamped unique-named file in the
@@ -96,8 +100,3 @@ same directory as the org-buffer and insert a link to this file."
   (substring
    (shell-command-to-string
     (concat "wslpath -w " unix-path)) 0 -1))
-
-(defun powershell (script)
-  "executes the given script within a powershell and returns its return value"
-  (call-process "powershell.exe" nil nil nil
-                "-Command" (concat "& {" script "}")))

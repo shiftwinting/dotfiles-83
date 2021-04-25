@@ -57,6 +57,16 @@ augroup END
 " Highlight yank
 au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=300}
 
+augroup yankRestoreCursor
+    autocmd!
+    autocmd VimEnter,CursorMoved *
+        \ let s:cursor = getpos('.')
+    autocmd TextYankPost *
+        \ if v:event.operator ==? 'y' |
+            \ call setpos('.', s:cursor) |
+        \ endif
+augroup END
+
 " Autoread inside vim
 au FocusGained,BufEnter * :checktime
 
