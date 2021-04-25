@@ -22,6 +22,7 @@ inoremap (, (<cr>),<C-o>O
 
 " insert utils
 inoremap <C-l> <Right>
+inoremap <C-e> <C-o>$
 
 " make n always search forward and N backward
 nnoremap <expr> n 'Nn'[v:searchforward]
