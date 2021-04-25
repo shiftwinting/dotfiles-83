@@ -15,8 +15,13 @@ vnoremap > >gv
 " make Y consistent with C and D. See :help Y.
 nnoremap Y y$
 
+" painless brackets with commas
+inoremap {, {<cr>},<C-o>O
+inoremap [, [<cr>],<C-o>O
+inoremap (, (<cr>),<C-o>O
+
 " insert utils
-inoremap <C-f> <Right>
+inoremap <C-l> <Right>
 
 " make n always search forward and N backward
 nnoremap <expr> n 'Nn'[v:searchforward]
