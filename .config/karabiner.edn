@@ -68,9 +68,8 @@
                  [:a [:open "/Applications/Brave Browser.app"]]
                  [:s [:open "/Applications/Slack.app"]]
                  [:d [:open "/Applications/Alacritty.app"]]
-                 [:f [:open "/Applications/Obsidian.app"]]
+                 [:f [:open "/Applications/Emacs.app"]]
                  [:g [:open "/Applications/Mattermost.app"]]
-                 [:e [:open "/Applications/Emacs.app"]]
                  ]}
 
         {:des   "browsers"
