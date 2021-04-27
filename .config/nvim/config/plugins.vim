@@ -73,7 +73,7 @@ nnoremap <leader>gb :Gblame<cr>
 " }}}
 
 " incsearch {{{
-let g:asterisk#keeppos = 1
+" let g:asterisk#keeppos = 1
 " }}}
 
 " MatchTagAlways {{{
@@ -223,16 +223,29 @@ hi def link LspReferenceWrite LspIlluminate
 hi def link LspReferenceRead LspIlluminate
 
 nnoremap [d <cmd>lua require"illuminate".next_reference{reverse=true,wrap=true}<cr>
-nnoremap ]d <cmd>lua require"illuminate".next_reference{wrap=true}<cr>
+nnoremap ]d <cmd>lua require"illuminate".next_reference{jrap=true}<cr>
+" }}}
+
+" Tmux navigator {{{
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 " }}}
 
 " Vim Sneak {{{
-let g:sneak#label = 1
+let g:sneak#label = 0
+let g:sneak#s_next = 1
 
 map f <Plug>Sneak_f
 map F <Plug>Sneak_F
 map t <Plug>Sneak_t
 map T <Plug>Sneak_T
+
+nnoremap <silent> <c-j> :<C-U>call sneak#wrap('', 2, 0, 2, 2)<CR>
+xnoremap <silent> <c-j> :<C-U>call sneak#wrap(visualmode(), 2, 0, 2, 2)<CR>
+onoremap <silent> <c-j> :<C-U>call sneak#wrap(v:operator, 2, 0, 2, 2)<CR>
+
 " }}}
 
 " Explainshell {{{

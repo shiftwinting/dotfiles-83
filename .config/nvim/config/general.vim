@@ -31,6 +31,7 @@ Plug 'tpope/vim-repeat'
 Plug 'SirVer/ultisnips'
 Plug 'itchyny/lightline.vim'
 Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'justinmk/vim-dirvish'
 Plug 'Valloric/MatchTagAlways'
 Plug 'AndrewRadev/tagalong.vim'
@@ -99,8 +100,8 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()
 
 " colorscheme base16-dracula
-colorscheme base16-gruvbox-dark-medium
-" colorscheme base16-gruvbox-light-medium
+" colorscheme base16-gruvbox-dark-medium
+colorscheme base16-gruvbox-light-medium
 
 set background=dark
 
