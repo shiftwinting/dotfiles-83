@@ -96,9 +96,30 @@ same directory as the org-buffer and insert a link to this file."
     ))
 
 (defun as-windows-path (unix-path)
-  "Takes a unix path and returns a matching WSL path
-(e.g. \\\\wsl$\\Ubuntu-20.04\\tmp)"
+  "Takes a unix path and returns a matching WSL path (e.g. \\\\wsl$\\Ubuntu-20.04\\tmp)"
   ;; substring removes the trailing \n
   (substring
    (shell-command-to-string
     (concat "wslpath -w " unix-path)) 0 -1))
+
+;; evil star stay
+(defun my/star-keep-position ()
+  (interactive)
+  (case evil-search-module
+    (evil-search (progn
+                  (evil-ex-search-word-forward)
+                  (evil-ex-search-previous)))
+    (isearch (progn
+               (evil-search-word-forward)
+               (evil-search-previous)))))
+
+(defun my/visualstar-keep-position ()
+  (interactive)
+  (when (region-active-p)
+    (evil-visualstar/begin-search (region-beginning) (region-end) t)
+    (case evil-search-module
+      (evil-search (evil-ex-search-previous))
+      (isearch (evil-search-previous)))))
+
+(map! :n "*" 'my/star-keep-position)
+(map! :v "*" 'my/visualstar-keep-position)

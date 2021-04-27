@@ -73,7 +73,7 @@ nnoremap <leader>gb :Gblame<cr>
 " }}}
 
 " incsearch {{{
-" let g:asterisk#keeppos = 1
+let g:asterisk#keeppos = 1
 " }}}
 
 " MatchTagAlways {{{
