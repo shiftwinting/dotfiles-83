@@ -25,7 +25,8 @@ inoremap <C-x><C-p> <C-x><C-p><C-p>
 inoremap <C-x><C-n> <C-x><C-n><C-n>
 
 " insert utils
-inoremap <C-l> <Right>
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
 inoremap <C-e> <C-o>$
 
 " make n always search forward and N backward
@@ -90,15 +91,11 @@ nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
 nnoremap <leader>ef :e ~/.config/nvim/after/ftplugin/<C-R>=&filetype<CR>.vim<CR>
 
 " terminal
-tnoremap JK <C-\><C-n>
+tnoremap kj <C-\><C-n>G
+tnoremap JK <C-\><C-n>G
 tnoremap KK <C-\><C-n>G
 tnoremap <expr> <A-r> '<C-\><C-n>"' . nr2char(getchar()) . 'pi'
-nnoremap <leader>t :ter<cr>
-
-tnoremap <A-h> <C-\><C-N><C-w>h
-tnoremap <A-j> <C-\><C-N><C-w>j
-tnoremap <A-k> <C-\><C-N><C-w>k
-tnoremap <A-l> <C-\><C-N><C-w>l
+nnoremap <leader>oT :term<cr>
 
 " send paragraph under cursor to terminal
 function! Exec_on_term(cmd)

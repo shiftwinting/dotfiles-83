@@ -150,6 +150,8 @@ set diffopt+=vertical
 set nobackup
 set nowritebackup
 
+set clipboard+=unnamedplus
+
 let mapleader=" "
 
 set scrolloff=2

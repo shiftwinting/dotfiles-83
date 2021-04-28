@@ -16,13 +16,17 @@ are the three important ones:
 They all accept either a font-spec, font string ("Input Mono-12"), or xlfd font string. You generally only need these two:
 #+begin_src elisp
 (setq doom-font (font-spec :family "Hack" :size 15))
-(setq line-spacing 8)
 #+end_src
 
 * Theme
 There are two ways to load a theme. Both assume the theme is installed and available. You can either set ~doom-theme~ or manually load a theme with the ~load-theme~ function. This is the default:
 #+begin_src elisp
 (setq doom-theme 'doom-snazzy)
+#+end_src
+
+* Visual
+#+begin_src elisp
+(setq scroll-margin 2)
 #+end_src
 
 * Org + Roam
@@ -147,3 +151,4 @@ same directory as the org-buffer and insert a link to this file."
             (lambda ()
               (add-hook 'after-save-hook 'gofmt nil 'make-it-local))))
 #+end_src
+** Javascript

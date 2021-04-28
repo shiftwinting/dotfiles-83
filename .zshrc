@@ -86,6 +86,10 @@ export FZF_DEFAULT_OPTS="
     --bind 'ctrl-e:execute(echo {+} | xargs -o nvim)'
     --bind 'alt-k:preview-up'
     --bind 'alt-j:preview-down'
+    --bind 'alt-n:next-history'
+    --bind 'alt-p:previous-history'
+    --bind 'ctrl-n:down'
+    --bind 'ctrl-p:up'
     "
 
 # fzf's command
