@@ -60,6 +60,7 @@ Plug 'tpope/vim-obsession'
 Plug 'RRethy/vim-illuminate'
 Plug 'justinmk/vim-sneak'
 Plug 'szw/vim-maximizer'
+Plug 'vijaymarupudi/nvim-fzf'
 
 " TODO: Take a look at this
 " https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils

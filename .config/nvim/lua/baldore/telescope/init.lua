@@ -1,3 +1,6 @@
+local fzf = require('fzf')
+local action = require('fzf.actions').action
+
 -- Telescope
 require('telescope').setup{
   defaults = {
@@ -59,22 +62,91 @@ require('telescope').load_extension('fzf')
 
 local M = {}
 
+-- let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.4, 'yoffset': 1, 'border': 'top' } }
+local bottom_layout = {
+  width = 80,
+  height = 40,
+  col = 0,
+  row = 20,
+  relative = 'editor',
+  border = 'top'
+}
+
 M.buffer_lines = function()
-  require('telescope.builtin').current_buffer_fuzzy_find({
-    prompt_title = "< buffer lines >",
-    attach_mappings = function(prompt_bufnr, map)
+  -- local bufnr = vim.api.nvim_get_current_buf()
+  local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+  coroutine.wrap(function ()
+    -- local preview_function = action(function (args)
+    --   if args then
+    --     local colorscheme = args[1]
+    --     vim.cmd("colorscheme " .. colorscheme)
+    --   end
+    -- end)
 
-      -- Paste line
-      map('i', '<C-f>', function(bufnr)
-        local content = require('telescope.actions.state').get_selected_entry()
-        require('telescope.actions').close(prompt_bufnr)
-        vim.fn.append(vim.fn.line('.'), content.display)
-        vim.fn.execute('norm j')
-      end)
+    -- local current_colorscheme = get_current_colorscheme()
+    local choices = fzf.fzf(lines)
+    -- if not choices then
+    --   vim.cmd("colorscheme " .. current_colorscheme)
+    -- else
+    --   vim.cmd("colorscheme" .. choices[1])
+    -- end
+  end)()
+  -- require('telescope.builtin').current_buffer_fuzzy_find({
+  --   prompt_title = "< buffer lines >",
+  --   attach_mappings = function(prompt_bufnr, map)
 
-      return true
-    end
-  })
+  --     -- Paste line
+  --     map('i', '<C-f>', function(bufnr)
+  --       local content = require('telescope.actions.state').get_selected_entry()
+  --       require('telescope.actions').close(prompt_bufnr)
+  --       vim.fn.append(vim.fn.line('.'), content.display)
+  --       vim.fn.execute('norm j')
+  --     end)
+
+  --     return true
+  --   end
+  -- })
 end
+
+-- Colorscheme
+local function get_colorschemes()
+  local colorschemes_vim_files = vim.fn.globpath(vim.o.rtp, 'colors/*.vim', true, true)
+  local colorschemes = {}
+  for _, file in ipairs(colorschemes_vim_files) do
+    local colorscheme = vim.fn.fnamemodify(file, ':t:r')
+    table.insert(colorschemes, colorscheme)
+  end
+
+  return colorschemes
+end
+
+local function get_current_colorscheme()
+  if vim.g.colors_name then
+    return vim.g.colors_name
+  else
+    return 'default'
+  end
+end
+
+M.colorschemes = function(params)
+  coroutine.wrap(function ()
+    local preview_function = action(function (args)
+      if args then
+        local colorscheme = args[1]
+        vim.cmd("colorscheme " .. colorscheme)
+      end
+    end)
+
+    local current_colorscheme = get_current_colorscheme()
+    local choices = fzf.fzf(get_colorschemes(), "--preview=" .. preview_function .. " --preview-window right:0")
+    if not choices then
+      vim.cmd("colorscheme " .. current_colorscheme)
+    else
+      vim.cmd("colorscheme" .. choices[1])
+    end
+  end)()
+end
+
+vim.api.nvim_set_keymap('n', '<leader><leader>r', [[ :lua require('plenary.reload').reload_module('baldore.telescope')<CR> :lua require('baldore.telescope').buffer_lines()<CR> ]], { noremap = true, silent = true })
 
 return M

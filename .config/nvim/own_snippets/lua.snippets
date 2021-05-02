@@ -25,3 +25,17 @@ if $1 then
 	$0
 end
 endsnippet
+
+snippet req "require" i
+local $1 = require('$0')
+endsnippet
+
+snippet l "local"
+local $1 = $0
+endsnippet
+
+snippet foreach "for ipairs"
+for $1 in ipairs($2) do
+	$0
+end
+endsnippet

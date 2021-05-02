@@ -50,3 +50,4 @@
 ;(unpin! t)
 
 (package! eslintd-fix)
+(package! lua-mode)

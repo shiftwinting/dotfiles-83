@@ -109,6 +109,7 @@ require'compe'.setup {
     buffer = true;
     vsnip = true;
     nvim_lsp = true;
+    nvim_lua = true;
     ultisnips = true;
     -- nvim_lua = { ... overwrite source configuration ... };
   };
