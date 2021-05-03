@@ -15,7 +15,7 @@ are the three important ones:
 - ~doom-big-font~ -- used for ~doom-big-font-mode~. Use this for presentations or streaming.
 They all accept either a font-spec, font string ("Input Mono-12"), or xlfd font string. You generally only need these two:
 #+begin_src elisp
-(setq doom-font (font-spec :family "Hack" :size 15))
+(setq doom-font (font-spec :family "Hack" :size 14))
 #+end_src
 
 * Theme
@@ -29,10 +29,19 @@ There are two ways to load a theme. Both assume the theme is installed and avail
 (setq scroll-margin 2)
 #+end_src
 
+* Search
+#+begin_src elisp
+(setq lazy-highlight-cleanup nil)
+(setq lazy-highlight-initial-delay 0)
+#+end_src
+
 * Org + Roam
 #+begin_src elisp
 (setq org-directory (or (getenv "ORGDIR") "~/org"))
 (setq org-roam-directory (or (getenv "ROAMDIR") "~/roam"))
+
+;; close done tasks with time
+(setq org-log-done 'note)
 #+end_src
 
 * Line Numbers
@@ -40,6 +49,7 @@ This determines the style of line numbers in effect. If set to ~nil~, line numbe
 For relative line numbers, set this to ~relative~.
 #+begin_src elisp
 (setq display-line-numbers-type t)
+
 #+end_src
 
 * Macros
@@ -70,6 +80,9 @@ Only for information.
 
 (map! :n ":" #'evil-repeat-find-char
       :n ";" #'evil-ex)
+
+(map! :n "C-x" #'evil-numbers/dec-at-pt
+      :n "C-a" #'evil-numbers/inc-at-pt)
 #+end_src
 
 ** Evil star stay
@@ -141,6 +154,11 @@ same directory as the org-buffer and insert a link to this file."
 #+end_src
 
 * Languages
+** General
+#+begin_src elisp
+(global-eldoc-mode -1)
+#+end_src
+
 ** Go
 #+begin_src elisp
 (setq gofmt-command "goimports")
@@ -151,4 +169,8 @@ same directory as the org-buffer and insert a link to this file."
             (lambda ()
               (add-hook 'after-save-hook 'gofmt nil 'make-it-local))))
 #+end_src
+
 ** Javascript
+#+begin_src elisp
+(add-hook 'js2-mode-hook 'eslintd-fix-mode)
+#+end_src

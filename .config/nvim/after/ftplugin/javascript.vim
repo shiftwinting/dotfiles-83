@@ -1,3 +1,7 @@
+" Config
+setlocal foldmethod=expr
+setlocal foldexpr=nvim_treesitter#foldexpr()
+
 function! s:generate_relative_js(path)
   let target = getcwd() . '/' . (join(a:path))
   let base = expand('%:p:h')
@@ -36,3 +40,5 @@ vnoremap <leader>is :sort /'.*'/ r<CR>
 
 " function text object
 onoremap af :normal va{V<CR>
+
+

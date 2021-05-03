@@ -67,7 +67,7 @@ local bottom_layout = {
   width = 999,
   height = 12,
   col = 0,
-  row = 30,
+  row = 100,
   relative = 'editor',
   border = false,
 }
@@ -77,9 +77,10 @@ M.buffer_lines = function()
   local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
   local lines_data = {}
   for i, line in ipairs(lines) do
-    lines_data[line] = {
-      line_nr = i
-    }
+    table.insert(lines_data, i..'\t'..line)
+    -- lines_data[line] = {
+    --   line_nr = i
+    -- }
   end
 
   coroutine.wrap(function ()
@@ -91,7 +92,7 @@ M.buffer_lines = function()
     -- end)
 
     -- local current_colorscheme = get_current_colorscheme()
-    local choices = fzf.fzf(lines, '', bottom_layout)
+    local choices = fzf.fzf(lines_data, '--delimiter="\t" --nth=2', bottom_layout)
     print(vim.inspect(choices))
     -- if not choices then
     --   vim.cmd("colorscheme " .. current_colorscheme)

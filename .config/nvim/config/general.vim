@@ -63,11 +63,7 @@ Plug 'szw/vim-maximizer'
 Plug 'vijaymarupudi/nvim-fzf'
 
 " TODO: Take a look at this
-" https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils
-" lightline lua alternatives
-" https://github.com/glepnir/galaxyline.nvim -> Lightline replacement
-" https://github.com/tjdevries/express_line.nvim
-" https://github.com/hoob3rt/lualine.nvim
+" https://github.com/kdav5758/TrueZen.nvim/blob/main/README.md#-installation
 
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -101,8 +97,8 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()
 
 " colorscheme base16-dracula
-" colorscheme base16-gruvbox-dark-medium
-colorscheme base16-gruvbox-light-medium
+colorscheme base16-gruvbox-dark-medium
+" colorscheme base16-gruvbox-light-medium
 
 set background=dark
 

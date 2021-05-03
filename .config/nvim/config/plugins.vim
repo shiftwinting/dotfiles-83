@@ -7,7 +7,8 @@ let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.4, 'yoffset': 1, 'borde
 nnoremap <silent> <C-p> :Files<cr>
 nnoremap <silent> <leader><leader> :Files<cr>
 nnoremap <silent> <leader>. :exec 'Files ' . getcwd() . '/' . expand('%:h')<cr>
-nnoremap <silent> <leader>sb :lua require('baldore.telescope').buffer_lines()<cr>
+" nnoremap <silent> <leader>sb :lua require('baldore.telescope').buffer_lines()<cr>
+nnoremap <silent> <leader>sb :BLines<cr>
 nnoremap <silent> <leader>sc :History:<cr>
 nnoremap <silent> <leader>ss :Telescope ultisnips<cr>
 nnoremap <silent> <leader>bb :Buffers<cr>
@@ -145,8 +146,6 @@ hi ALEError gui=underline
 
 nnoremap ]a :ALENext<cr>
 nnoremap [a :ALEPrevious<cr>
-nnoremap ]e :ALENext<cr>
-nnoremap [e :ALEPrevious<cr>
 
 " }}}
 
