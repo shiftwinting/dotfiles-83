@@ -64,17 +64,24 @@ local M = {}
 
 -- let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.4, 'yoffset': 1, 'border': 'top' } }
 local bottom_layout = {
-  width = 80,
-  height = 40,
+  width = 999,
+  height = 12,
   col = 0,
-  row = 20,
+  row = 30,
   relative = 'editor',
-  border = 'top'
+  border = false,
 }
 
 M.buffer_lines = function()
   -- local bufnr = vim.api.nvim_get_current_buf()
   local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+  local lines_data = {}
+  for i, line in ipairs(lines) do
+    lines_data[line] = {
+      line_nr = i
+    }
+  end
+
   coroutine.wrap(function ()
     -- local preview_function = action(function (args)
     --   if args then
@@ -84,7 +91,8 @@ M.buffer_lines = function()
     -- end)
 
     -- local current_colorscheme = get_current_colorscheme()
-    local choices = fzf.fzf(lines)
+    local choices = fzf.fzf(lines, '', bottom_layout)
+    print(vim.inspect(choices))
     -- if not choices then
     --   vim.cmd("colorscheme " .. current_colorscheme)
     -- else
@@ -147,6 +155,6 @@ M.colorschemes = function(params)
   end)()
 end
 
-vim.api.nvim_set_keymap('n', '<leader><leader>r', [[ :lua require('plenary.reload').reload_module('baldore.telescope')<CR> :lua require('baldore.telescope').buffer_lines()<CR> ]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>lr', [[ :lua require('plenary.reload').reload_module('baldore.telescope')<CR> :lua require('baldore.telescope').buffer_lines()<CR> ]], { noremap = true, silent = true })
 
 return M

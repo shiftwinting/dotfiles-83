@@ -1,7 +1,7 @@
 " Fzf + Telescope {{{
 
 let g:fzf_history_dir = '~/.config/nvim/fzf-history'
-let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.4, 'yoffset': 1, 'border': 'top' } }
+let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.4, 'yoffset': 1, 'border': 'none' } }
 
 " Maps
 nnoremap <silent> <C-p> :Files<cr>
