@@ -79,9 +79,8 @@ Only for information.
 (setq evil-snipe-scope 'buffer)
 
 (map! :n ":" #'evil-repeat-find-char
-      :n ";" #'evil-ex)
-
-(map! :n "C-x" #'evil-numbers/dec-at-pt
+      :n ";" #'evil-ex
+      :n "C-x" #'evil-numbers/dec-at-pt
       :n "C-a" #'evil-numbers/inc-at-pt)
 #+end_src
 

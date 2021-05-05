@@ -96,10 +96,6 @@ let g:tagalong_additional_filetypes = ['javascript']
 let test#strategy = "neovim"
 " }}}
 
-" Yank Highlight {{{
-let g:highlightedyank_highlight_duration = 400
-"}}}
-
 " Vim Asterisk {{{
 map *  <Plug>(asterisk-z*)
 "}}}
@@ -117,8 +113,8 @@ nnoremap <space>ee :UltiSnipsEdit<cr>
 " }}}
 
 " ALE {{{
-let g:ale_javascript_eslint_executable = 'eslint_d'
-let g:ale_javascript_eslint_use_global = 1
+" let g:ale_javascript_eslint_executable = 'eslint_d'
+" let g:ale_javascript_eslint_use_global = 1
 let g:ale_linters = {
       \   'javascript': ['eslint'],
       \   'javascriptreact': ['eslint'],
@@ -126,10 +122,10 @@ let g:ale_linters = {
       \   'typescriptreact': ['eslint'],
       \   'go': ['golangci-lint'],
       \}
+" \   'javascript': ['eslint'],
+ "     \   'javascriptreact': ['eslint'],
 let g:ale_fixers = {
       \   'vue': ['eslint'],
-      \   'javascript': ['eslint'],
-      \   'javascriptreact': ['eslint'],
       \   'typescript': ['eslint'],
       \   'typescriptreact': ['eslint'],
       \   'python': ['black'],

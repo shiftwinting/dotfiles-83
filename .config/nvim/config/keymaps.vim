@@ -8,6 +8,9 @@ nnoremap <CR> :noh<CR><CR>
 nnoremap <silent> <leader>ie :tabe ~/.config/nvim/config/general.vim \| tcd ~/.config/nvim<cr>
 nnoremap <leader>ir :so %<cr>
 
+" previous buffer
+nnoremap <leader>, :b#<cr>
+
 " reselect visual block after indent
 vnoremap < <gv
 vnoremap > >gv
@@ -134,6 +137,28 @@ function! RemoveQFItem()
 endfunction
 
 :command! RemoveQFItem :call RemoveQFItem()
+
+" open the github plugins url
+function! OpenPluginDocs()
+    let github_path = 'https://github.com/'
+    let quotes_text_regex = '\v([''"])(.{-})\1'
+    let currentline = trim(getline('.'))
+    if matchstr(currentline, '^Plug') == ''
+        throw "Current line doesn't match plugin pattern."
+    endif
+    let plugin_path = matchstr(currentline, quotes_text_regex)[1:-2]
+    call system('open ' . github_path . plugin_path)
+endfunction
+
+command! OpenPluginDocs :call OpenPluginDocs()
+
+" util to show highlight groups
+function! ShowHighlightGroups()
+    let l:s = synID(line('.'), col('.'), 1)
+    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+endfun
+
+command! ShowHighlightGroups :call ShowHighlightGroups()
 
 " Use map <buffer> to only map dd in the quickfix window. Requires +localmap
 autocmd FileType qf nnoremap <buffer> dd :RemoveQFItem<cr>

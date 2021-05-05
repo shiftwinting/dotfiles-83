@@ -16,6 +16,7 @@ let g:polyglot_disabled = ['autoindent']
 " Plugins {{{
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'vijaymarupudi/nvim-fzf'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mattn/emmet-vim'
 Plug 'airblade/vim-gitgutter'
@@ -60,10 +61,8 @@ Plug 'tpope/vim-obsession'
 Plug 'RRethy/vim-illuminate'
 Plug 'justinmk/vim-sneak'
 Plug 'szw/vim-maximizer'
-Plug 'vijaymarupudi/nvim-fzf'
 
 " TODO: Take a look at this
-" https://github.com/kdav5758/TrueZen.nvim/blob/main/README.md#-installation
 
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -147,7 +146,7 @@ set diffopt+=vertical
 set nobackup
 set nowritebackup
 
-set clipboard+=unnamedplus
+" set clipboard+=unnamedplus
 
 let mapleader=" "
 
