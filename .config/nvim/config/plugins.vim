@@ -113,8 +113,8 @@ nnoremap <space>ee :UltiSnipsEdit<cr>
 " }}}
 
 " ALE {{{
-" let g:ale_javascript_eslint_executable = 'eslint_d'
-" let g:ale_javascript_eslint_use_global = 1
+let g:ale_javascript_eslint_executable = 'eslint_d'
+let g:ale_javascript_eslint_use_global = 1
 let g:ale_linters = {
       \   'javascript': ['eslint'],
       \   'javascriptreact': ['eslint'],
@@ -122,12 +122,12 @@ let g:ale_linters = {
       \   'typescriptreact': ['eslint'],
       \   'go': ['golangci-lint'],
       \}
-" \   'javascript': ['eslint'],
- "     \   'javascriptreact': ['eslint'],
 let g:ale_fixers = {
       \   'vue': ['eslint'],
       \   'typescript': ['eslint'],
       \   'typescriptreact': ['eslint'],
+      \   'javascript': ['eslint'],
+      \   'javascriptreact': ['eslint'],
       \   'python': ['black'],
       \   'go': ['goimports'],
       \   'dart': ['dartfmt'],
@@ -231,7 +231,7 @@ nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 " }}}
 
-" Vim Sneak {{{
+" Vim Sneak + EasyMotion {{{
 let g:sneak#label = 0
 let g:sneak#s_next = 1
 
@@ -240,9 +240,8 @@ map F <Plug>Sneak_F
 map t <Plug>Sneak_t
 map T <Plug>Sneak_T
 
-nnoremap <silent> <c-j> :<C-U>call sneak#wrap('', 2, 0, 2, 2)<CR>
-xnoremap <silent> <c-j> :<C-U>call sneak#wrap(visualmode(), 2, 0, 2, 2)<CR>
-onoremap <silent> <c-j> :<C-U>call sneak#wrap(v:operator, 2, 0, 2, 2)<CR>
+let g:EasyMotion_do_mapping = 0
+nmap <c-j> <Plug>(easymotion-overwin-f2)
 
 " }}}
 

@@ -42,6 +42,9 @@ There are two ways to load a theme. Both assume the theme is installed and avail
 
 ;; close done tasks with time
 (setq org-log-done 'note)
+
+;; avoid org noter opening new frames
+(setq org-noter-always-create-frame nil)
 #+end_src
 
 * Line Numbers

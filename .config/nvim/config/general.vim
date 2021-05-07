@@ -61,6 +61,7 @@ Plug 'tpope/vim-obsession'
 Plug 'RRethy/vim-illuminate'
 Plug 'justinmk/vim-sneak'
 Plug 'szw/vim-maximizer'
+Plug 'easymotion/vim-easymotion'
 
 " TODO: Take a look at this
 
@@ -192,5 +193,12 @@ set path+=**
 set wildignore+=**/node_modules/**
 set wildcharm=<C-Z>
 set wildignorecase
+
+" TODO: try to remove the bottom bar...
+set noshowmode
+set noshowcmd
+set noruler
+set laststatus=-
+set statusline=0
 
 " vim:sw=2 ts=2 et

@@ -2,14 +2,14 @@
 nnoremap <leader>fs :w!<CR>
 nmap <expr> ; sneak#is_sneaking() ? "\<Plug>Sneak_;" : ":"
 map Q <nop>
-nnoremap <CR> :noh<CR><CR>
+nnoremap <silent> <CR> :noh \| echo<CR>
 
 " quick init.vim changes
 nnoremap <silent> <leader>ie :tabe ~/.config/nvim/config/general.vim \| tcd ~/.config/nvim<cr>
-nnoremap <leader>ir :so %<cr>
+nnoremap <silent> <leader>ir :so %<cr>
 
 " previous buffer
-nnoremap <leader>, :b#<cr>
+nnoremap <silent> <leader>, :b#<cr>
 
 " reselect visual block after indent
 vnoremap < <gv
