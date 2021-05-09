@@ -84,7 +84,7 @@ nnoremap <leader>P "*P
 nnoremap <leader>eh :e %:h/
 
 " select pasted text
-nnoremap gp `[v`]
+" nnoremap gp `[v`]
 
 " add numbered jumps to jumplist
 nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
@@ -97,6 +97,7 @@ nnoremap <leader>ef :e ~/.config/nvim/after/ftplugin/<C-R>=&filetype<CR>.vim<CR>
 tnoremap kj <C-\><C-n>G
 tnoremap JK <C-\><C-n>G
 tnoremap KK <C-\><C-n>G
+tnoremap ,, <C-\><C-n>G
 tnoremap <expr> <A-r> '<C-\><C-n>"' . nr2char(getchar()) . 'pi'
 nnoremap <leader>oT :term<cr>
 

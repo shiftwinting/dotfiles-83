@@ -14,6 +14,7 @@ augroup foldMethodMarkerOnVimFiles
   autocmd FileType vim,zsh setlocal foldmethod=marker sw=2 ts=2 et
 augroup END
 
+" left here as example
 " augroup OverwriteFoldedHiColor
 "   autocmd!
 "   autocmd ColorScheme nord highlight Folded guifg=#81A1C1
@@ -35,12 +36,6 @@ augroup templates
   autocmd!
   autocmd BufNewFile *.editorconfig 0r ~/.config/nvim/templates/.editorconfig
 augroup END
-
-" augroup stayNoLCD
-"   autocmd!
-"   autocmd User BufStaySavePre  if haslocaldir() | let w:lcd = getcwd() | cd - | cd - | endif
-"   autocmd User BufStaySavePost if exists('w:lcd') | execute 'lcd' fnameescape(w:lcd) | unlet w:lcd | endif
-" augroup END
 
 augroup QuickfixBottom
   autocmd!
@@ -65,6 +60,10 @@ augroup yankRestoreCursor
         \ if v:event.operator ==? 'y' |
             \ call setpos('.', s:cursor) |
         \ endif
+augroup END
+
+augroup terminalOptions
+  au TermOpen * setlocal nonumber norelativenumber
 augroup END
 
 " Autoread inside vim
