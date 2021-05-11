@@ -62,6 +62,7 @@ Plug 'RRethy/vim-illuminate'
 Plug 'justinmk/vim-sneak'
 Plug 'szw/vim-maximizer'
 Plug 'easymotion/vim-easymotion'
+Plug 'kassio/neoterm'
 
 " TODO: Take a look at this
 
