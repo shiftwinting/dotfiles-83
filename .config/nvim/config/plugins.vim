@@ -147,30 +147,8 @@ nnoremap [a :ALEPrevious<cr>
 
 " Lightline {{{
 let g:lightline = {
-      \  'colorscheme': 'dracula',
-      \  'active': {
-      \    'left':  [ [ 'mode', 'paste' ], [ 'readonly', 'filenameOrLastFolderOfIndex', 'modified' ] ],
-      \    'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'filetype' ] ]
-      \  },
-      \  'component_function': {
-      \    'gitbranch': 'fugitive#head',
-      \    'filenameOrLastFolderOfIndex': 'LightLineFixIndexFiles',
-      \  },
       \  'tab_component_function': {
       \    'cwdtail': 'GetCWDTail'
-      \  },
-      \  'mode_map': {
-      \    'n' : 'N',
-      \    'i' : 'I',
-      \    'R' : 'R',
-      \    'v' : 'V',
-      \    'V' : 'VL',
-      \    "\<C-v>": 'VB',
-      \    'c' : 'C',
-      \    's' : 'S',
-      \    'S' : 'S',
-      \    "\<C-s>": 'SB',
-      \    't': 'T',
       \  },
       \  'tab': {
       \     'active': [ 'cwdtail', 'modified' ],
