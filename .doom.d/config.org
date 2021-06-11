@@ -41,10 +41,13 @@ There are two ways to load a theme. Both assume the theme is installed and avail
 (setq org-roam-directory (or (getenv "ROAMDIR") "~/roam"))
 
 ;; close done tasks with time
-(setq org-log-done 'note)
+(setq org-log-done 'time)
 
 ;; avoid org noter opening new frames
 (setq org-noter-always-create-frame nil)
+
+;; hide everything by default
+(setq org-hide-block-startup t)
 #+end_src
 
 * Line Numbers

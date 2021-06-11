@@ -63,8 +63,7 @@ Plug 'RRethy/vim-illuminate'
 Plug 'szw/vim-maximizer'
 Plug 'easymotion/vim-easymotion'
 Plug 'kassio/neoterm'
-
-" TODO: Take a look at this
+Plug 'moll/vim-bbye'
 
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -97,9 +96,9 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 
 call plug#end()
 
-" colorscheme base16-dracula
-colorscheme base16-gruvbox-dark-medium
-" colorscheme base16-gruvbox-light-medium
+colorscheme base16-dracula
+" colorscheme base16-gruvbox-dark-medium
+" colorscheme base16-solarized-light
 
 set background=dark
 
@@ -142,7 +141,7 @@ set completeopt=menuone,noselect
 " Avoid showing message extra message when using completion
 set shortmess+=c
 
-set diffopt+=vertical
+set diffopt+=vertical,internal,algorithm:histogram
 
 " Some servers have issues with backup files, see #649.
 set nobackup

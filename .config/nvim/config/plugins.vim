@@ -1,3 +1,36 @@
+" LSP {{{
+lua require('lspsetup')
+lua require('baldore.telescope')
+
+" completion
+" lexima config must be here
+let g:lexima_no_default_rules = v:true
+let g:lexima_ctrlh_as_backspace = 1
+call lexima#set_default_rules()
+
+inoremap <silent><expr> <c-n> compe#complete()
+inoremap <silent><expr> <CR>  compe#confirm(lexima#expand('<LT>CR>', 'i'))
+
+" nnoremap <silent> gd :Lspsaga preview_definition<CR>
+nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gD <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> gh <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>
+nnoremap <silent> K :Lspsaga hover_doc<CR>
+" nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gs :Lspsaga signature_help<CR>
+nnoremap <silent> gr :Lspsaga rename<CR>
+nnoremap <silent><leader>ca :Lspsaga code_action<CR>
+vnoremap <silent><leader>ca :<C-U>Lspsaga range_code_action<CR>
+
+nnoremap <silent> <leader>rn    <cmd>lua vim.lsp.buf.rename()<CR>
+" scroll
+nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>
+nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
+
+autocmd CursorHoldI * Lspsaga signature_help
+
+" }}}
+
 " Fzf + Telescope {{{
 
 let g:fzf_history_dir = '~/.config/nvim/fzf-history'
@@ -15,8 +48,8 @@ nnoremap <silent> <leader>bb :Buffers<cr>
 nnoremap <silent> <leader>fr :History<cr>
 " nnoremap <silent> <leader>t :BTags<cr>
 nnoremap <silent> <leader>rg :Rg!<cr>
-nnoremap <silent> <leader>* :Rg <C-R><C-W><cr>
-vnoremap <silent> <leader>* y:Rg <C-r>0<cr>
+nnoremap <silent> <leader>* :Rg! <C-R><C-W><cr>
+vnoremap <silent> <leader>* y:Rg! <C-r>0<cr>
 cnoremap <C-e> <C-c>:Commands<cr>
 
 nmap <leader><tab> <plug>(fzf-maps-n)
@@ -104,7 +137,6 @@ map *  <Plug>(asterisk-z*)
 runtime macros/sandwich/keymap/surround.vim
 " }}}
 
-
 " UltiSnips {{{
 let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsSnippetDirectories=["own_snippets"]
@@ -175,18 +207,6 @@ function! LightLineFixIndexFiles()
 endfunction
 " }}}
 
-" FIXME: Disabled until bug changing other working directories is fixed...
-" for now use <C-z> and run what you need. Go back with fg
-" Floaterm {{{
-" let g:floaterm_autoclose = 1
-" let g:floaterm_width = 0.95
-" let g:floaterm_height = 0.95
-
-" nnoremap <leader>gl :<C-u>FloatermNew lazygit<cr>
-
-" command Conf FloatermNew lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME
-" }}}
-
 " Markdown Preview {{{
 let g:mkdp_auto_close = 0
 " }}}
@@ -228,3 +248,12 @@ nmap <c-j> <Plug>(easymotion-overwin-f2)
 let $EXPLAINSHELL_ENDPOINT = "http://localhost:5000"
 " }}}
 
+" bbye {{{
+nnoremap <Leader>q :Bdelete<CR>
+" }}}
+
+" Neoterm {{{
+nnoremap <leader>tk :Tkill<cr>
+nnoremap <leader>tc :Tclear<cr>
+nnoremap <leader>tp :T<Up>
+" }}}
