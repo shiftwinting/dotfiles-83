@@ -6,7 +6,7 @@ nnoremap <silent> <CR> :noh \| echo<CR>
 
 " quick init.vim changes
 nnoremap <silent> <leader>ie :tabe ~/.config/nvim/config/general.vim \| tcd ~/.config/nvim<cr>
-nnoremap <silent> <leader>ir :so %<cr>
+nnoremap <silent> <leader>ir :so %<cr>:echo "Config reloaded!"<cr>
 
 " previous buffer
 nnoremap <silent> <leader>, :b#<cr>

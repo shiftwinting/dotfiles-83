@@ -42,7 +42,10 @@ augroup QuickfixBottom
   autocmd BufWinEnter quickfix norm J
 augroup END
 
-" au BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
+augroup CreateFoldersOnSave
+  autocmd!
+  autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
+augroup END
 
 augroup HiglightTODO
   autocmd!

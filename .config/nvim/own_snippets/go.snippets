@@ -68,11 +68,17 @@ type $1 struct {
 }
 endsnippet
 
-snippet : ":="
+snippet ; ":="
 := $0
 endsnippet
 
 snippet cl "quick fmt.Printf"
 fmt.Printf("%v\n", $0)
+endsnippet
+
+snippet httphandler "http func"
+func $1(w http.ResponseWriter, r *http.Request) {
+	$0
+}
 endsnippet
 

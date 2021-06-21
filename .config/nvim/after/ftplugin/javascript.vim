@@ -29,8 +29,6 @@ function! JsFzfImport()
         \ )
 endfunction
 
-inoremap ; :
-inoremap : ;
 inoremap <expr> <c-x><c-f> JsFzfImport()
 
 " Open test for current file
