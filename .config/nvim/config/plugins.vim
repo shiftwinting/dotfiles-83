@@ -103,8 +103,8 @@ let g:indentLine_conceallevel = 2
 " }}}
 
 " Fugitive {{{
-nnoremap <leader>gs :Gstatus<cr>
-nnoremap <leader>gb :Gblame<cr>
+nnoremap <leader>gs :Git<cr>
+nnoremap <leader>gb :Git blame<cr>
 " }}}
 
 " incsearch {{{
@@ -256,4 +256,8 @@ nnoremap <Leader>q :Bdelete<CR>
 nnoremap <leader>tk :Tkill<cr>
 nnoremap <leader>tc :Tclear<cr>
 nnoremap <leader>tp :T<Up>
+" }}}
+
+" Maximizer {{{
+nnoremap <silent> <leader>wm :MaximizerToggle<cr>
 " }}}

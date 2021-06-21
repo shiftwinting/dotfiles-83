@@ -94,9 +94,6 @@ nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
 nnoremap <leader>ef :e ~/.config/nvim/after/ftplugin/<C-R>=&filetype<CR>.vim<CR>
 
 " terminal
-tnoremap kj <C-\><C-n>G
-tnoremap JK <C-\><C-n>G
-tnoremap KK <C-\><C-n>G
 tnoremap ,, <C-\><C-n>G
 tnoremap <expr> <A-r> '<C-\><C-n>"' . nr2char(getchar()) . 'pi'
 nnoremap <leader>oT :term<cr>
