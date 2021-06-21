@@ -80,6 +80,10 @@ vnoremap <leader>y "*y
 nnoremap <leader>p "*p
 nnoremap <leader>P "*P
 
+" Tab management
+nnoremap <leader><tab>n :tabe<cr>
+nnoremap <leader><tab>d :tabc<cr>
+
 " edit relative to current file
 nnoremap <leader>eh :e %:h/
 
