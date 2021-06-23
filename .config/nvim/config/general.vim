@@ -64,6 +64,7 @@ Plug 'szw/vim-maximizer'
 Plug 'easymotion/vim-easymotion'
 Plug 'kassio/neoterm'
 Plug 'moll/vim-bbye'
+Plug 'kyoh86/vim-go-coverage'
 
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -74,6 +75,10 @@ Plug 'nvim-telescope/telescope.nvim'
 " Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'fhill2/telescope-ultisnips.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+
+" TODO: To check later
+" https://github.com/kevinhwang91/nvim-bqf
+" https://github.com/TimUntersberger/neogit " Maybe not since I'm using lazygit
 
 " Local plugins
 call s:local_plug('lsp_extensions.nvim')
@@ -96,9 +101,10 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 
 call plug#end()
 
-colorscheme base16-dracula
+" colorscheme base16-dracula
 " colorscheme base16-gruvbox-dark-medium
-" colorscheme base16-solarized-light
+colorscheme base16-solarized-light
+" colorscheme base16-gruvbox-light-soft
 
 set background=dark
 
