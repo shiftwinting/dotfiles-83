@@ -164,6 +164,8 @@ let g:ale_fixers = {
       \   'go': ['goimports'],
       \   'dart': ['dartfmt'],
       \   'rust': ['rustfmt'],
+      \   'html': ['prettier'],
+      \   'css': ['prettier'],
       \}
 let g:ale_fix_on_save = 1
 let g:ale_hover_to_preview = 1

@@ -31,6 +31,7 @@ inoremap <C-x><C-n> <C-x><C-n><C-n>
 inoremap <C-b> <Left>
 inoremap <C-f> <Right>
 inoremap <C-e> <C-o>$
+inoremap <C-j> <C-o>o
 
 " make n always search forward and N backward
 nnoremap <expr> n 'Nn'[v:searchforward]
