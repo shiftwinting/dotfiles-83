@@ -69,9 +69,6 @@ augroup terminalOptions
   au TermOpen * setlocal nonumber norelativenumber
 augroup END
 
-" Autoread inside vim
-au FocusGained,BufEnter * :checktime
-
 au InsertEnter * set norelativenumber
 au InsertLeave * set relativenumber
 
