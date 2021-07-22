@@ -20,6 +20,12 @@ lsp.gopls.setup{
   end,
 }
 
+lsp.svelte.setup{
+  on_attach = function(client)
+    require 'illuminate'.on_attach(client)
+  end,
+}
+
 -- tsserver
 lsp.tsserver.setup{
   on_attach = function(client)
