@@ -19,8 +19,8 @@ nnoremap <silent> K :Lspsaga hover_doc<CR>
 " nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gs :Lspsaga signature_help<CR>
 nnoremap <silent> gr :Lspsaga rename<CR>
-nnoremap <silent><leader>ca :Lspsaga code_action<CR>
-vnoremap <silent><leader>ca :<C-U>Lspsaga range_code_action<CR>
+nnoremap <silent> <leader>ca :Lspsaga code_action<CR>
+vnoremap <silent> <leader>ca :<C-U>Lspsaga range_code_action<CR>
 
 nnoremap <silent> <leader>rn    <cmd>lua vim.lsp.buf.rename()<CR>
 " scroll

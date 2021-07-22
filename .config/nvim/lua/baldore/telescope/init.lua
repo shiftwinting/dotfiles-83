@@ -4,7 +4,9 @@ local action = require('fzf.actions').action
 -- Telescope
 require('telescope').setup{
   defaults = {
-    prompt_position = "top",
+    layout_config = {
+      prompt_position = "top",
+    },
     sorting_strategy = "ascending",
   },
   extensions = {
