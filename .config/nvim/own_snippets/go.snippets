@@ -86,3 +86,12 @@ func $1(w http.ResponseWriter, r *http.Request) {
 }
 endsnippet
 
+snippet fatalf "fatalf"
+log.Fatalf("$0: %v", err)
+endsnippet
+
+snippet decode "NewDecoder"
+if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
+	log.Fatalf("error decoding: %v", err)
+}
+endsnippet
