@@ -1,0 +1,676 @@
+
+# 2021-01-06 16:01:48.028574
++clear;
+
+# 2021-01-06 16:03:26.434236
++\d
+
+# 2021-01-06 16:03:32.316808
++\?
+
+# 2021-01-06 16:03:45.175581
++\l
+
+# 2021-01-06 16:04:55.481253
++\c test1
+
+# 2021-01-06 16:05:23.221448
++create database test1;
+
+# 2021-01-06 16:05:25.598895
++\l
+
+# 2021-01-06 16:05:31.222498
++\c test1;
+
+# 2021-01-06 16:08:55.357420
++create table postres (
++id SERIAL PRIMARY KEY,
++name varchar(20) NOT NULL
++);
+
+# 2021-01-06 16:09:03.049081
++\d
+
+# 2021-01-06 16:09:30.140742
++\dt
+
+# 2021-01-06 16:11:07.904606
++drop table postres;
+
+# 2021-01-06 16:11:11.762907
++\dt
+
+# 2021-01-06 16:11:26.987310
++create table postres (
++id SERIAL PRIMARY KEY,
++name varchar(20) NOT NULL
++);
+
+# 2021-01-06 16:11:28.942882
++\dt
+
+# 2021-01-06 16:12:25.600078
++insert into postres (name) values (Alonso) (Pedro) (Julio);
+
+# 2021-01-06 16:12:52.388323
++insert into postres (name) values (Alonso), (Pedro), (Julio);
+
+# 2021-01-06 16:13:34.101819
++insert into postres (name) values ('Alonso'), ('Pedro'), ('Julio');
+
+# 2021-01-06 16:13:39.940570
++select * from postres;
+
+# 2021-01-06 16:13:52.235974
++delete from postres;
+
+# 2021-01-06 16:13:57.298121
++select * from postres;
+
+# 2021-01-06 16:14:31.368351
++insert into postres (name) values ('Postre de maracuya'), ('Tiramisu'), ('Torta de Milo');
+
+# 2021-01-06 16:14:37.619946
++select * from postres;
+
+# 2021-01-06 16:17:28.722775
++\q
+
+# 2021-01-06 16:17:59.898576
++\c test1;
+
+# 2021-01-06 16:18:04.318885
++\dt
+
+# 2021-01-06 16:18:11.307247
++select * from postres;
+
+# 2021-01-06 16:18:49.691297
++\q
+
+# 2021-01-06 17:30:50.633396
++\dt
+
+# 2021-01-06 17:30:57.438675
++\l
+
+# 2021-01-06 17:49:26.864173
++exit
+
+# 2021-01-07 08:53:30.241567
++\dl
+
+# 2021-01-07 08:53:31.883333
++\l
+
+# 2021-01-07 08:53:37.014258
++\c cars;
+
+# 2021-01-07 08:53:39.927187
++\dt
+
+# 2021-01-07 08:53:48.330665
++drop table "Car";
+
+# 2021-01-07 08:53:55.711150
++drop table _prisma_migrations;
+
+# 2021-01-07 08:54:00.369630
++\dt
+
+# 2021-01-07 09:10:25.767161
++drop table "Car";
+
+# 2021-01-07 09:10:34.745952
++drop table _prisma_migrations;
+
+# 2021-01-07 09:11:34.663462
++\dt
+
+# 2021-01-07 09:11:52.854186
++drop table Car;
+
+# 2021-01-07 09:11:58.592589
++drop table "Car";
+
+# 2021-01-07 09:12:08.110454
++drop table _prisma_migrations;
+
+# 2021-01-07 09:13:30.427474
++\dt
+
+# 2021-01-07 09:14:33.652938
++drop table _prisma_migrations;
+
+# 2021-01-07 09:14:41.303554
++drop table "Car";
+
+# 2021-01-07 09:16:04.410244
++\dt
+
+# 2021-01-07 09:30:48.159607
++drop table "Car";
+
+# 2021-01-07 09:30:51.916611
++drop table _prisma_migrations;
+
+# 2021-01-07 09:30:56.641636
++\dt
+
+# 2021-01-07 09:35:43.194169
++drop table _prisma_migrations;
+
+# 2021-01-07 09:35:46.614350
++drop table "Car";
+
+# 2021-01-07 09:36:29.702809
++drop table _prisma_migrations;
+
+# 2021-01-07 09:36:31.919811
++\dt
+
+# 2021-01-07 09:38:06.690650
++\d Car;
+
+# 2021-01-07 09:38:10.167058
++\d "Car";
+
+# 2021-01-07 09:47:44.767259
++\dt
+
+# 2021-01-07 09:47:48.615160
++drop table _prisma_migrations;
+
+# 2021-01-07 09:47:52.237994
++drop table "Car";
+
+# 2021-01-07 09:48:03.922825
++\dt
+
+# 2021-01-07 09:49:31.767615
++\d "Car";
+
+# 2021-01-07 09:50:26.377974
++\dt
+
+# 2021-01-07 09:56:28.362765
++dt
+
+# 2021-01-07 09:56:29.862068
++\dt
+
+# 2021-01-07 09:57:43.411208
++select * from "Car";
+
+# 2021-01-07 11:18:09.875076
++\dt
+
+# 2021-01-07 11:30:30.115651
++select * from "Car";
+
+# 2021-01-08 09:47:31.160333
++\dt
+
+# 2021-01-08 09:47:34.905541
++select * from "Car";
+
+# 2021-01-08 10:18:21.487920
++exit
+
+# 2021-01-08 10:24:22.338467
++\dt
+
+# 2021-01-08 10:30:15.602685
++\c timers
+
+# 2021-01-08 10:31:30.538621
++gst
+
+# 2021-01-08 10:31:31.970781
++\dt
+
+# 2021-01-08 10:39:19.886442
++select * from "Timer";
+
+# 2021-01-08 10:40:29.874070
++select * from "Timerrrr";
+
+# 2021-01-08 10:40:32.080014
++select * from "Timer";
+
+# 2021-01-08 10:42:45.003027
++\d "Timer";
+
+# 2021-01-08 10:42:56.003477
++select * from "Timer";
+
+# 2021-01-08 10:45:30.933260
++drop table "Timer";
+
+# 2021-01-08 10:45:40.762599
++drop table _prisma_migrations;
+
+# 2021-01-08 10:45:43.394109
++\dt
+
+# 2021-01-08 10:47:49.871995
++select * from "Timer";
+
+# 2021-01-08 11:41:48.676637
++\d "Timer";
+
+# 2021-01-11 19:39:08.145174
++\dt 
+
+# 2021-01-11 19:39:11.969140
++drop table _prisma_migrations;
+
+# 2021-01-11 19:39:20.647012
++drop table "Car";
+
+# 2021-01-11 19:39:51.904814
++\dt
+
+# 2021-01-11 19:39:59.456757
++\d "Car";
+
+# 2021-04-09 18:04:34.616670
++\dp
+
+# 2021-04-09 18:04:38.099871
++\d
+
+# 2021-04-09 18:04:52.118349
++\!ls
+
+# 2021-04-09 18:04:57.843910
++\! ls
+
+# 2021-04-09 18:05:08.442677
++clear;
+
+# 2021-04-09 18:05:33.929063
++\c
+
+# 2021-04-09 18:06:02.656990
++\c urlshort
+
+# 2021-04-09 18:06:17.731340
++create database urlshort;
+
+# 2021-04-09 18:06:21.174787
++\c urlshort;
+
+# 2021-04-09 18:09:23.464162
++create table urls (
+
+# 2021-04-09 18:10:40.628258
++create table urls (
++id SERIAL PRIMARY KEY,
++path varchar,
++url varchar
++)
++;
+
+# 2021-04-09 18:11:13.187073
++\d
+
+# 2021-04-09 18:11:18.947670
++\d urls
+
+# 2021-04-09 18:12:31.700851
++insert into urls values ('/foo', 'https://www.reddit.com'), ('/bar', 'https://go.com');
+
+# 2021-04-09 18:13:00.321402
++insert into urls (url, "path") values ('/foo', 'https://www.reddit.com'), ('/bar', 'https://go.com');
+
+# 2021-04-09 18:13:09.388750
++select url, path from urls;
+
+# 2021-06-16 17:57:26.575715
++\d
+
+# 2021-06-16 17:57:33.034740
++\
+
+# 2021-06-16 17:57:36.959832
++i
+
+# 2021-06-16 17:57:41.020524
++\c
+
+# 2021-06-16 18:00:16.959171
++\?
+
+# 2021-06-16 18:00:39.415705
++\l
+
+# 2021-06-16 18:00:55.492731
++exit
+
+# 2021-06-16 18:01:19.624856
++\c crate
+
+# 2021-06-16 18:01:35.003319
++create database crate;
+
+# 2021-06-16 18:04:02.833608
++\c crate
+
+# 2021-06-16 18:04:04.315084
++ls
+
+# 2021-06-16 18:04:05.597371
++\l
+
+# 2021-06-16 18:04:07.644455
++\d
+
+# 2021-06-16 18:04:18.073852
++select * from users;
+
+# 2021-06-16 18:04:36.742306
++\c
+
+# 2021-06-16 18:04:43.690712
++\?
+
+# 2021-06-16 18:05:14.246657
++\! clear
+
+# 2021-07-12 11:13:08.555750
++\?
+
+# 2021-07-12 11:13:24.317214
++\l
+
+# 2021-07-12 11:13:33.598193
++eixt
+
+# 2021-07-12 11:13:34.656891
++exit
+
+# 2021-07-12 11:15:49.447605
++\l
+
+# 2021-07-12 11:16:07.773889
++create database snippetbox;
+
+# 2021-07-12 11:16:11.216157
++use snippetbox;
+
+# 2021-07-12 11:16:19.011813
++\l
+
+# 2021-07-12 11:19:14.686646
++create table snippets (
+
+# 2021-07-12 11:22:27.441900
++create table snippets (
++id INTEGER not null primary key,
++title VARCHAR(100) not null,
++content TEXT not null,
++created datetime not null,
++expires datetime not null,
++);
+
+# 2021-07-12 11:22:42.034093
++create table snippets (
++id INTEGER not null primary key,
++title VARCHAR(100) not null,
++content TEXT not null,
++created datetime not null,
++expires datetime not null
++);
+
+# 2021-07-12 11:24:22.645684
++create table snippets (
++id INTEGER not null primary key,
++title VARCHAR(100) not null,
++content TEXT not null,
++created timestamp not null,
++expires timestamp not null
++);
+
+# 2021-07-12 11:25:30.990201
++create index idx_snippets_created ON snippets(created);
+
+# 2021-07-12 11:30:29.251209
++insert into snippets (title, content, created, expires) values (
++'An old silent pond',
++'An old silent pond...\nA frog jumps into the pond,\nsplash! Silence again.',
++timezone('utc', NOW()),
++timezone('utc', NOW() + '365 days')
++);
+
+# 2021-07-12 11:32:37.545964
++\?
+
+# 2021-07-12 11:32:51.946005
++\dt
+
+# 2021-07-12 11:33:03.590907
++delete table snippets;
+
+# 2021-07-12 11:33:13.332997
++\dt
+
+# 2021-07-12 11:33:41.528461
++drop table snippets;
+
+# 2021-07-12 11:33:47.569443
++\c
+
+# 2021-07-12 11:33:56.399263
++\?
+
+# 2021-07-12 11:36:04.545519
++create table snippets (
++id SERIAL,
++title VARCHAR(100) not null,
++content TEXT not null,
++created datetime not null,
++expires datetime not null
++);
+
+# 2021-07-12 11:36:18.843926
++create table snippets (
++id SERIAL,
++title VARCHAR(100) not null,
++content TEXT not null,
++created timestamp not null,
++expires timestamp not null
++);
+
+# 2021-07-12 11:36:21.226408
++\dt
+
+# 2021-07-12 11:42:36.912886
++insert into snippets (title, content, created, expires) values (
++'An old silent pond',
++'An old silent pond...\nA frog jumps into the pond,\nsplash! Silence again.',
++timezone('utc', NOW()),
++timezone('utc', NOW() + '365 days')
++);
+
+# 2021-07-12 11:42:48.075390
++select * from snippets;
+
+# 2021-07-12 11:44:37.174008
++insert into snippets (title, content, created, expires) values (
++'Over the wintry forest',
++'Over the wintry\nforest, winds howl in rage\nwith no leaves to blow.',
++timezone('utc', NOW()),
++timezone('utc', NOW() + '365 days')
++);
+
+# 2021-07-12 11:45:40.390728
++insert into snippets (title, content, created, expires) values (
++'First autumn morning',
++'First autumn morning\nthe mirror I stare into\nshows my father''s face.',
++timezone('utc', NOW()),
++timezone('utc', NOW() + '7 days')
++);
+
+# 2021-07-12 11:45:46.227371
++select * from snippets;
+
+# 2021-07-12 11:50:43.324263
++create user 'web'@'localhost';
+
+# 2021-07-12 11:51:36.392765
++create user snippetbox with password 'asdfasdf';
+
+# 2021-07-12 11:51:40.712745
++\?
+
+# 2021-07-12 11:52:17.546918
++\e
+
+# 2021-07-12 11:52:49.430525
++\du
+
+# 2021-07-12 11:53:34.521825
++grant select, insert on snippetbox.* to snippetbox;
+
+# 2021-07-12 11:54:28.782881
++grant connect on snippetbox to snippetbox;
+
+# 2021-07-12 11:54:54.320379
++grant connect on database snippetbox to snippetbox;
+
+# 2021-07-12 11:54:57.741035
++\du
+
+# 2021-07-12 11:55:17.340016
++grant pg_read_all_data to snippetbox;
+
+# 2021-07-12 11:55:23.684198
++\v
+
+# 2021-07-12 11:55:26.373094
++\version
+
+# 2021-07-12 11:57:22.612257
++select version();
+
+# 2021-07-12 11:58:24.117333
++exit
+
+# 2021-07-12 18:19:56.250210
++\c snippetbox;
+
+# 2021-07-12 18:19:58.443969
++\dt
+
+# 2021-07-12 18:20:09.495932
++select * from snippets;
+
+# 2021-07-22 14:59:10.908650
++create database react-golang-jwt;
+
+# 2021-07-22 14:59:21.933965
++create database react_golang_jwt;
+
+# 2021-07-22 14:59:27.794588
++\c react_golang_jwt;
+
+# 2021-07-22 18:31:52.073797
++create table users (
++id SERIAL,
++title VARCHAR(100) not null,
++);
+
+# 2021-07-22 18:31:57.159978
++create table users (
++id SERIAL,
++title VARCHAR(100) not null
++);
+
+# 2021-07-22 18:32:41.156283
++select * from users;
+
+# 2021-07-22 18:43:55.783793
++select CURRENT_TIMESTAMP;
+
+# 2021-07-22 19:09:46.452288
++\c react_golang_jwt;
+
+# 2021-07-22 19:09:52.437715
++drop table users;
+
+# 2021-07-22 19:10:18.267154
++\dt
+
+# 2021-07-22 19:10:29.361322
++drop table schema_migrations;
+
+# 2021-07-22 19:10:55.966915
++\dt
+
+# 2021-07-22 19:11:08.701539
++select * from schema_migrations;
+
+# 2021-07-23 10:02:48.223289
++select version
+
+# 2021-07-23 10:02:54.488622
++select version();
+
+# 2021-07-23 10:06:18.678619
++create table if not exists users (
+
+# 2021-07-23 10:06:32.011357
++create table if not exists users (
++id SERIAL;
+
+# 2021-07-23 10:06:54.074679
++create table if not exists users (
++id SERIAL,
++user varchar(100) not null,
++)
++;
+
+# 2021-07-23 10:06:58.551403
++create table if not exists users (
++id SERIAL,
++user varchar(100) not null
++)
++;
+
+# 2021-07-23 17:13:03.112395
++\dt
+
+# 2021-07-23 17:13:10.670647
++drop table schema_migrations;
+
+# 2021-07-23 17:13:14.080915
++\dt
+
+# 2021-07-23 17:15:14.985979
++exit
+
+# 2021-07-23 17:15:56.129101
++\dt
+
+# 2021-07-23 17:16:47.161373
++insert into users (username, password) values ('foo', 'bar');
+
+# 2021-07-23 17:16:51.041094
++select * from users;
+
+# 2021-07-23 17:17:42.971431
++exit
+
+# 2021-07-23 17:30:06.971577
++alter table users add unique (username);
+
+# 2021-07-23 17:30:19.081039
++select * from users;
+
+# 2021-07-23 17:30:26.798341
++insert into users (username, password) values ('foo', 'bar');
+
+# 2021-07-23 17:30:40.722885
++exit
