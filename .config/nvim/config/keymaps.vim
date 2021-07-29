@@ -1,8 +1,11 @@
 " common
-nnoremap <leader>fs :w!<CR>
 nmap <expr> ; sneak#is_sneaking() ? "\<Plug>Sneak_;" : ":"
 map Q <nop>
 nnoremap <silent> <CR> :noh \| echo<CR>
+
+" files
+nnoremap <leader>fs :w!<CR>
+nnoremap <leader>fy <Cmd>let @* = expand('%')<CR>
 
 " quick init.vim changes
 nnoremap <silent> <leader>ie :tabe ~/.config/nvim/config/general.vim \| tcd ~/.config/nvim<cr>

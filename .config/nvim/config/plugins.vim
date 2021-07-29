@@ -154,6 +154,8 @@ let g:ale_linters = {
       \   'typescriptreact': ['eslint'],
       \   'go': ['golangci-lint'],
       \}
+
+" \   'html': ['prettier'],
 let g:ale_fixers = {
       \   'vue': ['eslint'],
       \   'typescript': ['eslint'],
@@ -164,7 +166,6 @@ let g:ale_fixers = {
       \   'go': ['goimports'],
       \   'dart': ['dartfmt'],
       \   'rust': ['rustfmt'],
-      \   'html': ['prettier'],
       \   'css': ['prettier'],
       \}
 let g:ale_fix_on_save = 1
@@ -255,6 +256,8 @@ nnoremap <Leader>q :Bdelete<CR>
 " }}}
 
 " Neoterm {{{
+let g:neoterm_term_per_tab = 1
+
 nnoremap <leader>tk :Tkill<cr>
 nnoremap <leader>tc :Tclear<cr>
 nnoremap <leader>tp :T<Up>
