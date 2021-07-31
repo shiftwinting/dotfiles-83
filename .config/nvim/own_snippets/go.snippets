@@ -97,13 +97,13 @@ endsnippet
 snippet decode "NewDecoder"
 var body struct{}
 if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
-	log.Fatalf("error decoding: %v", err)
+	log.Printf("error decoding: %v", err)
 }
 endsnippet
 
 snippet encode "NewEncoder"
 if err := json.NewEncoder(w).Encode($0); err != nil {
-	log.Fatalf("error decoding: %v", err)
+	log.Printf("error encoding: %v", err)
 }
 endsnippet
 
