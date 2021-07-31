@@ -90,8 +90,36 @@ snippet fatalf "fatalf"
 log.Fatalf("$0: %v", err)
 endsnippet
 
+snippet lprintf "log.Printf"
+log.Printf($0)
+endsnippet
+
 snippet decode "NewDecoder"
+var body struct{}
 if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
 	log.Fatalf("error decoding: %v", err)
+}
+endsnippet
+
+snippet encode "NewEncoder"
+if err := json.NewEncoder(w).Encode($0); err != nil {
+	log.Fatalf("error decoding: %v", err)
+}
+endsnippet
+
+snippet hjson "header content-type application/json"
+w.Header().Set("Content-Type", "application/json")
+endsnippet
+
+snippet dbconnection "db connection boilerplate"
+connStr := "postgres://postgres:asdfasdf@localhost:5432/angelo?sslmode=disable"
+db, err := sql.Open("postgres", connStr)
+
+if err != nil {
+	log.Fatalf("error connecting to database: %v", err)
+}
+
+if err := db.Ping(); err != nil {
+	log.Fatalf("error pinging to database: %v", err)
 }
 endsnippet
