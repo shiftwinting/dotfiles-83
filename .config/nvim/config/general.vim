@@ -65,6 +65,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'kassio/neoterm'
 Plug 'moll/vim-bbye'
 Plug 'kyoh86/vim-go-coverage'
+Plug 'gelguy/wilder.nvim'
 " Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
 
 " Treesitter

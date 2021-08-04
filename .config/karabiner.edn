@@ -1,4 +1,4 @@
-;; Cheatsheet
+
 ;; !  | means mandatory
 ;; #  | means optional
 ;; C  | left_command
@@ -65,11 +65,11 @@
 
         {:des   "launch mode"
          :rules [:launch-mode
-                 [:a [:open "/Applications/Brave Browser.app"]]
+                 [:f [:open "/Applications/Brave Browser.app"]]
+                 [:t [:open "/Applications/Alacritty.app"]]
+                 [:e [:open "/nix/store/2lzmvd5clkcxa4ddzkc8p85v7kq7vhg6-emacsGccDarwin/Applications/Emacs.app"]]
                  [:s [:open "/Applications/Slack.app"]]
-                 [:d [:open "/Applications/Alacritty.app"]]
-                 [:f [:open "/Applications/Emacs.app"]]
-                 [:g [:open "/Applications/Mattermost.app"]]
+                 [:a [:open "/Applications/Mattermost.app"]]
                  ]}
 
         {:des   "browsers"

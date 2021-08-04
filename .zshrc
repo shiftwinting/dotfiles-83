@@ -149,6 +149,13 @@ FORGIT_LOG_GRAPH_ENABLE=false
 
 # }}}
 
+# mktouch {{{
+function mktouch {
+  mkdir -p $( dirname $1 )
+  touch $1
+}
+# }}}
+
 # Git {{{
 
 # Git checkout recent
