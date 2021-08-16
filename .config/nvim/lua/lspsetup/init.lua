@@ -109,6 +109,7 @@ require'compe'.setup {
   -- source_timeout = ... number ...;
   -- incomplete_delay = ... number ...;
   allow_prefix_unmatch = false;
+  documentation = false;
 
   source = {
     path = true;

@@ -65,7 +65,6 @@ Plug 'easymotion/vim-easymotion'
 Plug 'kassio/neoterm'
 Plug 'moll/vim-bbye'
 Plug 'kyoh86/vim-go-coverage'
-Plug 'gelguy/wilder.nvim'
 " Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
 
 " Treesitter
@@ -74,7 +73,7 @@ Plug 'nvim-treesitter/playground'
 
 " Telescope
 Plug 'nvim-telescope/telescope.nvim'
-" Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'fhill2/telescope-ultisnips.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 

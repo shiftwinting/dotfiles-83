@@ -107,6 +107,13 @@ if err := json.NewEncoder(w).Encode($0); err != nil {
 }
 endsnippet
 
+snippet unmarshal "unmarshal"
+var labels []Label
+if err := json.Unmarshal([]byte(rawLabels), &labels); err != nil {
+	log.Printf("error unmarshalling value: %v", err.Error())
+}
+endsnippet
+
 snippet hjson "header content-type application/json"
 w.Header().Set("Content-Type", "application/json")
 endsnippet

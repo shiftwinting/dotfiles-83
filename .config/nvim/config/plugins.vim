@@ -23,11 +23,12 @@ nnoremap <silent> <leader>ca :Lspsaga code_action<CR>
 vnoremap <silent> <leader>ca :<C-U>Lspsaga range_code_action<CR>
 
 nnoremap <silent> <leader>rn    <cmd>lua vim.lsp.buf.rename()<CR>
+
 " scroll
 nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>
 nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
 
-autocmd CursorHoldI * Lspsaga signature_help
+" autocmd CursorHoldI * Lspsaga signature_help
 
 " }}}
 
@@ -172,6 +173,9 @@ let g:ale_fix_on_save = 1
 let g:ale_hover_to_preview = 1
 let g:ale_set_loclist = 0
 
+let g:ale_go_golangci_lint_package = 1
+let g:ale_go_golangci_lint_options = '--enable-all -D nlreturn'
+
 " Custom Highlights
 hi ALEError gui=underline
 
@@ -267,15 +271,3 @@ nnoremap <leader>tp :T<Up>
 nnoremap <silent> <leader>wm :MaximizerToggle<cr>
 " }}}
 
-" Wilder {{{
-call wilder#enable_cmdline_enter()
-set wildcharm=<Tab>
-cmap <expr> <Tab> wilder#in_context() ? wilder#next() : "\<Tab>"
-cmap <expr> <S-Tab> wilder#in_context() ? wilder#previous() : "\<S-Tab>"
-
-" only / and ? are enabled by default
-call wilder#set_option('modes', ['/', '?', ':'])
-call wilder#set_option('renderer', wilder#popupmenu_renderer({
-      \ 'highlighter': wilder#basic_highlighter(),
-      \ }))
-" }}}
